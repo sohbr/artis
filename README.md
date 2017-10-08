@@ -32,6 +32,10 @@ Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud 
 * Setting up React Native with Rails
 * Implementing Facebook OAuth
 
+## Wireframes
+
+![Wireframes][wireframes]
+
 ## Things Accomplished Over the Weekend
 * Research Technologies
 * Setup a basic React Native App
@@ -43,7 +47,8 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 ### Day 1 - 2
 * User Authentication (All)
     * Setup Login/Logout/Signup with Rails and React Native to persist through sessions
-* AWS 
+* AWS
+   * For storing user media
 
 ### Day 3 - 4
 * Setup user profile ( Jimmy )
@@ -68,3 +73,5 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 
 * Everyone on the team is going to share the app with friends, family and classmates.
 * Post on reddit and facebook. 
+
+[wireframes]: https://github.com/sohbr/flex/blob/master/docs/Doomi%20Proud.png
