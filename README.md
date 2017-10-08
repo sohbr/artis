@@ -1,6 +1,10 @@
+# Doomi Proud
+
+[Doomi Proud Live][doomi-proud]
+
 ## Background and Overview
 
-Mobile application for habit forming. Users are held accountable through social reinforcement by posting to their chat-group.
+Doomi Proud is a React Native mobile application forming new habits with the help of friends. Users are held accountable through social reinforcement by posting to their chat-group.
 
 
 
@@ -22,3 +26,6 @@ Mobile application for habit forming. Users are held accountable through social 
 
 
 ## Plan for getting users and reviews
+
+
+[doomi-proud]: 
