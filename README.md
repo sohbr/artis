@@ -2,7 +2,7 @@
 
 ## Background and Overview
 
-Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting to the feed or directly to friends. If one of your friends seem like they're not making any progress on their Doomi's, send them a nudge!
+Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting to the feed or directly to friends. If one of your buddies seems like they're not making any progress on their Doomi's, send them a nudge!
 
 ## Functionality and MVP
 * User Login / Signup and authentication
@@ -23,9 +23,11 @@ Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud 
 * Facebook OAuth
 * Socket.io
 * Ruby on Rails
+* AWS for image hosting
 
 ## Technical Challenges
 * Learning a new front end framework
+* Learning AWS
 * Implementing Socket.io for live messaging
 * Setting up React Native with Rails
 * Implementing Facebook OAuth
@@ -38,20 +40,25 @@ Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud 
 ## Group Members and Work Breakdown
 Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 
-### Day 1
+### Day 1 - 2
 * User Authentication (All)
     * Setup Login/Logout/Signup with Rails and React Native to persist through sessions
+* AWS 
 
-### Day 2 - 4
+### Day 3 - 4
 * Setup user profile ( Jimmy )
+    * Upload avatar
     * List of user’s Doomi’s
     * Add a new Doomi to the list 
     * Show information about the user’s personal streak
 * Setup feed ( Brian )
     * Display updates and posts from friends
     * Ability to like and comment posts on the feed
+    * Infinite scroll
+    * Posts and associated comments delete after 24 hours
 * Setup friends list ( Nixon )
     * Nudge feature that sends a reminder to the friend that hasn’t completed their Doomi
+    * Heart feature for more positive reinforcement if Doomi's are completed
 
 ### Day 5 - 7
 * Setup Socket.io for push notifications
