@@ -2,7 +2,7 @@
 
 ## Background and Overview
 
-Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting a picture or message to the feed or directly to friends. 
+Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting a picture or message to the feed or to friends. 
 
 ## Functionality and MVP
 * User Login / Signup and authentication
@@ -40,6 +40,7 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 
 ### Day 1
 * User Authentication (All)
+    * Setup Login/Logout/Signup with Rails and React Native to persist through sessions
 
 ### Day 2 - 4
 * Setup user profile ( Jimmy )
