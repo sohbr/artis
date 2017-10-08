@@ -2,7 +2,7 @@
 
 ## Background and Overview
 
-Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting to the feed or directly to friends. If one of your friends seems like they're not making any progress on their Doomi's, send them a nudge!
+Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting to the feed or directly to friends. If one of your friends seem like they're not making any progress on their Doomi's, send them a nudge!
 
 ## Functionality and MVP
 * User Login / Signup and authentication
