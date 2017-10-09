@@ -69,9 +69,11 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 
 ### Day 5 - 7
 * Setup Socket.io for push notifications ( TBD )
-* Setup up live chat between users ( TBD )
+* Setup AWS for media upload (Cloudinary as backup) ( TBD )
+
+## If time allows
+* Setup up live chat between users
     * Setup chat interface
-* Setup AWS for media upload ( TBD )
 
 ## Plan for getting users and reviews
 
