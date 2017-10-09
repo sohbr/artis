@@ -68,8 +68,10 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
     * Heart feature for more positive reinforcement if Doomi's are completed
 
 ### Day 5 - 7
-* Setup Socket.io for push notifications
-* Setup up live chat between users
+* Setup Socket.io for push notifications ( TBD )
+* Setup up live chat between users ( TBD )
+    * Setup chat interface
+* Setup AWS for media upload ( TBD )
 
 ## Plan for getting users and reviews
 
