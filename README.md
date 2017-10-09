@@ -36,6 +36,8 @@ Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud 
 
 ![Wireframes][wireframes]
 
+Users are able to view the most recent Doomi posts that were made by their friends through the main feed. They can also view their own list of Doomi's as well as their posting and comment streaks on their personal profile page. If a friend has yet to complete their Doomi, the user is able to send a nudge as a friendly reminder. Users are also able to upload pictures and add descriptions as well as tag their relevant Doomi's to the post they make.
+
 ## Things Accomplished Over the Weekend
 * Research Technologies
 * Setup a basic React Native App
