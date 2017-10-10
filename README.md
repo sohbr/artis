@@ -16,7 +16,7 @@ Artis is a platform that allows trade school students to market themselves and c
 
 ## Technologies
 * React Native
-* Web Sockets
+* Web Sockets with Action Cables
 * Ruby on Rails
 * Image hosting on Cloudinary
 
