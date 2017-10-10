@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createDoomi, fetchAllDoomis } from '../actions/doomi_actions';
+import SessionForm from './session_form/session_form';
 
 import {
   StyleSheet,
@@ -24,24 +25,13 @@ class DoomiProud extends React.Component {
   _onSubmit() {
       const doomi = Object.assign({}, this.state);
       this.props.makeDoomi(doomi);
-      debugger;
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Text>Hello Friends Sup</Text>
-        <TextInput
-          style={{height: 40}}
-          onChangeText={(title) => this.setState({title})}
-          placeholder="Type Here"/>
-        <Button onPress={this._onSubmit} title="Submit"/>
+        <SessionForm />
       </View>
-
-
     );
   }
 
