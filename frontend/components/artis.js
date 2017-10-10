@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SessionForm from './session_form/session_form';
+import UserShow from './user_profile/user_show';
 
 import {
   StyleSheet,
@@ -28,7 +29,7 @@ class Artis extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <SessionForm />
+        <UserShow />
       </View>
     );
   }
