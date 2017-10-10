@@ -1,6 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import SessionForm from './session_form/session_form';
+import React from "react";
+import { connect } from "react-redux";
+import SessionForm from "./session_form/session_form";
+import NavigationFooter from "./navigation_footer/navigation_footer";
 
 import {
   StyleSheet,
@@ -9,7 +10,7 @@ import {
   StatusBar,
   TextInput,
   Button
-} from 'react-native';
+} from "react-native";
 
 class Artis extends React.Component {
   constructor(props) {
@@ -21,9 +22,7 @@ class Artis extends React.Component {
     this._onSubmit = this._onSubmit.bind(this);
   }
 
-  _onSubmit() {
-
-  }
+  _onSubmit() {}
 
   render() {
     return (
@@ -32,26 +31,21 @@ class Artis extends React.Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
+    backgroundColor: "white"
+  }
 });
 
-var mapStateToProps = (state) => {
-  return {
-  };
+var mapStateToProps = state => {
+  return {};
 };
 
 var mapDispatchToProps = dispatch => {
-  return {
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Artis);
