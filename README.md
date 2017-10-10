@@ -70,4 +70,4 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 * Everyone on the team is going to share the app with friends, family and classmates.
 * Post on reddit and facebook.
 
-[wireframes]: https://github.com/sohbr/artis/blob/master/docs/Artis.png
+![wireframes](https://github.com/sohbr/artis/blob/master/docs/Artis.png)
