@@ -1,9 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import RegisterForm from "./session_form/register_form";
-import LoginForm from "./session_form/login_form";
-import Home from "./home";
+
 import { Tabs } from "./logged_in_components/router";
+import React from 'react';
+import { connect } from 'react-redux';
+import RegisterForm from './session_form/register_form';
+import LoginForm from './session_form/login_form';
+import Home from './home';
+import UserShow from './user_profile/user_show';
 
 import {
   StyleSheet,
@@ -31,6 +33,7 @@ class Artis extends React.Component {
     return (
       <View style={styles.container}>
         {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
+
       </View>
     );
   }
