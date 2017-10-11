@@ -11,7 +11,7 @@ import {
   StatusBar,
   TextInput,
   Button
-} from 'react-native';
+} from "react-native";
 
 import { StackNavigator } from 'react-navigation';
 
@@ -20,6 +20,7 @@ const ArtisApp = StackNavigator({
   Register: { screen: RegisterForm },
   Login: { screen: LoginForm },
 });
+
 
 
 export default class Artis extends React.Component {
@@ -35,7 +36,6 @@ export default class Artis extends React.Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
