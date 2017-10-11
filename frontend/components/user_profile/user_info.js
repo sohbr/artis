@@ -3,28 +3,26 @@ import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
+import UserStar from './user_stars';
 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
-  }
-
-  _onPressReviews() {
 
   }
+
+
+
+
 
   render() {
     return(
         <View style={styles.userInfoContainer}>
           <Image style={styles.profileImage} source={require('../../../docs/assets/img/minoru-mineta.jpg')} />
-          <View>
+          <View style={styles.userDetails}>
             <Text style={styles.userFullName}>Minoru Mineta</Text>
             <View style ={styles.starRating}>
-              <FontAwesome style={styles.star} name="star"/>
-              <FontAwesome style={styles.star} name="star-half-o"/>
-              <FontAwesome style={styles.star} name="star-o"/>
-              <FontAwesome style={styles.star} name="star-o"/>
-              <FontAwesome style={styles.star} name="star-o"/>
+              <UserStar/>
             </View>
             <Text onPress={this.onPressReviews}>174 Reviews</Text>
           </View>
@@ -37,24 +35,21 @@ const styles = StyleSheet.create({
   userInfoContainer: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   profileImage: {
-   width: Dimensions.get('window').width*.4,
-   height: Dimensions.get('window').width*.4,
-   borderRadius: Dimensions.get('window').width*.2,
+   width: Dimensions.get('window').width*.5,
+   height: Dimensions.get('window').width*.5,
+   borderRadius: Dimensions.get('window').width*.25,
    borderColor: 'gray',
    borderWidth: .5
+ },
+ userDetails: {
+   justifyContent: 'center',
  },
   userFullName: {
     fontSize: 20,
   },
-  starRating: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  star: {
-    fontSize: 30,
-  }
 });
 
 export default UserInfo;

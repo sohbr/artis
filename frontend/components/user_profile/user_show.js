@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
+import UserPhotosIndex from "./user_photos_index";
 
 class UserShow extends Component {
   constructor(props) {
@@ -11,7 +13,9 @@ class UserShow extends Component {
   render() {
     return(
       <ScrollView style={{backgroundColor: "yellow", paddingTop: 30}}>
-        <UserInfo/>
+        <UserInfo style={styles.userInfo}/>
+        <View style={styles.hr}/>
+        <UserPhotosIndex/>
       </ScrollView>
     );
   }
@@ -20,19 +24,16 @@ class UserShow extends Component {
 const styles = StyleSheet.create({
   userInfoContainer: {
     flex: 1,
-    flexDirection: 'row',
   },
-  userPic: {
-    height: 150,
-    borderRadius: 50,
-    width: 150,
+  userInfo: {
+    justifyContent: "center",
   },
-  userFullName: {
-    fontSize: 20,
+  hr: {
+    width: Dimensions.get('window').width*.9,
+    justifyContent: 'center',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
-  starRating: {
-    flexDirection: 'row',
-  }
 });
 
 
