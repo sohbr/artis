@@ -3,17 +3,24 @@ import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
-import UserStar from './user_stars';
+import StarRating from '../star_rating/star_rating';
 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
 
+    this.floatToArray = this.floatToArray.bind(this);
   }
 
-
-
-
+  floatToArray () {
+    let rating = 1.6;
+    let arr = [];
+    for (var i = 0; i < 5; i++) {
+      arr.push(rating);
+      rating--;
+    }
+    return arr;
+  }
 
   render() {
     return(
@@ -21,8 +28,8 @@ class UserInfo extends Component {
           <Image style={styles.profileImage} source={require('../../../docs/assets/img/minoru-mineta.jpg')} />
           <View style={styles.userDetails}>
             <Text style={styles.userFullName}>Minoru Mineta</Text>
-            <View style ={styles.starRating}>
-              <UserStar/>
+            <View style={styles.starRating}>
+            {this.floatToArray().map(score => <StarRating score={score}/>)}
             </View>
             <Text onPress={this.onPressReviews}>174 Reviews</Text>
           </View>
@@ -49,6 +56,10 @@ const styles = StyleSheet.create({
  },
   userFullName: {
     fontSize: 20,
+  },
+  starRating: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 

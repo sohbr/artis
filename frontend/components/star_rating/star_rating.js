@@ -7,19 +7,11 @@ import Dimensions from 'Dimensions';
 class StarRating extends Component {
   constructor(props) {
     super(props);
+
     this.starRating = this.starRating.bind(this);
-    this.starAssignment = this.starAssignment.bind(this);
   }
 
-  starRating() {
-    // for (var i = 0; i < 5; i++) {
-      let fakeRating = 1.6;
-      this.starAssignment(fakeRating);
-    // }
-  }
-
-  starAssignment(float) {
-    let rating = float;
+  starRating(rating) {
     if (rating >= 1) {
       return <FontAwesome style={styles.star} name="star"/>;
     }else if (rating >= .3) {
@@ -28,13 +20,16 @@ class StarRating extends Component {
       return <FontAwesome style={styles.star} name="star-o"/>;
     }
   }
+
+  render() {
+    return (
+      this.starRating(this.props.score)
+    );
+  }
 }
 
+
 const styles = StyleSheet.create({
-  starRating: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
   star: {
     fontSize: 30,
   }
