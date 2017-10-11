@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { register } from "../../actions/session_actions";
+import { login } from "../../actions/session_actions";
 import SessionErrors from "./session_errors";
 
 import {
@@ -12,48 +12,40 @@ import {
   AsyncStorage
 } from "react-native";
 
-class SessionForm extends React.Component {
+class LoginForm extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => ({
+    title: "Login"
+  });
+
   constructor(props) {
     super(props);
 
     this.state = {
       username: "",
       password: "",
-      email: "",
       errors: []
     };
   }
 
-  onRegister() {
+  onLogin() {
     return () => {
       const user = Object.assign({},{
         username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
+        password: this.state.password
       });
-      this.props.register(user).then((res) => {
-      }, (errors) => {
-        debugger;
-        this.setState({errors: errors});
-      });
+      this.props.login(user);
     };
   }
 
   render() {
     return(
       <View style={styles.container}>
-        <TextInput
-          onChangeText={(email) => this.setState({email})}
-          placeholder="Email"
-          style={styles.input}
-          />
-        <Text style={styles.label}>
-          {this.state.email}
-        </Text>
+        <Text style={styles.title}>Artis</Text>
         <TextInput
           onChangeText={(username) => this.setState({username})}
           placeholder="Username"
           style={styles.input}
+          underlineColorAndroid={'transparent'}
         />
         <Text style={styles.label}>
           {this.state.username}
@@ -63,31 +55,30 @@ class SessionForm extends React.Component {
           secureTextEntry={true}
           placeholder="Password"
           style={styles.input}
+          underlineColorAndroid={'transparent'}
         />
         <Text style={styles.label}>
           {this.state.password}
         </Text>
-
-        <TouchableHighlight style={styles.button} onPress={this.onRegister()}>
+        <TouchableHighlight style={styles.button} onPress={this.onLogin()}>
           <Text style={styles.buttonText}>
-            Register
+            Login
           </Text>
         </TouchableHighlight>
-
-        <SessionErrors errors={this.state.errors}/>
+        <SessionErrors errors={this.props.errors}/>
       </View>
     );
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10,
-    paddingTop: 80
+    padding: 10
   },
   input: {
     height: 50,
@@ -110,15 +101,22 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: "white"
+  },
+  title: {
+    fontSize: 100,
+    alignSelf: "center",
+    fontWeight: "bold"
   }
 });
 
-const mapStateToProps = (state) => ({
-
-});
+const mapStateToProps = (state) => {
+  return {
+    errors: state.errors.session
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-  register: (user) => dispatch(register(user))
+  login: (user) => dispatch(login(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
