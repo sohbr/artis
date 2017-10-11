@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RegisterForm from './session_form/register_form';
 import LoginForm from './session_form/login_form';
 import Home from './home';
+import UserShow from './user_profile/user_show';
 
 import {
   StyleSheet,
@@ -32,7 +33,7 @@ export default class Artis extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ArtisApp />
+        <UserShow />
       </View>
     );
   }
