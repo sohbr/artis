@@ -1,7 +1,8 @@
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
-import { postUser } from '../util/session_api_util';
+import { postUser, postSession, deleteSession } from '../util/session_api_util';
 
 export const receiveCurrentUser = (user) => ({
   type: RECEIVE_CURRENT_USER,
@@ -13,10 +14,22 @@ export const receiveSessionErrors = (errors) => ({
   errors
 });
 
+export const clearSessionErrors = () => ({
+  type: CLEAR_SESSION_ERRORS
+});
+
 export const register = (user) => dispatch => {
   return postUser(user).then((res) => {
-    console.log(res);
+    dispatch(receiveCurrentUser(res.data));
   }).catch((errors) => {
-    console.log(errors.response);
+    dispatch(receiveSessionErrors(errors.response.data));
+  });
+};
+
+export const login = (user) => dispatch => {
+  return postSession(user).then((res) => {
+    dispatch(receiveCurrentUser(res.data));
+  }).catch((errors) => {
+    dispatch(receiveSessionErrors(errors.response.data));
   });
 };
