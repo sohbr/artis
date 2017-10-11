@@ -31,7 +31,7 @@ class UserInfo extends Component {
             <View style={styles.starRating}>
             {this.floatToArray().map(score => <StarRating score={score}/>)}
             </View>
-            <Text onPress={this.onPressReviews}>174 Reviews</Text>
+            <Text style={styles.reviewCount} onPress={this.onPressReviews}>174 Reviews</Text>
           </View>
         </View>
     );
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
   starRating: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  reviewCount: {
+    textDecorationLine: 'underline',
   },
 });
 
