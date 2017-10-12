@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login, clearSessionErrors, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
-import SessionErrors from "./session_errors";
+import { createPost, updatePost, deletePostById } from '../../actions/post_actions';
 
 import {
   StyleSheet,
@@ -9,75 +8,71 @@ import {
   View,
   TouchableHighlight,
   TextInput,
-  AsyncStorage,
+  Image,
+  Dimensions
 } from "react-native";
 
-class LoginForm extends React.Component {
+class PostForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      title: "Login"
+      title: "Create a Post"
     }
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      errors: []
+      title: "",
+      body: ""
     };
   }
 
   componentWillMount() {
-    if (this.props.errors.length > 0) {
-      this.props.clearSessionErrors();
-    }
   }
 
-  onLogin() {
-    const { navigate } = this.props.navigation;
+  onSubmit() {
     return () => {
-      const user = Object.assign({},{
-        username: this.state.username,
-        password: this.state.password
+      const post = Object.assign({}, {
+        title: this.state.title,
+        body: this.state.body,
+        user_id: this.props.currentUser.id
       });
-      this.props.login(user).then((res) => {
-        if (res && res.type === RECEIVE_CURRENT_USER) {
-          navigate("TempExplore");
-        }
-      });
+      this.props.createPost(post);
     };
   }
 
   render() {
     return(
       <View style={styles.container}>
-        <Text style={styles.title}>Artis</Text>
+        <Image
+          style={styles.image}
+          source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sushi_chef_Masayoshi_Kazato_02.JPG/1200px-Sushi_chef_Masayoshi_Kazato_02.JPG"}}
+        />
         <TextInput
-          onChangeText={(username) => this.setState({username})}
-          placeholder="Username"
+          onChangeText={(title) => this.setState({title})}
+          placeholder="Title"
           style={styles.input}
           underlineColorAndroid={'transparent'}
         />
         <Text style={styles.label}>
-          {this.state.username}
+          {this.state.title}
         </Text>
         <TextInput
-          onChangeText={(password) => this.setState({password})}
-          secureTextEntry={true}
-          placeholder="Password"
-          style={styles.input}
+          onChangeText={(body) => this.setState({body})}
+          placeholder="Post a description."
+          style={styles.textfield}
+          multiline={true}
           underlineColorAndroid={'transparent'}
+          textAlignVertical={"top"}
         />
         <Text style={styles.label}>
-          {this.state.password}
+          {this.state.body}
         </Text>
-        <TouchableHighlight style={styles.button} onPress={this.onLogin()}>
+        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
           <Text style={styles.buttonText}>
-            Login
+            Submit
           </Text>
         </TouchableHighlight>
-        <SessionErrors errors={this.props.errors}/>
       </View>
     );
   }
@@ -98,10 +93,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     borderWidth: 1,
+    borderColor: "gray",
+  },
+  textfield: {
+    height: 100,
+    backgroundColor: "#F7F7F7",
+    padding: 4,
+    marginTop: 10,
+    fontSize: 18,
+    borderWidth: 1,
     borderColor: "gray"
   },
   label: {
     color: "black"
+  },
+  image: {
+    height: Dimensions.get('window').height*0.4
   },
   button: {
     height: 50,
@@ -122,13 +129,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    errors: state.errors.session
+    currentUser: state.session.currentUser
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (user) => dispatch(login(user)),
-  clearSessionErrors: () => dispatch(clearSessionErrors())
+  createPost: (post) => dispatch(createPost(post))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

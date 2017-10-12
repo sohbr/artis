@@ -18,22 +18,18 @@ export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
 
-export const register = user => dispatch => {
-  return postUser(user)
-    .then(res => {
-      dispatch(receiveCurrentUser(res.data));
-    })
-    .catch(errors => {
-      dispatch(receiveSessionErrors(errors.response.data));
-    });
+export const register = (user) => dispatch => {
+  return postUser(user).then((res) => {
+    return dispatch(receiveCurrentUser(res.data));
+  }).catch((errors) => {
+    dispatch(receiveSessionErrors(errors.response.data));
+  });
 };
 
-export const login = user => dispatch => {
-  return postSession(user)
-    .then(res => {
-      dispatch(receiveCurrentUser(res.data));
-    })
-    .catch(errors => {
-      dispatch(receiveSessionErrors(errors.response.data));
-    });
+export const login = (user) => dispatch => {
+  return postSession(user).then((res) => {
+    return dispatch(receiveCurrentUser(res.data));
+  }).catch((errors) => {
+    dispatch(receiveSessionErrors(errors.response.data));
+  });
 };

@@ -8,12 +8,13 @@ import {
   StatusBar,
   TextInput,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  DeviceEventEmitter
 } from "react-native";
 
 class Home extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => ({
-    title: "Artis"
+    header: null
   });
 
   constructor(props) {
@@ -82,7 +83,6 @@ const styles = StyleSheet.create({
 
 var mapStateToProps = (state) => {
   return {
-    currentUser: state.session.currentUser
   };
 };
 

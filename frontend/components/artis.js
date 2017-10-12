@@ -4,8 +4,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RegisterForm from './session_form/register_form';
 import LoginForm from './session_form/login_form';
+import PostForm from './post/post_form';
 import Home from './home';
+<<<<<<< HEAD
+import TempExplore from './temp';
+=======
 import UserShow from './user_profile/user_show';
+>>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
 
 import {
   StyleSheet,
@@ -14,10 +19,26 @@ import {
   StatusBar,
   TextInput,
   Button
-} from "react-native";
+} from 'react-native';
 
 import { StackNavigator } from "react-navigation";
 
+<<<<<<< HEAD
+const ArtisApp = StackNavigator(
+  {
+    Home: { screen: Home },
+    Register: { screen: RegisterForm },
+    Login: { screen: LoginForm },
+    PostForm: { screen: PostForm },
+    TempExplore: { screen: TempExplore},
+  },
+  { headerMode: "screen" }
+);
+
+
+export default class Artis extends React.Component {
+
+=======
 const ArtisApp = StackNavigator({
   Home: { screen: Home },
   Register: { screen: RegisterForm },
@@ -25,6 +46,7 @@ const ArtisApp = StackNavigator({
 });
 
 class Artis extends React.Component {
+>>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
   constructor(props) {
     super(props);
   }
@@ -37,6 +59,7 @@ class Artis extends React.Component {
       </View>
     );
   }
+
 }
 
 const styles = StyleSheet.create({

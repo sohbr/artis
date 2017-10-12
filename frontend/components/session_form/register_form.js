@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { register } from "../../actions/session_actions";
+import { register, clearSessionErrors, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
 import SessionErrors from "./session_errors";
 
 import {
@@ -9,7 +9,6 @@ import {
   View,
   TouchableHighlight,
   TextInput,
-  AsyncStorage
 } from "react-native";
 
 class RegisterForm extends React.Component {
@@ -28,8 +27,27 @@ class RegisterForm extends React.Component {
     };
   }
 
+  componentWillMount() {
+    if (this.props.errors.length > 0) {
+      this.props.clearSessionErrors();
+    }
+  }
+
   onRegister() {
+    const { navigate } = this.props.navigation;
     return () => {
+<<<<<<< HEAD
+      const user = Object.assign({},{
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      });
+      this.props.register(user).then((res) => {
+        if (res && res.type === RECEIVE_CURRENT_USER) {
+          navigate("TempExplore");
+        }
+      });
+=======
       const user = Object.assign(
         {},
         {
@@ -39,6 +57,7 @@ class RegisterForm extends React.Component {
         }
       );
       this.props.register(user);
+>>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
     };
   }
 
@@ -122,8 +141,14 @@ const mapStateToProps = state => {
   };
 };
 
+<<<<<<< HEAD
+const mapDispatchToProps = (dispatch) => ({
+  register: (user) => dispatch(register(user)),
+  clearSessionErrors: () => dispatch(clearSessionErrors())
+=======
 const mapDispatchToProps = dispatch => ({
   register: user => dispatch(register(user))
+>>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
