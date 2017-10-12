@@ -38,12 +38,12 @@ class LoginForm extends React.Component {
     const { navigate } = this.props.navigation;
     return () => {
       const user = Object.assign({},{
-        username: this.state.username,
+        username: this.state.username.toLowerCase(),
         password: this.state.password
       });
       this.props.login(user).then((res) => {
         if (res && res.type === RECEIVE_CURRENT_USER) {
-          navigate("TempExplore");
+          navigate("Explore");
         }
       });
     };

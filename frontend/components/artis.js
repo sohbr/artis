@@ -14,7 +14,8 @@ import {
   View,
   StatusBar,
   TextInput,
-  Button
+  Button,
+  AsyncStorage
 } from "react-native";
 
 import { StackNavigator } from "react-navigation";
@@ -23,9 +24,7 @@ const ArtisApp = StackNavigator(
   {
     Home: { screen: Home },
     Register: { screen: RegisterForm },
-    Login: { screen: LoginForm },
-    // TempExplore: { screen: TempExplore},
-    PostForm: { screen: PostForm }
+    Login: { screen: LoginForm }
   },
   { headerMode: "screen" }
 );
@@ -35,12 +34,25 @@ class Artis extends React.Component {
     super(props);
   }
 
+  componentWillUpdate() {
+    console.log("hello");
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        {this.props.currentUser === null ? <ArtisApp /> : <TempExplore />}
-      </View>
-    );
+    if (this.props.currentUser) {
+      return (
+        <View style={styles.container}>
+          {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
+        </View>
+      );
+    } else {
+      // setTimeout(() => {
+      //   console.log("test");
+      //   return <ArtisApp />;
+      // }, 1000);
+      // return <Text>Loading</Text>;
+      return <ArtisApp />;
+    }
   }
 }
 
