@@ -33,12 +33,14 @@ class ReviewIndex extends Component {
       dateCreated: '10/11/2017',
       rating: 1,
       body: "Useless grape head... 死ね!!!"
-    },
+    }
   ];
-
+  
     return(
       <View>
-        {fakeReviews.map(review => <ReviewIndexItem review={review}/>)}
+        {fakeReviews.map(
+          (review, i) => <ReviewIndexItem key={i} review={review}/>
+        )}
       </View>
     );
   }
