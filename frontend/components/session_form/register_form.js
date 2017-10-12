@@ -36,7 +36,6 @@ class RegisterForm extends React.Component {
   onRegister() {
     const { navigate } = this.props.navigation;
     return () => {
-<<<<<<< HEAD
       const user = Object.assign({},{
         username: this.state.username,
         password: this.state.password,
@@ -47,17 +46,6 @@ class RegisterForm extends React.Component {
           navigate("TempExplore");
         }
       });
-=======
-      const user = Object.assign(
-        {},
-        {
-          username: this.state.username,
-          password: this.state.password,
-          email: this.state.email
-        }
-      );
-      this.props.register(user);
->>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
     };
   }
 
@@ -141,14 +129,9 @@ const mapStateToProps = state => {
   };
 };
 
-<<<<<<< HEAD
 const mapDispatchToProps = (dispatch) => ({
   register: (user) => dispatch(register(user)),
   clearSessionErrors: () => dispatch(clearSessionErrors())
-=======
-const mapDispatchToProps = dispatch => ({
-  register: user => dispatch(register(user))
->>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
