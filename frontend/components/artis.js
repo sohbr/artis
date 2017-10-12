@@ -1,13 +1,12 @@
-
 import { Tabs } from "./logged_in_components/router";
-import React from 'react';
-import { connect } from 'react-redux';
-import RegisterForm from './session_form/register_form';
-import LoginForm from './session_form/login_form';
-import PostForm from './post/post_form';
-import Home from './home';
-import TempExplore from './temp';
-import UserShow from './user_profile/user_show';
+import React from "react";
+import { connect } from "react-redux";
+import RegisterForm from "./session_form/register_form";
+import LoginForm from "./session_form/login_form";
+import PostForm from "./post/post_form";
+import Home from "./home";
+import TempExplore from "./temp";
+import UserShow from "./user_profile/user_show";
 
 import {
   StyleSheet,
@@ -16,18 +15,17 @@ import {
   StatusBar,
   TextInput,
   Button
-} from 'react-native';
+} from "react-native";
 
 import { StackNavigator } from "react-navigation";
-
 
 const ArtisApp = StackNavigator(
   {
     Home: { screen: Home },
     Register: { screen: RegisterForm },
     Login: { screen: LoginForm },
-    TempExplore: { screen: TempExplore},
-    PostForm: { screen: PostForm },
+    // TempExplore: { screen: TempExplore},
+    PostForm: { screen: PostForm }
   },
   { headerMode: "screen" }
 );
@@ -41,11 +39,9 @@ class Artis extends React.Component {
     return (
       <View style={styles.container}>
         {this.props.currentUser === null ? <ArtisApp /> : <TempExplore />}
-
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 import {
   StyleSheet,
@@ -9,18 +9,18 @@ import {
   TextInput,
   Button,
   TouchableHighlight
-} from 'react-native';
+} from "react-native";
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator } from "react-navigation";
 
 class TempExplore extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      title: "Explore",
-      headerLeft: null,
-      gesturesEnabled: false
-    }
-  };
+  // static navigationOptions = ({navigation, screenProps}) => {
+  //   return {
+  //     title: "Explore",
+  //     headerLeft: null,
+  //     gesturesEnabled: false
+  //   }
+  // };
 
   constructor(props) {
     super(props);
@@ -28,11 +28,10 @@ class TempExplore extends React.Component {
 
   buttonPress(type) {
     console.log(this.props.navigation);
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return () => {
-      if (type === "PostForm") {
-        // navigate("PostForm");
-      }
+      // if (type === "PostForm") {
+      navigate("PostForm");
     };
   }
 
@@ -40,10 +39,11 @@ class TempExplore extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Temp Explore Screen</Text>
-        <TouchableHighlight style={styles.button} onPress={this.buttonPress("PostForm")}>
-          <Text style={styles.buttonText}>
-            Create a Post
-          </Text>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.buttonPress("PostForm")}
+        >
+          <Text style={styles.buttonText}>Create a Post</Text>
         </TouchableHighlight>
       </View>
     );
@@ -75,12 +75,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({});
 
-});
-
-const mapDispatchToProps = dispatch => ({
-
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(TempExplore);
