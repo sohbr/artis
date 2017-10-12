@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+<<<<<<< HEAD
 default_users = [
   "nixon", "jimmy", "brian", "betty", "rebekah", "tommy", "jerry", "david", "adrian",
   "chris", "katrina", "carmen", "andres"
@@ -18,3 +19,6 @@ default_users.each do |username|
 end
 
 user_ids = (User.first.id..User.last.id).to_a
+=======
+User.create(username: "Doomi", password: "123456", email: "doomiproud@gmail.com")
+>>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { register, clearSessionErrors, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
+import { register } from "../../actions/session_actions";
 import SessionErrors from "./session_errors";
 
 import {
@@ -9,13 +9,10 @@ import {
   View,
   TouchableHighlight,
   TextInput,
+  AsyncStorage
 } from "react-native";
 
-class RegisterForm extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    title: "Register"
-  });
-
+class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,27 +24,8 @@ class RegisterForm extends React.Component {
     };
   }
 
-  componentWillMount() {
-    if (this.props.errors.length > 0) {
-      this.props.clearSessionErrors();
-    }
-  }
-
   onRegister() {
-    const { navigate } = this.props.navigation;
     return () => {
-<<<<<<< HEAD
-      const user = Object.assign({},{
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
-      });
-      this.props.register(user).then((res) => {
-        if (res && res.type === RECEIVE_CURRENT_USER) {
-          navigate("TempExplore");
-        }
-      });
-=======
       const user = Object.assign(
         {},
         {
@@ -56,27 +34,28 @@ class RegisterForm extends React.Component {
           email: this.state.email
         }
       );
-      this.props.register(user);
->>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
+      this.props.register(user).then(
+        res => {},
+        errors => {
+          this.setState({ errors: errors });
+        }
+      );
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Artis</Text>
         <TextInput
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.email}</Text>
         <TextInput
           onChangeText={username => this.setState({ username })}
           placeholder="Username"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.username}</Text>
         <TextInput
@@ -84,7 +63,6 @@ class RegisterForm extends React.Component {
           secureTextEntry={true}
           placeholder="Password"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.password}</Text>
 
@@ -92,7 +70,7 @@ class RegisterForm extends React.Component {
           <Text style={styles.buttonText}>Register</Text>
         </TouchableHighlight>
 
-        <SessionErrors errors={this.props.errors} />
+        <SessionErrors errors={this.state.errors} />
       </View>
     );
   }
@@ -101,10 +79,11 @@ class RegisterForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
+    paddingTop: 80
   },
   input: {
     height: 50,
@@ -127,28 +106,13 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: "white"
-  },
-  title: {
-    fontSize: 100,
-    alignSelf: "center",
-    fontWeight: "bold"
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    errors: state.errors.session
-  };
-};
+const mapStateToProps = state => ({});
 
-<<<<<<< HEAD
-const mapDispatchToProps = (dispatch) => ({
-  register: (user) => dispatch(register(user)),
-  clearSessionErrors: () => dispatch(clearSessionErrors())
-=======
 const mapDispatchToProps = dispatch => ({
   register: user => dispatch(register(user))
->>>>>>> fef46a861ccdc963d7a677815bcf4b3586e7270e
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);

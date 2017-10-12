@@ -2,14 +2,14 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
-import { postUser, postSession, deleteSession } from '../util/session_api_util';
+import { postUser, postSession, deleteSession } from "../util/session_api_util";
 
-export const receiveCurrentUser = (user) => ({
+export const receiveCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
   user
 });
 
-export const receiveSessionErrors = (errors) => ({
+export const receiveSessionErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
 });
