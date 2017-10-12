@@ -13,7 +13,7 @@ import {
 
 import { StackNavigator } from 'react-navigation';
 
-export default class TempExplore extends React.Component {
+class TempExplore extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
       title: "Explore",
@@ -27,10 +27,11 @@ export default class TempExplore extends React.Component {
   }
 
   buttonPress(type) {
-    const { navigate } = this.props.navigation;
+    console.log(this.props.navigation);
+    // const { navigate } = this.props.navigation;
     return () => {
       if (type === "PostForm") {
-        navigate("PostForm");
+        // navigate("PostForm");
       }
     };
   }
@@ -73,3 +74,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 });
+
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TempExplore);
