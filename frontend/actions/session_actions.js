@@ -20,7 +20,7 @@ export const clearSessionErrors = () => ({
 
 export const register = (user) => dispatch => {
   return postUser(user).then((res) => {
-    dispatch(receiveCurrentUser(res.data));
+    return dispatch(receiveCurrentUser(res.data));
   }).catch((errors) => {
     dispatch(receiveSessionErrors(errors.response.data));
   });
@@ -28,7 +28,7 @@ export const register = (user) => dispatch => {
 
 export const login = (user) => dispatch => {
   return postSession(user).then((res) => {
-    dispatch(receiveCurrentUser(res.data));
+    return dispatch(receiveCurrentUser(res.data));
   }).catch((errors) => {
     dispatch(receiveSessionErrors(errors.response.data));
   });
