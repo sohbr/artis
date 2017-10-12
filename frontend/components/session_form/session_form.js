@@ -12,11 +12,7 @@ import {
   AsyncStorage
 } from "react-native";
 
-class RegisterForm extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    title: "Register"
-  });
-
+class SessionForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -38,26 +34,28 @@ class RegisterForm extends React.Component {
           email: this.state.email
         }
       );
-      this.props.register(user);
+      this.props.register(user).then(
+        res => {},
+        errors => {
+          this.setState({ errors: errors });
+        }
+      );
     };
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Artis</Text>
         <TextInput
           onChangeText={email => this.setState({ email })}
           placeholder="Email"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.email}</Text>
         <TextInput
           onChangeText={username => this.setState({ username })}
           placeholder="Username"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.username}</Text>
         <TextInput
@@ -65,7 +63,6 @@ class RegisterForm extends React.Component {
           secureTextEntry={true}
           placeholder="Password"
           style={styles.input}
-          underlineColorAndroid={"transparent"}
         />
         <Text style={styles.label}>{this.state.password}</Text>
 
@@ -73,7 +70,7 @@ class RegisterForm extends React.Component {
           <Text style={styles.buttonText}>Register</Text>
         </TouchableHighlight>
 
-        <SessionErrors errors={this.props.errors} />
+        <SessionErrors errors={this.state.errors} />
       </View>
     );
   }
@@ -82,10 +79,11 @@ class RegisterForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
+    paddingTop: 80
   },
   input: {
     height: 50,
@@ -108,22 +106,13 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: "white"
-  },
-  title: {
-    fontSize: 100,
-    alignSelf: "center",
-    fontWeight: "bold"
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    errors: state.errors.session
-  };
-};
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   register: user => dispatch(register(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);

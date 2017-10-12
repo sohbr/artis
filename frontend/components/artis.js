@@ -1,3 +1,5 @@
+
+import { Tabs } from "./logged_in_components/router";
 import React from 'react';
 import { connect } from 'react-redux';
 import RegisterForm from './session_form/register_form';
@@ -14,18 +16,15 @@ import {
   Button
 } from "react-native";
 
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator } from "react-navigation";
 
 const ArtisApp = StackNavigator({
   Home: { screen: Home },
   Register: { screen: RegisterForm },
-  Login: { screen: LoginForm },
+  Login: { screen: LoginForm }
 });
 
-
-
-export default class Artis extends React.Component {
-
+class Artis extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -33,7 +32,8 @@ export default class Artis extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <UserShow />
+        {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
+
       </View>
     );
   }
@@ -42,6 +42,12 @@ export default class Artis extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
-  },
+    backgroundColor: "white"
+  }
 });
+
+const mapStateToProps = state => ({
+  currentUser: state.session.currentUser
+});
+
+export default connect(mapStateToProps, null)(Artis);
