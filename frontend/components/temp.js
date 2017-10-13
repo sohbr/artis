@@ -18,7 +18,7 @@ class TempExplore extends React.Component {
 
   buttonPress(type) {
     console.log(this.props.navigation);
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return () => {
       if (type === "PostForm") {
         navigate("PostForm");

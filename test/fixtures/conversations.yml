@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: conversations
+#
+#  id          :integer          not null, primary key
+#  author_id   :integer          not null
+#  receiver_id :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author_id: 1
+  receiver_id: 1
+
+two:
+  author_id: 1
+  receiver_id: 1

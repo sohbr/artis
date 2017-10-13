@@ -11,7 +11,6 @@ import ReviewForm from "./reviews/review_form";
 import ReviewIndexItem from "./reviews/review_index_item";
 import ReviewIndex from "./reviews/reviews_index";
 
-
 import {
   StyleSheet,
   Text,
@@ -36,10 +35,7 @@ const ArtisApp = StackNavigator(
 class Artis extends React.Component {
   constructor(props) {
     super(props);
-
   }
-
-
 
   componentWillUpdate() {
     console.log("hello");
@@ -57,7 +53,6 @@ class Artis extends React.Component {
     }
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
