@@ -1,19 +1,17 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: subscriptions
 #
 #  id              :integer          not null, primary key
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
+#  conversation_id :integer
+#  user_id         :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  email           :string           not null
 #
 
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class SubscriptionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
