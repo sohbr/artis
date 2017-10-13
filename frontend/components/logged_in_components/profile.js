@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import UserShow from '../user_profile/user_show';
+import { UserProfileStack } from '../user_profile/user_profile_stack';
 
 import {
   View,
@@ -26,7 +26,7 @@ class Profile extends React.Component {
     const user = this.props.currentUser;
     return (
       // <View style={styles.container}>
-        <UserShow/>
+        <UserProfileStack />
         // <Text>Profile Page</Text>
         // <Text>{user.id}</Text>
         // <Text>{user.username}</Text>
