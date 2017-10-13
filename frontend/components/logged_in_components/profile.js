@@ -25,21 +25,20 @@ class Profile extends React.Component {
   render() {
     const user = this.props.currentUser;
     return (
-      // <View style={styles.container}>
-        <UserProfileStack />
-        // <Text>Profile Page</Text>
-        // <Text>{user.id}</Text>
-        // <Text>{user.username}</Text>
-        // <Text>{user.email}</Text>
-        // <Text>{user.token}</Text>
-        // <Text>Logout doesn't work yet ):</Text>
-        // <TouchableHighlight
-        //   style={styles.button}
-        //   onPress={this.handleLogout}
-        // >
-        //   <Text style={styles.buttonText}>Logout</Text>
-        // </TouchableHighlight>
-      // </View>
+      <View style={styles.container}>
+        <Text>Profile Page</Text>
+        <Text>{user.id}</Text>
+        <Text>{user.username}</Text>
+        <Text>{user.email}</Text>
+        <Text>{user.token}</Text>
+        <Text>Logout doesn't work yet ):</Text>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleLogout}
+        >
+          <Text style={styles.buttonText}>Logout</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }

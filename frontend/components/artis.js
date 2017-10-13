@@ -36,30 +36,28 @@ const ArtisApp = StackNavigator(
 class Artis extends React.Component {
   constructor(props) {
     super(props);
+
   }
+
+
 
   componentWillUpdate() {
     console.log("hello");
   }
 
-  // {this.props.currentUser === null ? <ArtisApp /> : <Tabs />} was on line 47
   render() {
-    if (this.props.currentUser) {
+    if (this.props.currentUser < 0) {
       return (
         <View style={styles.container}>
-          {this.props.currentUser === null ? <ArtisApp /> : <Tabs/>}
+          <View />
         </View>
       );
     } else {
-      // setTimeout(() => {
-      //   console.log("test");
-      //   return <ArtisApp />;
-      // }, 1000);
-      // return <Text>Loading</Text>;
-      return <ArtisApp />;
+      return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
     }
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -68,8 +66,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    currentUser: state.session.currentUser
+  };
+};
 
 export default connect(mapStateToProps, null)(Artis);

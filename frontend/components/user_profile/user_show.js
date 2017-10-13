@@ -10,11 +10,13 @@ class UserShow extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
-    console.log(this.props);
+    const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
+
     return(
       <ScrollView style={{ paddingTop: 30}}>
-        <UserInfo navigation={this.props.navigation} style={styles.userInfo}/>
+        <UserInfo userImg={userImg} navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>
