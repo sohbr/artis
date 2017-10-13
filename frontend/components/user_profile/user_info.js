@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
+import {View, ScrollView, Image, Text, StyleSheet, StatusBar, Alert, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
@@ -22,6 +22,17 @@ class UserInfo extends Component {
     return arr;
   }
 
+  _onPress(type) {
+    console.log(this.props.navigation);
+    const { navigate } = this.props.navigation;
+    return () => {
+      if (type === "ReviewIndex") {
+        navigate("ReviewIndex");
+      }
+    };
+}
+
+
   render() {
     return(
         <View style={styles.userInfoContainer}>
@@ -29,9 +40,11 @@ class UserInfo extends Component {
           <View style={styles.userDetails}>
             <Text style={styles.userFullName}>Minoru Mineta</Text>
             <View style={styles.starRating}>
-            {this.floatToArray().map(score => <StarRating score={score}/>)}
+            {this.floatToArray().map(
+              (score,i) => <StarRating key={i} score={score}/>
+            )}
             </View>
-            <Text style={styles.reviewCount} onPress={this.onPressReviews}>174 Reviews</Text>
+                <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>174 Reviews</Text>
           </View>
         </View>
     );

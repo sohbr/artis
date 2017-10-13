@@ -22,7 +22,6 @@ class ReviewIndexItem extends Component {
   }
 
   render() {
-
     return(
       <View>
         <View style={styles.reviewIndexItemContainer}>
@@ -33,7 +32,7 @@ class ReviewIndexItem extends Component {
               <Text>{this.props.review.dateCreated}</Text>
             </View>
             <View style={styles.starRating}>
-              {this.floatToArray(this.props.review.rating).map(score => <StarRating score={score}/>)}
+              {this.floatToArray(this.props.review.rating).map((score, i) => <StarRating key={i} score={score}/>)}
             </View>
             <Text>{this.props.review.body}</Text>
           </View>

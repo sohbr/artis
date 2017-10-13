@@ -23,7 +23,9 @@ class UserPhotosIndex extends Component {
   render() {
     return(
       <View style={styles.userPhotosContainer}>
-        {imageURLs.map(url => <UserPhotosItem url={url}/>)}
+        {imageURLs.map(
+          (url,i) => <UserPhotosItem key={i} url={url}/>
+        )}
       </View>
     );
   }

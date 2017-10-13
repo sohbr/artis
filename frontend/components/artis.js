@@ -7,6 +7,10 @@ import PostForm from "./post/post_form";
 import Home from "./home";
 import TempExplore from "./temp";
 import UserShow from "./user_profile/user_show";
+import ReviewForm from "./reviews/review_form";
+import ReviewIndexItem from "./reviews/review_index_item";
+import ReviewIndex from "./reviews/reviews_index";
+
 
 import {
   StyleSheet,
@@ -38,11 +42,12 @@ class Artis extends React.Component {
     console.log("hello");
   }
 
+  // {this.props.currentUser === null ? <ArtisApp /> : <Tabs />} was on line 47
   render() {
     if (this.props.currentUser) {
       return (
         <View style={styles.container}>
-          {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
+          {this.props.currentUser === null ? <ArtisApp /> : <Tabs/>}
         </View>
       );
     } else {
