@@ -1,19 +1,18 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: personal_messages
 #
 #  id              :integer          not null, primary key
-#  username        :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
+#  body            :text             not null
+#  conversation_id :integer          not null
+#  user_id         :integer          not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  email           :string           not null
 #
 
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class PersonalMessageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

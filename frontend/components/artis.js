@@ -7,6 +7,9 @@ import PostForm from "./post/post_form";
 import Home from "./home";
 import TempExplore from "./temp";
 import UserShow from "./user_profile/user_show";
+import ReviewForm from "./reviews/review_form";
+import ReviewIndexItem from "./reviews/review_index_item";
+import ReviewIndex from "./reviews/reviews_index";
 
 import {
   StyleSheet,
@@ -38,19 +41,14 @@ class Artis extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser) {
+    if (this.props.currentUser < 0) {
       return (
         <View style={styles.container}>
-          {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
+          <View />
         </View>
       );
     } else {
-      // setTimeout(() => {
-      //   console.log("test");
-      //   return <ArtisApp />;
-      // }, 1000);
-      // return <Text>Loading</Text>;
-      return <ArtisApp />;
+      return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
     }
   }
 }
@@ -62,8 +60,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    currentUser: state.session.currentUser
+  };
+};
 
 export default connect(mapStateToProps, null)(Artis);

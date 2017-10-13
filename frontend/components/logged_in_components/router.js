@@ -9,6 +9,8 @@ import Saved from "./saved";
 import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
+import UserShow from "./../user_profile/user_show";
+import Conversation from "./../messages/conversation";
 
 export const ExploreStack = StackNavigator({
   Explore: {
@@ -54,7 +56,7 @@ export const Tabs = TabNavigator({
     }
   },
   Inbox: {
-    screen: Inbox,
+    screen: Conversation,
     navigationOptions: {
       tabBarLabel: "Inbox",
       tabBarIcon: ({ tintColor }) => (
@@ -63,7 +65,7 @@ export const Tabs = TabNavigator({
     }
   },
   Profile: {
-    screen: Profile,
+    screen: UserShow,
     navigationOptions: {
       tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (

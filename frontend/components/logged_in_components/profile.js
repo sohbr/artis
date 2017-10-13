@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { UserProfileStack } from '../user_profile/user_profile_stack';
 
 import {
   View,
