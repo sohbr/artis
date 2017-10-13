@@ -11,27 +11,18 @@ import {
   TouchableHighlight
 } from "react-native";
 
-import { StackNavigator } from "react-navigation";
-
 class TempExplore extends React.Component {
-  // static navigationOptions = ({navigation, screenProps}) => {
-  //   return {
-  //     title: "Explore",
-  //     headerLeft: null,
-  //     gesturesEnabled: false
-  //   }
-  // };
-
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+  }
 
   buttonPress(type) {
     console.log(this.props.navigation);
     // const { navigate } = this.props.navigation;
     return () => {
-      // if (type === "PostForm") {
-      this.props.navigation.navigate("PostForm");
+      if (type === "PostForm") {
+        navigate("PostForm");
+      }
     };
   }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createPost, updatePost, deletePostById } from '../../actions/post_actions';
-
+import StarRating from '../star_rating/star_rating';
 import {
   StyleSheet,
   Text,
@@ -12,59 +11,76 @@ import {
   Dimensions
 } from "react-native";
 
-class PostForm extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      title: "Create a Post"
-    }
-  };
+class ReviewForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
+      rating: 0,
       body: ""
     };
+
+    this.intToArray = this.intToArray.bind(this);
+    this.getStatefromChild = this.getStatefromChild.bind(this);
+  }
+
+  //convert rating into an array so each el in the array represents a star
+  intToArray () {
+    let rating = this.state.rating;
+    let arr = [];
+    for (var i = 0; i < 5; i++) {
+      arr.push(rating);
+      rating--;
+    }
+    return arr;
+  }
+  // get user input for star rating
+  getStatefromChild(rating) {
+    this.setState({
+      rating: rating
+    });
   }
 
   onSubmit() {
     return () => {
-      const post = Object.assign({}, {
-        title: this.state.title,
+      const review = Object.assign({}, {
+        rating: this.state.rating,
         body: this.state.body,
         user_id: this.props.currentUser.id
       });
-      this.props.createPost(post);
+      this.props.createReview(review);
     };
   }
 
   render() {
     return(
       <View style={styles.container}>
+        <Text>Rate & Review</Text>
         <Image
           style={styles.image}
           source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sushi_chef_Masayoshi_Kazato_02.JPG/1200px-Sushi_chef_Masayoshi_Kazato_02.JPG"}}
         />
-        <TextInput
-          onChangeText={(title) => this.setState({title})}
-          placeholder="Title"
-          style={styles.input}
-          underlineColorAndroid={'transparent'}
-        />
-        <Text style={styles.label}>
-          {this.state.title}
-        </Text>
+      <Text>Overall Experience</Text>
+      <Text>How would you rate you service?</Text>
+        <View style={styles.starRating}>
+        {this.intToArray().map(
+          (score, i) => <StarRating
+            key={i}
+            pos={i+1}
+            score={score}
+            disabled={false}
+            callBackFromParent={this.getStatefromChild}/>
+      )}
+        </View>
+        <Text>Share Your Story!</Text>
         <TextInput
           onChangeText={(body) => this.setState({body})}
-          placeholder="Post a description."
+          placeholder="Tell others in the Artis community about your experience."
           style={styles.textfield}
           multiline={true}
           underlineColorAndroid={'transparent'}
           textAlignVertical={"top"}
         />
-        <Text style={styles.label}>
-          {this.state.body}
-        </Text>
         <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
           <Text style={styles.buttonText}>
             Submit
@@ -78,10 +94,13 @@ class PostForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignSelf: "stretch",
     backgroundColor: "white",
     padding: 10
+  },
+  starRating: {
+    flexDirection: 'row',
   },
   input: {
     height: 50,
@@ -131,7 +150,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  createPost: (post) => dispatch(createPost(post))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

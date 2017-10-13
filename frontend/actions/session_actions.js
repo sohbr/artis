@@ -33,3 +33,9 @@ export const login = (user) => dispatch => {
     dispatch(receiveSessionErrors(errors.response.data));
   });
 };
+
+export const logout = (user) => dispatch => {
+  return deleteSession(user).then((res) => {
+    dispatch(receiveCurrentUser(null));
+  });
+};

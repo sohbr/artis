@@ -3,7 +3,7 @@ import { TabNavigator, StackNavigator } from "react-navigation";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, Image, Button, View } from "react-native";
 
-import TempExplore from "./../temp";
+import Explore from "./explore";
 import PostForm from "./../post/post_form";
 import Saved from "./saved";
 import Hired from "./hired";
@@ -14,7 +14,7 @@ import Conversation from "./../messages/conversation";
 
 export const ExploreStack = StackNavigator({
   Explore: {
-    screen: TempExplore,
+    screen: Explore,
     navigationOptions: {
       title: "Explore"
     }

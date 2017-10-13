@@ -18,3 +18,7 @@ default_users.each do |username|
 end
 
 user_ids = (User.first.id..User.last.id).to_a
+
+10.times do
+  Post.create(user_id: user_ids.sample, title: "Hello", body: "World")
+end

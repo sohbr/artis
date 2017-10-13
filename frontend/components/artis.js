@@ -7,6 +7,10 @@ import PostForm from "./post/post_form";
 import Home from "./home";
 import TempExplore from "./temp";
 import UserShow from "./user_profile/user_show";
+import ReviewForm from "./reviews/review_form";
+import ReviewIndexItem from "./reviews/review_index_item";
+import ReviewIndex from "./reviews/reviews_index";
+
 
 import {
   StyleSheet,
@@ -14,7 +18,8 @@ import {
   View,
   StatusBar,
   TextInput,
-  Button
+  Button,
+  AsyncStorage
 } from "react-native";
 
 import { StackNavigator } from "react-navigation";
@@ -24,8 +29,11 @@ const ArtisApp = StackNavigator(
     Home: { screen: Home },
     Register: { screen: RegisterForm },
     Login: { screen: LoginForm }
+<<<<<<< HEAD
     // TempExplore: { screen: TempExplore},
     // PostForm: { screen: PostForm }
+=======
+>>>>>>> 34412262248f6eeca430f15a4cc0b810be321003
   },
   { headerMode: "screen" }
 );
@@ -33,16 +41,36 @@ const ArtisApp = StackNavigator(
 class Artis extends React.Component {
   constructor(props) {
     super(props);
+
+  }
+
+
+
+  componentWillUpdate() {
+    console.log("hello");
   }
 
   render() {
+<<<<<<< HEAD
     return (
       <View style={styles.container}>
         {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
       </View>
     );
+=======
+    if (this.props.currentUser < 0) {
+      return (
+        <View style={styles.container}>
+          <View />
+        </View>
+      );
+    } else {
+      return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
+    }
+>>>>>>> 34412262248f6eeca430f15a4cc0b810be321003
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -51,8 +79,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({
-  currentUser: state.session.currentUser
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    currentUser: state.session.currentUser
+  };
+};
 
 export default connect(mapStateToProps, null)(Artis);

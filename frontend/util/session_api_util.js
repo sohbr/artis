@@ -10,12 +10,13 @@ export const postSession = (user) => (
   })
 );
 
-export const deleteSession = () => (
-  axios({
+export const deleteSession = (user) => {
+  return axios({
     method: 'DELETE',
-    url: `${url}/api/session`
-  })
-);
+    url: `${url}/api/session`,
+    data: { session_token: user.token }
+  });
+};
 
 export const postUser = (user) => (
   axios({
