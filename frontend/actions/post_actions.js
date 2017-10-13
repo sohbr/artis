@@ -26,8 +26,10 @@ export const destroyPost = (postId) => ({
 });
 
 export const getAllPosts = () => dispatch => (
-  getPosts.then((res) => {
+  getPosts().then((res) => {
     dispatch(receivePosts(res.data));
+  }).catch((errors) => {
+    console.log(errors);
   })
 );
 

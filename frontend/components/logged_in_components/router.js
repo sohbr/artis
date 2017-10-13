@@ -1,17 +1,35 @@
 import React from "react";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, StackNavigator } from "react-navigation";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, Image, Button, View } from "react-native";
 
 import Explore from "./explore";
+import PostForm from "./../post/post_form";
 import Saved from "./saved";
 import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
+import UserShow from "./../user_profile/user_show";
+import Conversation from "./../messages/conversation";
+
+export const ExploreStack = StackNavigator({
+  Explore: {
+    screen: Explore,
+    navigationOptions: {
+      title: "Explore"
+    }
+  },
+  PostForm: {
+    screen: PostForm,
+    navigationOption: {
+      title: "PostForm"
+    }
+  }
+});
 
 export const Tabs = TabNavigator({
   Explore: {
-    screen: Explore,
+    screen: ExploreStack,
     navigationOptions: {
       tabBarLabel: "Explore",
       tabBarIcon: ({ tintColor }) => (
@@ -38,7 +56,7 @@ export const Tabs = TabNavigator({
     }
   },
   Inbox: {
-    screen: Inbox,
+    screen: Conversation,
     navigationOptions: {
       tabBarLabel: "Inbox",
       tabBarIcon: ({ tintColor }) => (
@@ -47,7 +65,7 @@ export const Tabs = TabNavigator({
     }
   },
   Profile: {
-    screen: Profile,
+    screen: UserShow,
     navigationOptions: {
       tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (

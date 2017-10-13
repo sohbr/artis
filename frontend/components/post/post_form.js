@@ -27,9 +27,6 @@ class PostForm extends React.Component {
     };
   }
 
-  componentWillMount() {
-  }
-
   onSubmit() {
     return () => {
       const post = Object.assign({}, {

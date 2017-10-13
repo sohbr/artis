@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
+import {View, ScrollView, Image, Text, StyleSheet, StatusBar, StackNavigator } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
@@ -10,10 +10,13 @@ class UserShow extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
+
     return(
-      <ScrollView style={{backgroundColor: "yellow", paddingTop: 30}}>
-        <UserInfo style={styles.userInfo}/>
+      <ScrollView style={{ paddingTop: 30}}>
+        <UserInfo userImg={userImg} navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   hr: {
-    width: Dimensions.get('window').width*.9,
+    width: Dimensions.get('window').width*1,
     justifyContent: 'center',
     borderBottomColor: 'black',
     borderBottomWidth: 1,
