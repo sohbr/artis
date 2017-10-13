@@ -36,7 +36,7 @@ class UserInfo extends Component {
   render() {
     return(
         <View style={styles.userInfoContainer}>
-          <Image style={styles.profileImage} source={require('../../../docs/assets/img/minoru-mineta.jpg')} />
+          <Image style={styles.profileImage} source={{uri: this.props.userImg}} />
           <View style={styles.userDetails}>
             <Text style={styles.userFullName}>Minoru Mineta</Text>
             <View style={styles.starRating}>
