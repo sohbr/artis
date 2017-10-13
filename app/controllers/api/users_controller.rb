@@ -1,5 +1,11 @@
 class Api::UsersController < ApplicationController
 
+  def index
+    #may not need index of users if the conversation is going to start from
+    #the post page
+    @users = User.all
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

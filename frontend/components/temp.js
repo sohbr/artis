@@ -22,16 +22,16 @@ class TempExplore extends React.Component {
   //   }
   // };
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   buttonPress(type) {
     console.log(this.props.navigation);
-    const { navigate } = this.props.navigation;
+    // const { navigate } = this.props.navigation;
     return () => {
       // if (type === "PostForm") {
-      navigate("PostForm");
+      this.props.navigation.navigate("PostForm");
     };
   }
 

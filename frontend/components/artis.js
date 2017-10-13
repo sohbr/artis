@@ -23,9 +23,9 @@ const ArtisApp = StackNavigator(
   {
     Home: { screen: Home },
     Register: { screen: RegisterForm },
-    Login: { screen: LoginForm },
+    Login: { screen: LoginForm }
     // TempExplore: { screen: TempExplore},
-    PostForm: { screen: PostForm }
+    // PostForm: { screen: PostForm }
   },
   { headerMode: "screen" }
 );
@@ -38,7 +38,7 @@ class Artis extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.currentUser === null ? <ArtisApp /> : <TempExplore />}
+        {this.props.currentUser === null ? <ArtisApp /> : <Tabs />}
       </View>
     );
   }
