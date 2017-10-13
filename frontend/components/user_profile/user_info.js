@@ -22,7 +22,7 @@ class UserInfo extends Component {
     return arr;
   }
 
-  _onPressReviews(type) {
+  _onPress(type) {
     console.log(this.props.navigation);
     const { navigate } = this.props.navigation;
     return () => {
@@ -44,7 +44,7 @@ class UserInfo extends Component {
               (score,i) => <StarRating key={i} score={score}/>
             )}
             </View>
-                <Text style={styles.reviewCount} onPress={this._onPressReviews("ReviewIndex")}>174 Reviews</Text>
+                <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>174 Reviews</Text>
           </View>
         </View>
     );

@@ -34,7 +34,7 @@ class ReviewForm extends React.Component {
     }
     return arr;
   }
-
+  // get user input for star rating
   getStatefromChild(rating) {
     this.setState({
       rating: rating
@@ -81,12 +81,6 @@ class ReviewForm extends React.Component {
           underlineColorAndroid={'transparent'}
           textAlignVertical={"top"}
         />
-        <Text style={styles.label}>
-          {this.state.rating}
-        </Text>
-        <Text style={styles.label}>
-          {this.state.body}
-        </Text>
         <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
           <Text style={styles.buttonText}>
             Submit
@@ -100,7 +94,7 @@ class ReviewForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignSelf: "stretch",
     backgroundColor: "white",
     padding: 10

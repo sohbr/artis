@@ -13,7 +13,7 @@ class UserShow extends Component {
   render() {
     console.log(this.props);
     return(
-      <ScrollView style={{backgroundColor: "yellow", paddingTop: 30}}>
+      <ScrollView style={{ paddingTop: 30}}>
         <UserInfo navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   hr: {
-    width: Dimensions.get('window').width*.9,
+    width: Dimensions.get('window').width*1,
     justifyContent: 'center',
     borderBottomColor: 'black',
     borderBottomWidth: 1,

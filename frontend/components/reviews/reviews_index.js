@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
+import {View, ScrollView, Image, Text, StyleSheet, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
@@ -10,6 +10,16 @@ class ReviewIndex extends Component {
   constructor(props) {
     super(props);
 
+  }
+
+  _onPress(type) {
+    console.log(this.props.navigation);
+    const { navigate } = this.props.navigation;
+    return () => {
+      if (type === "ReviewForm") {
+        navigate("ReviewForm");
+      }
+    };
   }
 
   render() {
@@ -35,9 +45,15 @@ class ReviewIndex extends Component {
       body: "Useless grape head... 死ね!!!"
     }
   ];
-  
+
     return(
       <View>
+        <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
+          <View flexDirection={"row"} justifyContent={"flex-end"} >
+            <Text size={20} >Write a review</Text>
+            <FontAwesome name="pencil-square-o"  size={20} />
+          </View>
+        </TouchableWithoutFeedback>
         {fakeReviews.map(
           (review, i) => <ReviewIndexItem key={i} review={review}/>
         )}
