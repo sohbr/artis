@@ -35,7 +35,6 @@ class Artis extends React.Component {
   }
 
   componentWillUpdate() {
-    console.log("hello");
   }
 
   render() {

@@ -37,5 +37,7 @@ export const login = (user) => dispatch => {
 export const logout = (user) => dispatch => {
   return deleteSession(user).then((res) => {
     dispatch(receiveCurrentUser(null));
+  }).catch((errors) => {
+    
   });
 };
