@@ -43,7 +43,7 @@ class UserInfo extends Component {
               (score,i) => <StarRating key={i} score={score}/>
             )}
             </View>
-                <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>174 Reviews</Text>
+              <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>174 Reviews</Text>
           </View>
         </View>
     );

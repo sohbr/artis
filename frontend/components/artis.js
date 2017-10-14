@@ -17,6 +17,8 @@ import {
   StatusBar,
   TextInput,
   Button,
+  Image,
+  Dimensions,
   AsyncStorage
 } from "react-native";
 
@@ -34,21 +36,21 @@ const ArtisApp = StackNavigator(
 class Artis extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillUpdate() {
+    this.state = {
+      signedIn: false,
+      checkSignIn: false
+    };
   }
 
   render() {
     if (this.props.currentUser < 0) {
       return (
         <View style={styles.container}>
-          <View />
         </View>
       );
-    } else {
-      return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
     }
+
+    return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
   }
 }
 
@@ -56,6 +58,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white"
+  },
+  image: {
+    flex: 1,
+    backgroundColor: "black",
+    width: Dimensions.get('window').width
   }
 });
 

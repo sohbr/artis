@@ -13,6 +13,11 @@ import {
 } from "react-native";
 
 class Explore extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      header: null
+    };
+  };
   constructor(props) {
     super(props);
   }
