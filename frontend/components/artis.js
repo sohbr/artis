@@ -5,7 +5,6 @@ import RegisterForm from "./session_form/register_form";
 import LoginForm from "./session_form/login_form";
 import PostForm from "./post/post_form";
 import Home from "./home";
-import TempExplore from "./temp";
 import UserShow from "./user_profile/user_show";
 import ReviewForm from "./reviews/review_form";
 import ReviewIndexItem from "./reviews/review_index_item";
@@ -61,7 +60,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     currentUser: state.session.currentUser
   };

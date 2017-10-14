@@ -23,7 +23,6 @@ export default class ImageUpload extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     let { image } = this.state;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -42,7 +41,9 @@ export default class ImageUpload extends React.Component {
       allowsEditing: true,
       aspect: [4, 3],
     });
-    debugger;
+    if (pickerResult.cancelled) {
+      return;
+    }
     this.setState({image: pickerResult.uri});
     this.props.updatePostWithImage(pickerResult.uri);
   };

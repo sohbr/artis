@@ -33,12 +33,18 @@ class PostForm extends React.Component {
   onSubmit() {
     const { navigate } = this.props.navigation;
     return () => {
-      const post = Object.assign({}, {
-        title: this.state.title,
-        body: this.state.body,
-        user_id: this.props.currentUser.id
+      let uriParts = this.state.image.split('.');
+      let fileType = uriParts[uriParts.length - 1];
+      const formData = new FormData();
+      formData.append("post[title]", this.state.title);
+      formData.append("post[body]", this.state.body);
+      formData.append("post[user_id]", this.props.currentUser.id);
+      formData.append("post[image]", {
+        uri: this.state.image,
+        name: `${this.state.title}.${fileType}`,
+        type: `image/${fileType}`,
       });
-      this.props.createPost(post).then((res) => {
+      this.props.createPost(formData).then((res) => {
         if (res.type) {
           navigate("Explore");
         }
@@ -53,8 +59,6 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log(`hello`);
-    console.log(this.state);
     return(
       <View style={styles.container}>
         <View style={styles.image}>
