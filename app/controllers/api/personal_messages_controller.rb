@@ -1,16 +1,17 @@
 class Api::PersonalMessagesController < ApplicationController
 
-  before_action :find_conversation!
-
   def create
-    @personal_message =
-      current_user.personal_messages.new(personal_message_params)
-      @personal_message.conversation_id = @conversation.id
+    @personal_message = PersonalMessage.new(personal_message_params)
+    @personal_message.user = current_user
 
     if @personal_message.save
-      render :show
+      #broadcasts to specific messages channel using conversation_id
+      ActionCable.server.broadcast( "personal_messages_#{personal_message_params[:conversation_id]}",
+        personal_message: personal_message.body,
+        user: personal_message.user
+      )
     else
-      render json: @comment.errors.full_messages, status: 422
+      render "api/users/#{current_user.id}/conversations/#{conversation_id}"
     end
   end
 
@@ -18,12 +19,7 @@ class Api::PersonalMessagesController < ApplicationController
   private
 
   def personal_message_params
-    params.require(:personal_message).permit(:body)
+    params.require(:personal_message).permit(:body, :conversation_id)
   end
 
-  def find_conversation!
-    @conversation = Conversation.find_by(id: params[:conversation_id])
-    redirect_to '/api/conversations' and return unless
-      @conversation && @conversation.participates?(current_user)
-  end
 end

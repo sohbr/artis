@@ -44,10 +44,7 @@ class Artis extends React.Component {
 
   render() {
     if (this.props.currentUser < 0) {
-      return (
-        <View style={styles.container}>
-        </View>
-      );
+      return <View style={styles.container} />;
     }
 
     return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     backgroundColor: "black",
-    width: Dimensions.get('window').width
+    width: Dimensions.get("window").width
   }
 });
 

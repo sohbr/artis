@@ -1,25 +1,51 @@
 class Api::ConversationsController < ApplicationController
 
-  before_action :set_conversation, except: [:index]
-  before_action :check_participating!, except: [:index]
+  # <script>
+  #   createMessageChannel();
+  #   // app/assets/javascripts/channels/messages.js
+  #   messageForm();
+  #   // app/assets/javascripts/messages_form.js
+  # </script>
+  ##Put in frontend components
 
   def index
-    @conversations = Conversation.includes(:personal_messages).participating(current_user)
-                                 .order('updated_at DESC')
+    current_user = User.find_by(id: params[:user_id])
+    @conversations = current_user.conversations
+    @existing_conversation_users = current_user.existing_conversation_users
+  end
+
+  def create
+    @other_user = User.find(params[:other_user])
+    @conversation = find_conversation(@other_user) ||
+                    Conversation.new(identifier: SecureRandom.hex)
+    if !@conversation.persisted?
+      @conversation.save
+      @conversation.subscriptions.create(user_id: current_user.id)
+      @conversation.subscriptions.create(user_id: @other_user.id)
+    end
+
+    render :show
+    # redirect_to user_chat_path(current_user, @chat,  :other_user => @other_user.id)
+    ## needs to be converted to JSON
   end
 
   def show
-    @personal_messages = PersonalMessage.all
+    @other_user = User.find(params[:other_user])
+    @conversation = Conversation.find_by(id: params[:id])
+    @personal_message = PersonalMessage.new
   end
 
   private
-  def set_conversation
-    @conversation = Conversation.find_by(id: params[:id])
-  end
-
-  def check_participating!
-    redirect_to '/api/conversations' unless
-      @conversation && @conversation.participates?(current_user)
+  def find_conversation(second_user)
+    conversations = current_user.conversations
+    conversations.each do |conversation|
+      conversation.subscriptions.each do |s|
+        if s.user_id == second_user.id
+          return chat
+        end
+      end
+    end
+    nil
   end
 
 end

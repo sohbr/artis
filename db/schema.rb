@@ -10,19 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013230138) do
+ActiveRecord::Schema.define(version: 20171013234923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "author_id", null: false
-    t.integer "receiver_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true
-    t.index ["author_id"], name: "index_conversations_on_author_id"
-    t.index ["receiver_id"], name: "index_conversations_on_receiver_id"
+    t.string "identifier"
   end
 
   create_table "personal_messages", force: :cascade do |t|
