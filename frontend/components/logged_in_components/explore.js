@@ -15,7 +15,7 @@ import {
 class Explore extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      header: null
+      header: null,
     };
   };
   constructor(props) {
@@ -34,10 +34,10 @@ class Explore extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Explore Screen</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.buttonPress("PostForm")}
+          underlayColor={"#5C821A"}
         >
           <Text style={styles.buttonText}>Create a Post</Text>
         </TouchableHighlight>
@@ -52,14 +52,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     justifyContent: "center",
-    padding: 10
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 30
   },
   button: {
     marginTop: 10,
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 10,
+    borderRadius: 3,
   },
   buttonText: {
     fontSize: 18,

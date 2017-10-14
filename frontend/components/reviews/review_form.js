@@ -12,6 +12,11 @@ import {
 } from "react-native";
 
 class ReviewForm extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      headerTintColor: "#C6D166",
+    };
+  };
 
   constructor(props) {
     super(props);
@@ -128,9 +133,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,

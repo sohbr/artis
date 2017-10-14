@@ -15,7 +15,8 @@ import {
 class LoginForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      title: "Login"
+      title: "Login",
+      headerTintColor: "#C6D166"
     }
   };
 
@@ -72,7 +73,11 @@ class LoginForm extends React.Component {
         <Text style={styles.label}>
           {this.state.password}
         </Text>
-        <TouchableHighlight style={styles.button} onPress={this.onLogin()}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onLogin()}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>
             Login
           </Text>
@@ -105,9 +110,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,

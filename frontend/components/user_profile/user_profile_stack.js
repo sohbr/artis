@@ -23,7 +23,7 @@ export const UserProfileStack = StackNavigator({
   ReviewForm: {
     screen: ReviewForm,
     navigationOptions: {
-      title: "ReviewForm"
+      title: "Write a Review"
     }
   },
 });

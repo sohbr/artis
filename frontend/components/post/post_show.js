@@ -16,7 +16,7 @@ import {
 class PostShow extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      title: "Unique Post"
+      headerTintColor: "#C6D166"
     };
   };
 
@@ -48,7 +48,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingTop: 30
   },
   input: {
     height: 50,

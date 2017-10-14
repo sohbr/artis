@@ -16,7 +16,8 @@ import {
 class PostForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      title: "Create a Post"
+      title: "Create a Post",
+      headerTintColor: "#C6D166"
     };
   };
 
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
     alignItems: "center"
   },
