@@ -52,7 +52,6 @@ export default class Conversation extends React.Component {
   }
 
   render() {
-    console.log(this.state.messages);
     return (
       <View style={styles.container}>
         <FlatList

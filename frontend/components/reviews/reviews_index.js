@@ -13,7 +13,6 @@ class ReviewIndex extends Component {
   }
 
   _onPress(type) {
-    console.log(this.props.navigation);
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewForm") {

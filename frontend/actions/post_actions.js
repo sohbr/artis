@@ -29,30 +29,33 @@ export const getAllPosts = () => dispatch => (
   getPosts().then((res) => {
     dispatch(receivePosts(res.data));
   }).catch((errors) => {
-    console.log(errors);
   })
 );
 
 export const getPostById = (postId) => dispatch => (
   getPost(postId).then((res) => {
     dispatch(receivePost(res.data));
+  }).catch((errors) => {
   })
 );
 
 export const createPost = (post) => dispatch => (
   postPost(post).then((res) => {
-    dispatch(receivePost(res.data));
+    return dispatch(receivePost(res.data));
+  }).catch((errors) => {
   })
 );
 
 export const updatePost = (post) => dispatch => (
   patchPost(post).then((res) => {
     dispatch(receivePost(res.data));
+  }).catch((errors) => {
   })
 );
 
 export const deletePostById = (postId) => dispatch => (
   deletePost(postId).then((res) => {
     dispatch(destroyPost(postId));
+  }).catch((errors) => {
   })
 );

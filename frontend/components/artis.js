@@ -5,7 +5,6 @@ import RegisterForm from "./session_form/register_form";
 import LoginForm from "./session_form/login_form";
 import PostForm from "./post/post_form";
 import Home from "./home";
-import TempExplore from "./temp";
 import UserShow from "./user_profile/user_show";
 import ReviewForm from "./reviews/review_form";
 import ReviewIndexItem from "./reviews/review_index_item";
@@ -18,6 +17,8 @@ import {
   StatusBar,
   TextInput,
   Button,
+  Image,
+  Dimensions,
   AsyncStorage
 } from "react-native";
 
@@ -35,22 +36,18 @@ const ArtisApp = StackNavigator(
 class Artis extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillUpdate() {
-    console.log("hello");
+    this.state = {
+      signedIn: false,
+      checkSignIn: false
+    };
   }
 
   render() {
     if (this.props.currentUser < 0) {
-      return (
-        <View style={styles.container}>
-          <ArtisApp />
-        </View>
-      );
-    } else {
-      return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
+      return <View style={styles.container} />;
     }
+
+    return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
   }
 }
 
@@ -58,11 +55,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white"
+  },
+  image: {
+    flex: 1,
+    backgroundColor: "black",
+    width: Dimensions.get("window").width
   }
 });
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     currentUser: state.session.currentUser
   };

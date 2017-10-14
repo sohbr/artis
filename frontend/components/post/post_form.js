@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createPost, updatePost, deletePostById } from '../../actions/post_actions';
+import { RECEIVE_POST } from '../../actions/post_actions';
+import ImageUpload from '../image_upload/image_upload';
 
 import {
   StyleSheet,
-  Text,
-  View,
+  Text, View,
   TouchableHighlight,
   TextInput,
   Image,
@@ -16,35 +17,52 @@ class PostForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
       title: "Create a Post"
-    }
+    };
   };
 
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      body: ""
+      body: "",
+      image: null
     };
   }
 
   onSubmit() {
+    const { navigate } = this.props.navigation;
     return () => {
-      const post = Object.assign({}, {
-        title: this.state.title,
-        body: this.state.body,
-        user_id: this.props.currentUser.id
+      let uriParts = this.state.image.split('.');
+      let fileType = uriParts[uriParts.length - 1];
+      const formData = new FormData();
+      formData.append("post[title]", this.state.title);
+      formData.append("post[body]", this.state.body);
+      formData.append("post[user_id]", this.props.currentUser.id);
+      formData.append("post[image]", {
+        uri: this.state.image,
+        name: `${this.state.title}.${fileType}`,
+        type: `image/${fileType}`,
       });
-      this.props.createPost(post);
+      this.props.createPost(formData).then((res) => {
+        if (res.type) {
+          navigate("Explore");
+        }
+      });
     };
+  }
+
+  updatePostWithImage() {
+    return (imageUri) => {
+      this.setState({image: imageUri});
+    }
   }
 
   render() {
     return(
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sushi_chef_Masayoshi_Kazato_02.JPG/1200px-Sushi_chef_Masayoshi_Kazato_02.JPG"}}
-        />
+        <View style={styles.image}>
+          <ImageUpload updatePostWithImage={this.updatePostWithImage()} />
+        </View>
         <TextInput
           onChangeText={(title) => this.setState({title})}
           placeholder="Title"

@@ -13,12 +13,16 @@ import {
 } from "react-native";
 
 class Explore extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      header: null
+    };
+  };
   constructor(props) {
     super(props);
   }
 
   buttonPress(type) {
-    console.log(this.props.navigation);
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "PostForm") {
