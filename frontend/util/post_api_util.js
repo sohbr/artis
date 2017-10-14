@@ -2,13 +2,16 @@ import axios from 'axios';
 
 const url = "http://localhost:3000";
 
-export const postPost = (post) => (
-  axios({
+export const postPost = (post) => {
+  return axios({
     method: 'POST',
     url: `${url}/api/posts`,
-    data: { post }
-  })
-);
+    dataType: "JSON",
+    contentType: false,
+    processData: false,
+    data: post
+  });
+};
 
 export const getPost = (postId) => (
   axios({

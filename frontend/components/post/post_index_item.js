@@ -19,7 +19,6 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const post = this.props.post;
-    console.log(post.image_url);
     return (
       <View style={styles.container}>
         <View>
