@@ -32,7 +32,6 @@ class PostShow extends React.Component {
 
   render() {
     const {post} = this.props.navigation.state.params;
-    console.log(post);
     return(
       <View style={styles.container}>
         <Image style={styles.image} source={{uri: post.image_url}}/>
