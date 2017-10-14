@@ -26,7 +26,7 @@ class PostIndex extends React.Component {
   render() {
     let display = null;
     if (Object.keys(this.props.posts).length > 0) {
-      display = Object.values(this.props.posts).map((post,i) => {
+      display = Object.values(this.props.posts).reverse().map((post,i) => {
         return <PostIndexItem key={`post-item-${i}`} post={post} navigation={this.props.navigation}/>;
       });
     } else {

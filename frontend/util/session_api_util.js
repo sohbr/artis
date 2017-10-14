@@ -14,7 +14,7 @@ export const deleteSession = (user) => {
   return axios({
     method: 'DELETE',
     url: `${url}/api/session`,
-    data: { session_token: user.token }
+    data: user
   });
 };
 
