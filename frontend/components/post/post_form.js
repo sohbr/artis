@@ -17,8 +17,7 @@ class PostForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
       title: "Create a Post"
-    }
-    this.updatePostWithImage = this.updatePostWithImage.bind(this);
+    };
   };
 
   constructor(props) {

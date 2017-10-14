@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar, StackNavigator } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
+import { logout } from '../../actions/session_actions';
+import {
+  View,
+  ScrollView,
+  Image,
+  Text,
+  StyleSheet,
+  StatusBar,
+  StackNavigator,
+  Button
+} from 'react-native';
 
 class UserShow extends Component {
   constructor(props) {
     super(props);
+  }
+
+  handleLogout() {
+    return () => {
+      this.props.logout(this.props.currentUser);
+    };
   }
 
   render() {
@@ -16,6 +32,10 @@ class UserShow extends Component {
 
     return(
       <ScrollView style={{ paddingTop: 30}}>
+        <Button
+          onPress={this.handleLogout()}
+          title={"Logout"}
+        />
         <UserInfo userImg={userImg} navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
@@ -41,11 +61,11 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => ({
-
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  logout: (user) => dispatch(logout(user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);
