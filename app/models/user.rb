@@ -17,19 +17,15 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
+  has_secure_password
 
   attr_reader :password
 
   has_many :posts
-  has_many :authored_conversations,
-    foreign_key: 'author_id',
-    class_name: :Conversation
+  has_many :personal_messages
+  has_many :subscriptions
+  has_many :chats, through: :subscriptions
 
-  has_many :received_conversations,
-    foreign_key: 'received_id',
-    class_name: :Conversation
-
-  has_many :personal_messages, dependent: :destroy
 
   def password=(pw)
     @password = pw
@@ -49,6 +45,16 @@ class User < ApplicationRecord
     self.session_token = SecureRandom::urlsafe_base64(16)
     self.save!
     self.session_token
+  end
+
+  def existing_chat_users
+    existing_chat_users = []
+    self.chats.each do |chat|
+      existing_chat_users.concat(
+        chat.subscriptions.where.not(user_id: self.id).map {|subscription| subscription.user}
+        )
+    end
+    existing_chat_users.uniq
   end
 
   private
