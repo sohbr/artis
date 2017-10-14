@@ -41,7 +41,7 @@ class Explore extends React.Component {
         >
           <Text style={styles.buttonText}>Create a Post</Text>
         </TouchableHighlight>
-        <PostIndex />
+        <PostIndex navigation={this.props.navigation}/>
       </View>
     );
   }

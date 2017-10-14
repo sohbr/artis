@@ -9,7 +9,8 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 
 export default class PostIndexItem extends React.Component {
@@ -17,10 +18,17 @@ export default class PostIndexItem extends React.Component {
     super(props);
   }
 
+  onItemPress() {
+    const { navigate } = this.props.navigation;
+    return () => {
+      navigate("PostShow", {post: this.props.post});
+    };
+  }
+
   render() {
     const post = this.props.post;
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.onItemPress()}>
         <View>
           <Image style={styles.image} source={{uri: post.image_url}}/>
         </View>
@@ -28,7 +36,7 @@ export default class PostIndexItem extends React.Component {
           <Text>{post.title}</Text>
           <Text>{post.body}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

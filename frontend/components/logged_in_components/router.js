@@ -4,13 +4,14 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, Image, Button, View } from "react-native";
 
 import Explore from "./explore";
-import PostForm from "./../post/post_form";
+import PostForm from "../post/post_form";
 import Saved from "./saved";
 import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
 import UserShow from "./../user_profile/user_show";
 import Conversation from "./../messages/conversation";
+import PostShow from "../post/post_show";
 
 export const ExploreStack = StackNavigator({
   Explore: {
@@ -23,6 +24,12 @@ export const ExploreStack = StackNavigator({
     screen: PostForm,
     navigationOption: {
       title: "PostForm"
+    }
+  },
+  PostShow: {
+    screen: PostShow,
+    navigationOption: {
+      title: "PostShow"
     }
   }
 });
@@ -65,7 +72,7 @@ export const Tabs = TabNavigator({
     }
   },
   Profile: {
-    screen: UserShow,
+    screen: Profile,
     navigationOptions: {
       tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (
