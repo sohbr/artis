@@ -1,5 +1,8 @@
 @conversations.each do |conversation|
   json.set! conversation.id do
-    conversation.partial! '/api/conversations/conversation', conversation: conversation
+    json.partial! '/api/conversations/conversation', conversation: conversation
   end
 end
+
+
+json.existing_conversation_users @existing_conversation_users

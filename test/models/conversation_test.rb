@@ -2,11 +2,10 @@
 #
 # Table name: conversations
 #
-#  id          :integer          not null, primary key
-#  author_id   :integer          not null
-#  receiver_id :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  identifier :string
 #
 
 require 'test_helper'

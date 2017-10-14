@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :personal_messages
   has_many :subscriptions
-  has_many :chats, through: :subscriptions
+  has_many :conversations, through: :subscriptions
 
 
   def password=(pw)
@@ -47,14 +47,14 @@ class User < ApplicationRecord
     self.session_token
   end
 
-  def existing_chat_users
-    existing_chat_users = []
-    self.chats.each do |chat|
-      existing_chat_users.concat(
-        chat.subscriptions.where.not(user_id: self.id).map {|subscription| subscription.user}
+  def existing_conversation_users
+    existing_conversation_users = []
+    self.conversations.each do |conversation|
+      existing_conversation_users.concat(
+        conversation.subscriptions.where.not(user_id: self.id).map {|subscription| subscription.user}
         )
     end
-    existing_chat_users.uniq
+    existing_conversation_users.uniq
   end
 
   private
