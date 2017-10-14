@@ -65,7 +65,7 @@ export const Tabs = TabNavigator({
     }
   },
   Profile: {
-    screen: UserShow,
+    screen: Profile,
     navigationOptions: {
       tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (
