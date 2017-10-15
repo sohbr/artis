@@ -13,7 +13,7 @@ class UserInfo extends Component {
   }
 
   floatToArray () {
-    let rating = 1.6;
+    let rating = this.props.rating;
     let arr = [];
     for (var i = 0; i < 5; i++) {
       arr.push(rating);

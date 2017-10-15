@@ -36,7 +36,7 @@ class UserShow extends Component {
           onPress={this.handleLogout()}
           title={"Logout"}
         />
-        <UserInfo userImg={userImg} navigation={this.props.navigation} style={styles.userInfo}/>
+      <UserInfo userImg={userImg} rating={rating} navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>

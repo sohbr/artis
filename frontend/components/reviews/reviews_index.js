@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import values from 'lodash/values';
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
 import ReviewIndexItem from './review_index_item';
+import { getAllReviews } from '../../actions/review_actions';
+import asReviewsArray from '../../reducers/selector';
 
 class ReviewIndex extends Component {
   constructor(props) {
     super(props);
 
+  }
+
+  componentWillMount() {
+    this.props.getAllReviews();
   }
 
   _onPress(type) {
@@ -22,29 +29,8 @@ class ReviewIndex extends Component {
   }
 
   render() {
-    const fakeReviews = [{
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    },
-    {
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    },
-    {
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    }
-  ];
-
+    const {reviews} = this.props;
+    console.log(reviews);
     return(
       <View>
         <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
@@ -53,7 +39,7 @@ class ReviewIndex extends Component {
             <FontAwesome name="pencil-square-o"  size={20} />
           </View>
         </TouchableWithoutFeedback>
-        {fakeReviews.map(
+        {this.props.reviews.map(
           (review, i) => <ReviewIndexItem key={i} review={review}/>
         )}
       </View>
@@ -65,4 +51,14 @@ const styles = StyleSheet.create({
 
 });
 
-export default ReviewIndex;
+const mapStateToProps = (state) => {
+  return {
+    reviews: values(state.entities.reviews)
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllReviews: () => dispatch(getAllReviews())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewIndex);
