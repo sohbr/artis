@@ -11,7 +11,7 @@ class Api::ConversationsController < ApplicationController
   def index
     current_user = User.find_by(id: params[:user_id])
     @conversations = current_user.conversations
-    @existing_conversation_users = current_user.existing_conversation_users
+    # @existing_conversation_users = current_user.existing_conversation_users
   end
 
   def create
@@ -30,9 +30,9 @@ class Api::ConversationsController < ApplicationController
   end
 
   def show
-    @other_user = User.find(params[:other_user])
+    # @other_user = User.find(params[:other_user])
     @conversation = Conversation.find_by(id: params[:id])
-    @personal_message = PersonalMessage.new
+    # @personal_message = PersonalMessage.new
   end
 
   private
