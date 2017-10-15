@@ -6,6 +6,7 @@ import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
 import ReviewIndexItem from './review_index_item';
 
+
 class ReviewIndex extends Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
@@ -21,35 +22,13 @@ class ReviewIndex extends Component {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewForm") {
-        navigate("ReviewForm");
+        navigate("ReviewForm", this.props.navigation.state.params[0].recipient_id);
       }
     };
   }
 
   render() {
-    const fakeReviews = [{
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    },
-    {
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    },
-    {
-      userImg: 'http://www.anime-evo.net/wp-content/uploads/2017/04/Boku2_02_3.jpg',
-      userFullname: "Katsuki Bakugou",
-      dateCreated: '10/11/2017',
-      rating: 1,
-      body: "Useless grape head... 死ね!!!"
-    }
-  ];
-
+    const reviews = this.props.navigation.state.params;
     return(
       <View>
         <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
@@ -58,8 +37,8 @@ class ReviewIndex extends Component {
             <FontAwesome name="pencil-square-o"  size={20} />
           </View>
         </TouchableWithoutFeedback>
-        {fakeReviews.map(
-          (review, i) => <ReviewIndexItem key={i} review={review}/>
+        {reviews.map(
+          (review, i) => <ReviewIndexItem key={i} currentUser={this.props.currentUser} review={review}/>
         )}
       </View>
     );
@@ -70,4 +49,12 @@ const styles = StyleSheet.create({
 
 });
 
-export default ReviewIndex;
+const mapStateToProps = (state) => ({
+  currentUser: state.session.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewIndex);

@@ -9,6 +9,8 @@ import UserShow from "./user_profile/user_show";
 import ReviewForm from "./reviews/review_form";
 import ReviewIndexItem from "./reviews/review_index_item";
 import ReviewIndex from "./reviews/reviews_index";
+import MessageIndex from "./messages/message_index";
+import ConversationIndex from "./messages/conversation_index";
 
 import {
   StyleSheet,
@@ -46,7 +48,7 @@ class Artis extends React.Component {
     // if (this.props.currentUser < 0) {
     //   return <View style={styles.container} />;
     // }
-    return <Tabs/>;
+    return <Tabs />;
     // return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
   }
 }

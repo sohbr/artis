@@ -1,10 +1,10 @@
 import React from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
-import PostIndex from '../post/post_index';
-import Search from 'react-native-search-box';
-import PostFilter from '../post/post_filter';
-import {searchPosts} from '../../actions/post_actions';
+import PostIndex from "../post/post_index";
+import Search from "react-native-search-box";
+import PostFilter from "../post/post_filter";
+import { searchPosts } from "../../actions/post_actions";
 
 import {
   View,
@@ -17,9 +17,9 @@ import {
 } from "react-native";
 
 class Explore extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
-      header: null,
+      header: null
     };
   };
 
@@ -28,7 +28,7 @@ class Explore extends React.Component {
     this.state = {
       searchTerm: null,
       loadingSearch: false
-    }
+    };
   }
 
   buttonPress(type) {
@@ -41,20 +41,19 @@ class Explore extends React.Component {
   }
 
   updateSearch() {
-    return (searchTerm) => {
-      this.setState({searchTerm})
-    }
+    return searchTerm => {
+      this.setState({ searchTerm });
+    };
   }
 
   handleSubmit() {
     return () => {
-      const {searchTerm} = this.state;
-      this.setState({loadingSearch: true})
-      this.props.searchPosts(searchTerm)
-        .then(() => {
-          this.setState({loadingSearch: false})
-        });
-    }
+      const { searchTerm } = this.state;
+      this.setState({ loadingSearch: true });
+      this.props.searchPosts(searchTerm).then(() => {
+        this.setState({ loadingSearch: false });
+      });
+    };
   }
 
   render() {
@@ -80,14 +79,14 @@ class Explore extends React.Component {
             style={styles.button}
             onPress={this.buttonPress("PostForm")}
             underlayColor={"#5C821A"}
-            >
+          >
             <Text style={styles.buttonText}>Create a Post</Text>
           </TouchableHighlight>
-          {
-            this.state.loading ?
-            <ActivityIndicator color={"#C6D166"} size={"large"}/> :
-            <PostIndex navigation={this.props.navigation}/>
-          }
+          {this.state.loading ? (
+            <ActivityIndicator color={"#C6D166"} size={"large"} />
+          ) : (
+            <PostIndex navigation={this.props.navigation} />
+          )}
         </View>
       </View>
     );
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
-    borderRadius: 3,
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  searchPosts: (searchTerm) => dispatch(searchPosts(searchTerm))
+  searchPosts: searchTerm => dispatch(searchPosts(searchTerm))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore);
