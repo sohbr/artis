@@ -35,10 +35,8 @@ class UserShow extends Component {
   }
 
   render() {
-    console.log("user show props");
     const {currentUser, reviews} = this.props;
     const reviewsAvg = reviews.pop();
-    console.log(this.props);
     const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
     const rating = reviewsAvg;
     const reviewsCount = reviews.length;

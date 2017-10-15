@@ -24,8 +24,6 @@ class ReviewIndex extends Component {
   }
 
   render() {
-    console.log("review index props");
-    console.log(this.props);
     const reviews = this.props.navigation.state.params;
     return(
       <View>
