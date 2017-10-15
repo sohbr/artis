@@ -13,12 +13,11 @@ class ReviewIndex extends Component {
 
   }
 
-
   _onPress(type) {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewForm") {
-        navigate("ReviewForm");
+        navigate("ReviewForm", this.props.navigation.state.params[0].recipient_id);
       }
     };
   }
@@ -34,7 +33,7 @@ class ReviewIndex extends Component {
           </View>
         </TouchableWithoutFeedback>
         {reviews.map(
-          (review, i) => <ReviewIndexItem key={i} review={review}/>
+          (review, i) => <ReviewIndexItem key={i} currentUser={this.props.currentUser} review={review}/>
         )}
       </View>
     );
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-
+  currentUser: state.session.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({

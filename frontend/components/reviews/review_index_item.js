@@ -22,20 +22,23 @@ class ReviewIndexItem extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const {review, currentUser} = this.props;
     return(
       <View>
         <View style={styles.reviewIndexItemContainer}>
-          <Image style={styles.profileImage} source={{uri: this.props.review.userImg}} />
+          <Image style={styles.profileImage} source={{uri: review.userImg}} />
           <View>
             <View style={styles.nameAndDate}>
-              <Text style={styles.userFullName}>{this.props.review.userFullname}</Text>
-              <Text>{this.props.review.dateCreated}</Text>
+              <Text style={styles.userFullName}>{review.userFullname}</Text>
+              <Text>{review.dateCreated}</Text>
             </View>
             <View style={styles.starRating}>
-              {this.floatToArray(this.props.review.rating).map((score, i) => <StarRating key={i} score={score}/>)}
+              {this.floatToArray(review.rating).map((score, i) => <StarRating key={i} score={score}/>)}
             </View>
-            <Text>{this.props.review.body}</Text>
+            <Text>{review.body}</Text>
           </View>
+          {review.author_id === currentUser.id ? <Text>you wrote this</Text> : <View />}
         </View>
         <View style={styles.hr}/>
       </View>
