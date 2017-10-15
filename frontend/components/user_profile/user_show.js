@@ -17,6 +17,11 @@ import {
 } from 'react-native';
 
 class UserShow extends Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      header: null
+    };
+  }
   constructor(props) {
     super(props);
   }

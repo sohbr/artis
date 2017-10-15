@@ -40,7 +40,10 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: "Explore",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="search" size={35} color={tintColor} />
+        <FontAwesome
+          name="search"
+          size={30}
+          color={tintColor} />
       )
     }
   },
@@ -49,7 +52,10 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: "Saved",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="bookmark" size={35} color={tintColor} />
+        <FontAwesome
+          name="address-card-o"
+          size={33}
+          color={tintColor} />
       )
     }
   },
@@ -58,7 +64,10 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: "Hired",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="check" size={35} color={tintColor} />
+        <FontAwesome
+          name="h-square"
+          size={33}
+          color={tintColor} />
       )
     }
   },
@@ -67,7 +76,10 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: "Inbox",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="comment" size={35} color={tintColor} />
+        <FontAwesome
+          name="comments-o"
+          size={40}
+          color={tintColor} />
       )
     }
   },
@@ -76,8 +88,32 @@ export const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: "Profile",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="user" size={35} color={tintColor} />
+        <FontAwesome
+          name="user-circle-o"
+          size={32}
+          color={tintColor} />
       )
     }
   }
+},{
+  tabBarOptions: {
+    activeTintColor: "#5C821A",
+    // inactiveTintColor: "#000",
+    inactiveTintColor: "#C6D166",
+    labelStyle: {
+      fontWeight: "bold",
+      fontSize: 11,
+    },
+    iconStyle: {
+      borderColor: "#5C821A",
+      borderWidth: 10
+    },
+    style: {
+      height: 52.5,
+      // backgroundColor: "#C6D166",
+      borderTopWidth: 1,
+      borderTopColor: "#C6D166"
+    },
+  },
+  swipeEnabled: true,
 });
