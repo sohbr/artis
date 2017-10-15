@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20171015000940) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "recipient_id", null: false
+    t.integer "author_id", null: false
+    t.integer "rating", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id", "recipient_id"], name: "index_reviews_on_author_id_and_recipient_id", unique: true
+    t.index ["author_id"], name: "index_reviews_on_author_id"
+    t.index ["recipient_id"], name: "index_reviews_on_recipient_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "conversation_id"
     t.integer "user_id"

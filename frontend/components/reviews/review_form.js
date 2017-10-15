@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import StarRating from '../star_rating/star_rating';
+import {createReview} from '../../actions/review_actions';
+
 import {
   StyleSheet,
   Text,
@@ -47,15 +49,33 @@ class ReviewForm extends React.Component {
   }
 
   onSubmit() {
+    const { navigate } = this.props.navigation;
     return () => {
-      const review = Object.assign({}, {
-        rating: this.state.rating,
-        body: this.state.body,
-        user_id: this.props.currentUser.id
+      const formData = new FormData();
+      formData.append("review[rating]", this.state.rating);
+      formData.append("review[body]", this.state.body);
+      formData.append("review[author_id]", this.props.currentUser.id);
+      formData.append("review[recipient_id]", this.props.navigation.state.params );
+      console.log(formData);
+      this.props.createReview(formData).then((res) => {
+        if (res.type) {
+          navigate("Explore");
+        }
       });
-      this.props.createReview(review);
     };
   }
+
+  // onSubmit() {
+  //   return () => {
+  //     const review = Object.assign({}, {
+  //       rating: this.state.rating,
+  //       body: this.state.body,
+  //       author_id: this.props.currentUser.id,
+  //       recipient_id: this.props.navigation.state.params
+  //     });
+  //     this.props.createReview(review);
+  //   };
+  // }
 
   render() {
     return(
@@ -160,6 +180,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  createReview: (review) => dispatch(createReview(review))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

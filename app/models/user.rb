@@ -26,6 +26,16 @@ class User < ApplicationRecord
   has_many :subscriptions
   has_many :conversations, through: :subscriptions
 
+  has_many :written_reviews,
+    class_name: 'Review',
+    foreign_key: :author_id,
+    primary_key: :id
+
+  has_many :received_reviews,
+    class_name: 'Review',
+    foreign_key: :recipient_id,
+    primary_key: :id
+
 
   def password=(pw)
     @password = pw
