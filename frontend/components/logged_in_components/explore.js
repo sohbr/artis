@@ -22,6 +22,7 @@ class Explore extends React.Component {
       header: null,
     };
   };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -73,6 +74,7 @@ class Explore extends React.Component {
           onChangeText={this.updateSearch()}
           onSearch={this.handleSubmit()}
         />
+        <PostFilter />
         <View style={styles.container}>
           <TouchableHighlight
             style={styles.button}

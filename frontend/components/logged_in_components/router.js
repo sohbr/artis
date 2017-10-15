@@ -123,7 +123,7 @@ export const Tabs = TabNavigator({
       height: (Platform.OS === 'ios') ? 53 : 65,
       borderTopWidth: 1,
       borderTopColor: "#C6D166",
-      backgroundColor: "#FEFEFE",
+      backgroundColor: "#F7F7F7",
       borderBottomWidth: 0
     },
     indicatorStyle: {

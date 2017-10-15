@@ -110,7 +110,7 @@ class PostForm extends React.Component {
 const categories = [
   "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
   "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
-]
+];
 
 const styles = StyleSheet.create({
   container: {

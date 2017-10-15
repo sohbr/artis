@@ -23,11 +23,27 @@ class PostFilter extends React.Component {
 
   handleFilterSelect(searchFilter) {
     return () => {
-
+      if (searchFilter === "All") {
+        this.props.getAllPosts();
+      } else {
+        this.props.searchPosts(searchFilter);
+      }
     };
   }
 
   render() {
+    const filterItems = categories.map((category) => {
+      return (
+        <TouchableHighlight
+          style={styles.button}
+          underlayColor={"#5C821A"}
+          onPress={this.handleFilterSelect(`${category}`)}
+          key={`${category}`}
+        >
+          <Text style={styles.buttonText}>{category}</Text>
+        </TouchableHighlight>)
+      ;
+    });
     return (
       <View>
         <ScrollView
@@ -35,47 +51,17 @@ class PostFilter extends React.Component {
         horizontal={true}
         bounces={false}
         >
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor={"#5C821A"}
-          >
-            <Text style={styles.buttonText}>Hello</Text>
-          </TouchableHighlight>
+          {filterItems}
         </ScrollView>
       </View>
     );
   }
 }
+
+const categories = [
+  "All", "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
+  "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -83,8 +69,9 @@ const styles = StyleSheet.create({
     borderColor: "#C6D166",
     backgroundColor: "white"
   }, button: {
-    height: 30,
     backgroundColor: "white",
+    padding: 10,
+    marginRight: 5
   }, buttonText: {
     justifyContent: "center",
     alignSelf: "center",
@@ -98,7 +85,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllPosts: () => dispatch(getAllPosts())
+  getAllPosts: () => dispatch(getAllPosts()),
+  searchPosts: (searchTerm) => dispatch(searchPosts(searchTerm))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostFilter);
