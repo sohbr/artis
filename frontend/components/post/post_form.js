@@ -29,7 +29,7 @@ class PostForm extends React.Component {
       title: "",
       body: "",
       image: null,
-      category: ""
+      category: null
     };
   }
 
@@ -95,6 +95,7 @@ class PostForm extends React.Component {
         <Picker
           selectedValue={this.state.category}
           onValueChange={(itemValue, itemIndex) => this.setState({category: itemValue})}>
+          <Picker.Item label={"Select a Category"} enabled={false}/>
           {pickerItems}
         </Picker>
         <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
