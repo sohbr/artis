@@ -8,54 +8,54 @@ import {
   postPost,
   patchPost,
   deletePost
-} from '../util/post_api_util';
+} from "../util/post_api_util";
 
-export const receivePosts = (posts) => ({
+export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
   posts
 });
 
-export const receivePost = (post) => ({
+export const receivePost = post => ({
   type: RECEIVE_POST,
   post
 });
 
-export const destroyPost = (postId) => ({
+export const destroyPost = postId => ({
   type: DELETE_POST,
   postId
 });
 
-export const getAllPosts = () => dispatch => (
-  getPosts().then((res) => {
-    dispatch(receivePosts(res.data));
-  }).catch((errors) => {
-  })
-);
+export const getAllPosts = () => dispatch =>
+  getPosts()
+    .then(res => {
+      dispatch(receivePosts(res.data));
+    })
+    .catch(errors => {});
 
-export const getPostById = (postId) => dispatch => (
-  getPost(postId).then((res) => {
-    dispatch(receivePost(res.data));
-  }).catch((errors) => {
-  })
-);
+export const getPostById = postId => dispatch =>
+  getPost(postId)
+    .then(res => {
+      dispatch(receivePost(res.data));
+    })
+    .catch(errors => {});
 
-export const createPost = (post) => dispatch => (
-  postPost(post).then((res) => {
-    return dispatch(receivePost(res.data));
-  }).catch((errors) => {
-  })
-);
+export const createPost = post => dispatch =>
+  postPost(post)
+    .then(res => {
+      return dispatch(receivePost(res.data));
+    })
+    .catch(errors => {});
 
-export const updatePost = (post) => dispatch => (
-  patchPost(post).then((res) => {
-    dispatch(receivePost(res.data));
-  }).catch((errors) => {
-  })
-);
+export const updatePost = post => dispatch =>
+  patchPost(post)
+    .then(res => {
+      dispatch(receivePost(res.data));
+    })
+    .catch(errors => {});
 
-export const deletePostById = (postId) => dispatch => (
-  deletePost(postId).then((res) => {
-    dispatch(destroyPost(postId));
-  }).catch((errors) => {
-  })
-);
+export const deletePostById = postId => dispatch =>
+  deletePost(postId)
+    .then(res => {
+      dispatch(destroyPost(postId));
+    })
+    .catch(errors => {});

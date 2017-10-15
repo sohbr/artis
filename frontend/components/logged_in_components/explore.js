@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
-import PostIndex from '../post/post_index';
+import PostIndex from "../post/post_index";
 
 import {
   View,
@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 class Explore extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       header: null
     };

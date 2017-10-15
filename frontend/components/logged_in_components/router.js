@@ -10,7 +10,8 @@ import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
 import UserShow from "./../user_profile/user_show";
-import Conversation from "./../messages/conversation";
+import MessageIndex from "./../messages/message_index";
+import ConversationIndex from "./../messages/conversation_index";
 
 export const ExploreStack = StackNavigator({
   Explore: {
@@ -23,6 +24,21 @@ export const ExploreStack = StackNavigator({
     screen: PostForm,
     navigationOption: {
       title: "PostForm"
+    }
+  }
+});
+
+export const InboxStack = StackNavigator({
+  Inbox: {
+    screen: ConversationIndex,
+    navigationOptions: {
+      title: "Inbox"
+    }
+  },
+  MessageIndex: {
+    screen: MessageIndex,
+    navigationOptions: {
+      title: "MessageIndex"
     }
   }
 });
@@ -56,7 +72,7 @@ export const Tabs = TabNavigator({
     }
   },
   Inbox: {
-    screen: Conversation,
+    screen: InboxStack,
     navigationOptions: {
       tabBarLabel: "Inbox",
       tabBarIcon: ({ tintColor }) => (
