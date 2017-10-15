@@ -26,7 +26,7 @@ class ReviewIndex extends Component {
   render() {
     console.log("review index props");
     console.log(this.props);
-    const {reviews} = this.props;
+    const reviews = this.props.navigation.state.params;
     return(
       <View>
         <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
@@ -35,7 +35,7 @@ class ReviewIndex extends Component {
             <FontAwesome name="pencil-square-o"  size={20} />
           </View>
         </TouchableWithoutFeedback>
-        {this.props.reviews.map(
+        {reviews.map(
           (review, i) => <ReviewIndexItem key={i} review={review}/>
         )}
       </View>

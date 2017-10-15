@@ -26,15 +26,14 @@ class UserInfo extends Component {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewIndex") {
-        navigate("ReviewIndex");
+        navigate("ReviewIndex", this.props.reviews);
       }
     };
 }
 
 
   render() {
-    console.log(this.props);
-    const {currentUser} = this.props
+    const {currentUser, reviewsCount} = this.props;
     return(
         <View style={styles.userInfoContainer}>
           <Image style={styles.profileImage} source={{uri: this.props.userImg}} />
@@ -45,7 +44,7 @@ class UserInfo extends Component {
               (score,i) => <StarRating key={i} score={score}/>
             )}
             </View>
-              <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>174 Reviews</Text>
+              <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
           </View>
         </View>
     );
