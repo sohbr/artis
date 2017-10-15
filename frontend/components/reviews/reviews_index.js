@@ -16,7 +16,25 @@ class ReviewIndex extends Component {
 
   constructor(props) {
     super(props);
+
+    this.checkIfCurrentUserProfile = this.checkIfCurrentUserProfile.bind(this)
   }
+
+  checkIfCurrentUserProfile() {
+    if (this.props.navigation.state.params.prevStateKey === "Profile") {
+      return (
+        <View/>
+      )
+    } else {
+      return (
+        <View flexDirection={"row"} justifyContent={"flex-end"} >
+        <Text size={20} >Write a review</Text>
+        <FontAwesome name="pencil-square-o"  size={20} />
+      </View>
+      )
+    }
+  }
+
 
   _onPress(type) {
     const { navigate } = this.props.navigation;
@@ -28,15 +46,11 @@ class ReviewIndex extends Component {
   }
 
   render() {
-    const reviews = this.props.navigation.state.params;
+    console.log(this.props);
+    const reviews = this.props.navigation.state.params.reviews;
     return(
       <View>
-        <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
-          <View flexDirection={"row"} justifyContent={"flex-end"} >
-            <Text size={20} >Write a review</Text>
-            <FontAwesome name="pencil-square-o"  size={20} />
-          </View>
-        </TouchableWithoutFeedback>
+        {this.checkIfCurrentUserProfile()}
         {reviews.map(
           (review, i) => <ReviewIndexItem key={i} currentUser={this.props.currentUser} review={review}/>
         )}
@@ -58,3 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewIndex);
+
+// <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
+//   {this.checkIfCurrentUserProfile()}
+// </TouchableWithoutFeedback>

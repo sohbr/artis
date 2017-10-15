@@ -56,7 +56,6 @@ class ReviewForm extends React.Component {
       formData.append("review[body]", this.state.body);
       formData.append("review[author_id]", this.props.currentUser.id);
       formData.append("review[recipient_id]", this.props.navigation.state.params );
-      console.log(formData);
       this.props.createReview(formData).then((res) => {
         if (res.type) {
           navigate("Explore");
