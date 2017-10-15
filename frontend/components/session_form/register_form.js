@@ -13,7 +13,8 @@ import {
 
 class RegisterForm extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: "Register"
+    title: "Register",
+    headerTintColor: "#C6D166"
   });
 
   constructor(props) {
@@ -76,7 +77,11 @@ class RegisterForm extends React.Component {
         />
         <Text style={styles.label}>{this.state.password}</Text>
 
-        <TouchableHighlight style={styles.button} onPress={this.onRegister()}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onRegister()}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>Register</Text>
         </TouchableHighlight>
 
@@ -108,9 +113,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,

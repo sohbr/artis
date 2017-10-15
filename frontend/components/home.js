@@ -40,12 +40,20 @@ class Home extends React.Component {
       <View style={styles.container}>
         <Text style={styles.title}>Artis</Text>
         <Text></Text>
-        <TouchableHighlight style={styles.button} onPress={this.buttonPress("register")}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.buttonPress("register")}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>
             Register
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button} onPress={this.buttonPress("login")}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.buttonPress("login")}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>
             Login
           </Text>
@@ -66,9 +74,10 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,

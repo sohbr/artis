@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :posts, only: [:create, :index, :show, :update, :destroy]
     resources :personal_messages, only: [:create]
+    resources :reviews, only: [:create, :index, :update, :destroy]
+    resources :message, only: [:create]
   end
 
   mount ActionCable.server => '/cable'

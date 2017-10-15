@@ -9,7 +9,12 @@ class Api::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    if params[:searchTerm]
+      @posts = Post.where("LOWER(title) LIKE ?", "%#{params[:searchTerm].downcase}%")
+    else
+      @posts = Post.all
+    end
+    render :index
   end
 
   def show
@@ -37,6 +42,6 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :image, :user_id)
+    params.require(:post).permit(:title, :body, :image, :user_id, :category)
   end
 end

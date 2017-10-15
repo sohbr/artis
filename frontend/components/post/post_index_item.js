@@ -9,7 +9,8 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 
 export default class PostIndexItem extends React.Component {
@@ -17,31 +18,48 @@ export default class PostIndexItem extends React.Component {
     super(props);
   }
 
+  onItemPress() {
+    const { navigate } = this.props.navigation;
+    return () => {
+      navigate("PostShow", {post: this.props.post});
+    };
+  }
+
   render() {
     const post = this.props.post;
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.onItemPress()}>
         <View>
           <Image style={styles.image} source={{uri: post.image_url}}/>
         </View>
         <View>
-          <Text>{post.title}</Text>
-          <Text>{post.body}</Text>
+          <Text style={styles.textCategory}>{post.category}</Text>
+          <Text style={styles.text}>{post.title}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     alignSelf: "stretch",
-    backgroundColor: "lightblue",
-    marginBottom: 10
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#C6D166"
   },
   image: {
-    height: 50,
-    width: 50
+    height: Dimensions.get('window').height*0.3,
+    borderRadius: 3
+  },
+  text: {
+    padding: 5,
+    color: "#0F1B07"
+  },
+  textCategory: {
+    padding: 5,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#0F1B07"
   }
 });
