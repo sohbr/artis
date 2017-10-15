@@ -33,8 +33,8 @@ export default class PostIndexItem extends React.Component {
           <Image style={styles.image} source={{uri: post.image_url}}/>
         </View>
         <View>
+          <Text style={styles.textCategory}>{post.category}</Text>
           <Text style={styles.text}>{post.title}</Text>
-          <Text style={styles.text}>{post.body}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -49,10 +49,17 @@ const styles = StyleSheet.create({
     borderBottomColor: "#C6D166"
   },
   image: {
-    height: Dimensions.get('window').height*0.4,
+    height: Dimensions.get('window').height*0.3,
     borderRadius: 3
   },
   text: {
-    padding: 5
+    padding: 5,
+    color: "#0F1B07"
+  },
+  textCategory: {
+    padding: 5,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#0F1B07"
   }
 });

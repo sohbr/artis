@@ -10,7 +10,9 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
-  Dimensions
+  Dimensions,
+  Picker,
+  ScrollView
 } from "react-native";
 
 class PostForm extends React.Component {
@@ -26,7 +28,8 @@ class PostForm extends React.Component {
     this.state = {
       title: "",
       body: "",
-      image: null
+      image: null,
+      category: ""
     };
   }
 
@@ -38,6 +41,7 @@ class PostForm extends React.Component {
       const formData = new FormData();
       formData.append("post[title]", this.state.title);
       formData.append("post[body]", this.state.body);
+      formData.append("post[category]", this.state.category)
       formData.append("post[user_id]", this.props.currentUser.id);
       formData.append("post[image]", {
         uri: this.state.image,
@@ -59,8 +63,12 @@ class PostForm extends React.Component {
   }
 
   render() {
+    console.log(this.state);
+    const pickerItems = categories.map((category, i) => {
+      return <Picker.Item key={`category-${i}`} label={`${category}`} value={`${category}`} />
+    })
     return(
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.image}>
           <ImageUpload updatePostWithImage={this.updatePostWithImage()} />
         </View>
@@ -84,32 +92,43 @@ class PostForm extends React.Component {
         <Text style={styles.label}>
           {this.state.body}
         </Text>
+        <Picker
+          selectedValue={this.state.category}
+          onValueChange={(itemValue, itemIndex) => this.setState({category: itemValue})}>
+          {pickerItems}
+        </Picker>
         <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
           <Text style={styles.buttonText}>
             Submit
           </Text>
         </TouchableHighlight>
-      </View>
+      </ScrollView>
     );
   }
 }
 
+const categories = [
+  "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
+  "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
+]
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
     padding: 10
   },
   input: {
-    height: 50,
+    height: 45,
     backgroundColor: "#F7F7F7",
     padding: 4,
     marginTop: 10,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "gray",
+    borderRadius: 3,
+    borderColor: "#5C821A",
+    color: "#0F1B07"
   },
   textfield: {
     height: 100,
@@ -118,7 +137,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "gray"
+    borderRadius: 3,
+    borderColor: "#5C821A",
+    color: "#0F1B07"
   },
   label: {
     color: "black"

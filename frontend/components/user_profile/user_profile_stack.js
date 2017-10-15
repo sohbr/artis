@@ -26,4 +26,6 @@ export const UserProfileStack = StackNavigator({
       title: "Write a Review"
     }
   },
+},{
+  mode: "modal"
 });

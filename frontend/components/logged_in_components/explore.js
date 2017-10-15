@@ -2,6 +2,9 @@ import React from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import PostIndex from '../post/post_index';
+import Search from 'react-native-search-box';
+import PostFilter from '../post/post_filter';
+import {searchPosts} from '../../actions/post_actions';
 
 import {
   View,
@@ -9,7 +12,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
-  Button
+  Button,
+  ActivityIndicator
 } from "react-native";
 
 class Explore extends React.Component {
@@ -20,6 +24,10 @@ class Explore extends React.Component {
   };
   constructor(props) {
     super(props);
+    this.state = {
+      searchTerm: null,
+      loadingSearch: false
+    }
   }
 
   buttonPress(type) {
@@ -31,30 +39,73 @@ class Explore extends React.Component {
     };
   }
 
+  updateSearch() {
+    return (searchTerm) => {
+      this.setState({searchTerm})
+    }
+  }
+
+  handleSubmit() {
+    return () => {
+      const {searchTerm} = this.state;
+      this.setState({loadingSearch: true})
+      this.props.searchPosts(searchTerm)
+        .then(() => {
+          this.setState({loadingSearch: false})
+        });
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.buttonPress("PostForm")}
-          underlayColor={"#5C821A"}
-        >
-          <Text style={styles.buttonText}>Create a Post</Text>
-        </TouchableHighlight>
-        <PostIndex navigation={this.props.navigation}/>
+      <View style={styles.superContainer}>
+        <Search
+          backgroundColor={"#C6D166"}
+          placeholderTextColor={"#0F1B07"}
+          tintColorSearch={"#5C821A"}
+          tintColorDelete={"#5C821A"}
+          inputBorderRadius={3}
+          searchIconCollapsedMargin={25}
+          searchIconExpandedMargin={12.5}
+          placeholderCollapsedMargin={15}
+          placeholderExpandedMargin={25}
+          shadowVisible={false}
+          onChangeText={this.updateSearch()}
+          onSearch={this.handleSubmit()}
+        />
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.buttonPress("PostForm")}
+            underlayColor={"#5C821A"}
+            >
+            <Text style={styles.buttonText}>Create a Post</Text>
+          </TouchableHighlight>
+          {
+            this.state.loading ?
+            <ActivityIndicator color={"#C6D166"} size={"large"}/> :
+            <PostIndex navigation={this.props.navigation}/>
+          }
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  superContainer: {
+    flex: 1,
+    backgroundColor: "white",
+    paddingTop: 24
+  },
   container: {
     flex: 1,
     backgroundColor: "white",
-    justifyContent: "center",
     paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 30
+    paddingRight: 30
+  },
+  search: {
+    backgroundColor: "#C6D166"
   },
   button: {
     marginTop: 10,
@@ -73,6 +124,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  searchPosts: (searchTerm) => dispatch(searchPosts(searchTerm))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore);

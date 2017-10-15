@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PostIndexItem from './post_index_item';
-import { getAllPosts } from '../../actions/post_actions';
+import { getAllPosts, RECEIVE_POSTS } from '../../actions/post_actions';
 
 import {
   StyleSheet,
@@ -11,16 +11,25 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
-  Dimensions
+  Dimensions,
+  ActivityIndicator
 } from "react-native";
 
 class PostIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false
+    };
   }
 
   componentWillMount() {
-    this.props.getAllPosts();
+    this.setState({loading: true});
+    this.props.getAllPosts().then((res) => {
+      if (res && res.type === RECEIVE_POSTS) {
+        this.setState({loading: false});
+      }
+    });
   }
 
   render() {
@@ -32,11 +41,19 @@ class PostIndex extends React.Component {
     } else {
       display = <Text>Loading</Text>;
     }
-    return (
-      <ScrollView style={styles.container}>
-        {display}
-      </ScrollView>
-    );
+    if (this.state.loading) {
+      return <ActivityIndicator color={"#C6D166"} size={"large"}/>;
+    } else {
+      return (
+        <ScrollView
+          style={styles.container}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          >
+          {display}
+        </ScrollView>
+      );
+    }
   }
 }
 

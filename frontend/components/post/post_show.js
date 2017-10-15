@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   TextInput,
   Image,
+  ScrollView,
   Dimensions
 } from "react-native";
 
@@ -33,11 +34,15 @@ class PostShow extends React.Component {
   render() {
     const {post} = this.props.navigation.state.params;
     return(
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image style={styles.image} source={{uri: post.image_url}}/>
-        <Text>{post.title}</Text>
-        <Text>{post.body}</Text>
-      </View>
+        <View>
+          <Text style={styles.category}>{post.category}</Text>
+          <Text style={styles.title}>{post.title}</Text>
+        </View>
+        <Text style={styles.description}>Description</Text>
+        <Text style={styles.body}>{post.body}</Text>
+      </ScrollView>
     );
   }
 }
@@ -45,36 +50,15 @@ class PostShow extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
     paddingLeft: 30,
     paddingRight: 30,
     paddingTop: 30
   },
-  input: {
-    height: 50,
-    backgroundColor: "#F7F7F7",
-    padding: 4,
-    marginTop: 10,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "gray",
-  },
-  textfield: {
-    height: 100,
-    backgroundColor: "#F7F7F7",
-    padding: 4,
-    marginTop: 10,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: "gray"
-  },
-  label: {
-    color: "black"
-  },
   image: {
-    height: Dimensions.get('window').height*0.4
+    height: Dimensions.get('window').height*0.3,
+    borderRadius: 3
   },
   button: {
     height: 50,
@@ -86,10 +70,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white"
   },
+  category: {
+    paddingTop: 5,
+    paddingBottom: 5,
+  },
   title: {
-    fontSize: 100,
-    alignSelf: "center",
+    paddingBottom: 10,
+    fontSize: 20,
     fontWeight: "bold"
+  },
+  description: {
+    paddingBottom: 5,
+    fontWeight: "bold",
+    alignSelf: "center"
   }
 });
 
