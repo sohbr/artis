@@ -14,6 +14,11 @@ import {
 } from "react-native";
 
 class ReviewForm extends React.Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      headerTintColor: "#C6D166",
+    };
+  };
 
   constructor(props) {
     super(props);
@@ -101,7 +106,11 @@ class ReviewForm extends React.Component {
           underlineColorAndroid={'transparent'}
           textAlignVertical={"top"}
         />
-        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onSubmit()}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>
             Submit
           </Text>
@@ -148,9 +157,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: 3
   },
   buttonText: {
     fontSize: 18,

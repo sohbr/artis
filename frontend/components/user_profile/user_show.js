@@ -5,7 +5,7 @@ import values from 'lodash/values';
 import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
-import { logout } from '../../actions/session_actions';
+import { logout, RECEIVE_CURRENT_USER } from '../../actions/session_actions';
 import { getAllReviews } from '../../actions/review_actions';
 
 import {
@@ -20,6 +20,11 @@ import {
 } from 'react-native';
 
 class UserShow extends Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      header: null
+    };
+  }
   constructor(props) {
     super(props);
   }

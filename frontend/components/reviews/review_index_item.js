@@ -6,6 +6,7 @@ import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
 
 class ReviewIndexItem extends Component {
+
   constructor(props) {
     super(props);
 

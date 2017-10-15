@@ -56,13 +56,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor: '#C6D166',
+    padding: 20
   },
   profileImage: {
    width: Dimensions.get('window').width*.5,
    height: Dimensions.get('window').width*.5,
    borderRadius: Dimensions.get('window').width*.25,
    borderColor: 'gray',
-   borderWidth: .5
+   borderWidth: .5,
+   marginRight: 15
  },
  userDetails: {
    justifyContent: 'center',

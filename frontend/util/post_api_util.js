@@ -41,3 +41,10 @@ export const deletePost = (postId) => (
     url: `${url}/api/posts/${postId}`
   })
 );
+
+export const filterPosts = (searchTerm) => (
+  axios({
+    method: 'GET',
+    url: `${url}/api/posts?searchTerm=${searchTerm}`,
+  })
+);

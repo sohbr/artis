@@ -8,9 +8,14 @@ import ReviewIndexItem from './review_index_item';
 
 
 class ReviewIndex extends Component {
+  static navigationOptions = ({navigation, screenProps}) => {
+    return {
+      headerTintColor: "#C6D166"
+    };
+  };
+
   constructor(props) {
     super(props);
-
   }
 
   _onPress(type) {
