@@ -4,7 +4,7 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
-import { logout } from '../../actions/session_actions';
+import { logout, RECEIVE_CURRENT_USER } from '../../actions/session_actions';
 import {
   View,
   ScrollView,

@@ -1,8 +1,16 @@
 import React from "react";
 import { TabNavigator, StackNavigator } from "react-navigation";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, Image, Button, View } from "react-native";
-
+import {
+  StyleSheet,
+  Text,
+  Image,
+  Button,
+  View,
+  Platform
+} from "react-native";
+import {getAllPosts} from '../../actions/post_actions';
+import { connect } from 'react-redux';
 import Explore from "./explore";
 import PostForm from "../post/post_form";
 import Saved from "./saved";
@@ -32,6 +40,8 @@ export const ExploreStack = StackNavigator({
       title: "PostShow"
     }
   }
+},{
+  mode: 'modal'
 });
 
 export const Tabs = TabNavigator({
@@ -44,8 +54,8 @@ export const Tabs = TabNavigator({
           name="search"
           size={30}
           color={tintColor} />
-      )
-    }
+      ),
+    },
   },
   Saved: {
     screen: Saved,
@@ -96,24 +106,31 @@ export const Tabs = TabNavigator({
     }
   }
 },{
+  tabBarPosition: 'bottom',
   tabBarOptions: {
     activeTintColor: "#5C821A",
-    // inactiveTintColor: "#000",
     inactiveTintColor: "#C6D166",
     labelStyle: {
       fontWeight: "bold",
       fontSize: 11,
     },
-    iconStyle: {
-      borderColor: "#5C821A",
-      borderWidth: 10
+    iconStyle: (Platform.OS === 'ios') ? {} : {
+      height: 32,
+      width: 40,
     },
+    showIcon: true,
     style: {
-      height: 52.5,
-      // backgroundColor: "#C6D166",
+      height: (Platform.OS === 'ios') ? 53 : 65,
       borderTopWidth: 1,
-      borderTopColor: "#C6D166"
+      borderTopColor: "#C6D166",
+      backgroundColor: "#FEFEFE",
+      borderBottomWidth: 0
     },
+    indicatorStyle: {
+      height: 0,
+      padding: 0,
+      margin: 0
+    }
   },
-  swipeEnabled: true,
+  swipeEnabled: true
 });

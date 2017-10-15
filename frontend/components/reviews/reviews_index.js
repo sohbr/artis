@@ -12,7 +12,7 @@ class ReviewIndex extends Component {
       headerTintColor: "#C6D166"
     };
   };
-  
+
   constructor(props) {
     super(props);
   }

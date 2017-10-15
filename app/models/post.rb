@@ -16,7 +16,11 @@
 #
 
 class Post < ApplicationRecord
-  validates :title, :body, presence: true
+  validates :title, :body, :category, presence: true
+  validates :category, inclusion: { in: [
+    "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
+    "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
+  ]}
 
   belongs_to :user
 

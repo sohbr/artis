@@ -19,6 +19,15 @@ end
 
 user_ids = (User.first.id..User.last.id).to_a
 
-10.times do
-  Post.create(user_id: user_ids.sample, title: "Hello", body: "World")
+categories = [
+  "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
+  "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
+]
+
+
+
+50.times do
+  category = categories.sample
+  default_text = "Looking for a professional in #{category}? Look no further, I'm offering my service for #{category} for the low price of $15/hr. If you're interested, shoot me a message!"
+  Post.create(user_id: user_ids.sample, title: "#{category} Job Title", body: default_text, category: category)
 end

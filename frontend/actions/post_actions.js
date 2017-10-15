@@ -7,7 +7,8 @@ import {
   getPost,
   postPost,
   patchPost,
-  deletePost
+  deletePost,
+  filterPosts
 } from '../util/post_api_util';
 
 export const receivePosts = (posts) => ({
@@ -27,7 +28,7 @@ export const destroyPost = (postId) => ({
 
 export const getAllPosts = () => dispatch => (
   getPosts().then((res) => {
-    dispatch(receivePosts(res.data));
+    return dispatch(receivePosts(res.data));
   }).catch((errors) => {
   })
 );
@@ -57,5 +58,13 @@ export const deletePostById = (postId) => dispatch => (
   deletePost(postId).then((res) => {
     dispatch(destroyPost(postId));
   }).catch((errors) => {
+  })
+);
+
+export const searchPosts = (searchTerm) => dispatch => (
+  filterPosts(searchTerm).then((res) => {
+    dispatch(receivePosts(res.data));
+  }).catch((errors) => {
+    console.log(errors);
   })
 );

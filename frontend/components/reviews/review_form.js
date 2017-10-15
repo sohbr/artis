@@ -86,7 +86,11 @@ class ReviewForm extends React.Component {
           underlineColorAndroid={'transparent'}
           textAlignVertical={"top"}
         />
-        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onSubmit()}
+          underlayColor={"#5C821A"}
+        >
           <Text style={styles.buttonText}>
             Submit
           </Text>
