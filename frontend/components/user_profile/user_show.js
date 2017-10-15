@@ -40,6 +40,7 @@ class UserShow extends Component {
   }
 
   render() {
+    // console.log(this.props);
     const {currentUser, reviews} = this.props;
     const reviewsAvg = reviews.pop();
     const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
@@ -51,7 +52,14 @@ class UserShow extends Component {
           onPress={this.handleLogout()}
           title={"Logout"}
         />
-      <UserInfo currentUser={currentUser} rating={rating} reviews={reviews} reviewsCount={reviewsCount} navigation={this.props.navigation} style={styles.userInfo}/>
+      <UserInfo
+        currentUser={currentUser}
+        rating={rating}
+        reviews={reviews}
+        reviewsCount={reviewsCount}
+        prevStateKey={this.props.screenProps.prevStateKey}
+        navigation={this.props.navigation}
+        style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>

@@ -23,7 +23,6 @@ class ReviewIndexItem extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {review, currentUser} = this.props;
     return(
       <View>
