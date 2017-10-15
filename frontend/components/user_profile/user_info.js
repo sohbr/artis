@@ -33,11 +33,13 @@ class UserInfo extends Component {
 
 
   render() {
+    console.log(this.props);
+    const {currentUser} = this.props
     return(
         <View style={styles.userInfoContainer}>
           <Image style={styles.profileImage} source={{uri: this.props.userImg}} />
           <View style={styles.userDetails}>
-            <Text style={styles.userFullName}>Minoru Mineta</Text>
+            <Text style={styles.userFullName}>{currentUser.username}</Text>
             <View style={styles.starRating}>
             {this.floatToArray().map(
               (score,i) => <StarRating key={i} score={score}/>

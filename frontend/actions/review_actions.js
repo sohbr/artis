@@ -11,8 +11,8 @@ export const receiveReviews = (reviews) => ({
   reviews
 });
 
-export const getAllReviews = () => dispatch => (
-  getReviews().then((res) => {
+export const getAllReviews = (id) => dispatch => (
+  getReviews(id).then((res) => {
     dispatch(receiveReviews(res.data));
   }).catch((errors) => {
   })

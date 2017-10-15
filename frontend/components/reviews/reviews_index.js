@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import values from 'lodash/values';
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
 import ReviewIndexItem from './review_index_item';
-import { getAllReviews } from '../../actions/review_actions';
-import asReviewsArray from '../../reducers/selector';
+
 
 class ReviewIndex extends Component {
   constructor(props) {
@@ -15,9 +13,6 @@ class ReviewIndex extends Component {
 
   }
 
-  componentWillMount() {
-    this.props.getAllReviews();
-  }
 
   _onPress(type) {
     const { navigate } = this.props.navigation;
@@ -29,8 +24,9 @@ class ReviewIndex extends Component {
   }
 
   render() {
+    console.log("review index props");
+    console.log(this.props);
     const {reviews} = this.props;
-    console.log(reviews);
     return(
       <View>
         <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
@@ -51,14 +47,12 @@ const styles = StyleSheet.create({
 
 });
 
-const mapStateToProps = (state) => {
-  return {
-    reviews: values(state.entities.reviews)
-  };
-};
+const mapStateToProps = (state) => ({
+
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  getAllReviews: () => dispatch(getAllReviews())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewIndex);

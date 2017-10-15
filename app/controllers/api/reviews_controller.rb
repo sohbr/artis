@@ -1,7 +1,8 @@
 class Api::ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    @reviews = Review.where(recipient_id: params[:recipientId])
+    @reviews_avg = @reviews.average(:rating)
   end
 
   def create

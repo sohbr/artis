@@ -3,3 +3,5 @@
     json.partial! '/api/reviews/review', review: review
   end
 end
+
+json.set! :avg, @reviews_avg

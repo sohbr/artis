@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import values from 'lodash/values';
 import Dimensions from 'Dimensions';
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
 import { logout } from '../../actions/session_actions';
+import { getAllReviews } from '../../actions/review_actions';
+
 import {
   View,
   ScrollView,
@@ -21,6 +24,10 @@ class UserShow extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.getAllReviews(this.props.currentUser.id);
+  }
+
   handleLogout() {
     return () => {
       this.props.logout(this.props.currentUser);
@@ -28,15 +35,19 @@ class UserShow extends Component {
   }
 
   render() {
+    console.log("user show props");
+    const {currentUser, reviews} = this.props;
+    const reviewsAvg = reviews.pop();
+    console.log(this.props);
     const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
-
+    let rating = reviewsAvg;
     return(
       <ScrollView style={{ paddingTop: 30}}>
         <Button
           onPress={this.handleLogout()}
           title={"Logout"}
         />
-      <UserInfo userImg={userImg} rating={rating} navigation={this.props.navigation} style={styles.userInfo}/>
+      <UserInfo currentUser={currentUser} rating={rating} navigation={this.props.navigation} style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>
@@ -61,11 +72,13 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => ({
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  reviews: values(state.entities.reviews)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: (user) => dispatch(logout(user))
+  logout: (user) => dispatch(logout(user)),
+  getAllReviews: (id) => dispatch(getAllReviews(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);
