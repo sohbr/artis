@@ -98,22 +98,23 @@ class MessageIndex extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableAutoAutomaticScroll={true}
+      >
         <FlatList data={this.state.messages} renderItem={this.renderItem} />
-        <KeyboardAwareScrollView behavior="padding">
-          <View style={styles.footer}>
-            <TextInput
-              value={this.state.typing}
-              onChangeText={text => this.setState({ typing: text })}
-              style={styles.input}
-              underlineColorAndroid="transparent"
-            />
-            <TouchableOpacity onPress={this.sendMessage.bind(this)}>
-              <Text style={styles.send}>Send</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAwareScrollView>
-      </View>
+        <View style={styles.footer}>
+          <TextInput
+            value={this.state.typing}
+            onChangeText={text => this.setState({ typing: text })}
+            style={styles.input}
+            underlineColorAndroid="transparent"
+          />
+          <TouchableOpacity onPress={this.sendMessage.bind(this)}>
+            <Text style={styles.send}>Send</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -152,8 +153,9 @@ class MessageIndex extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // justifyContent: "center",
+    justifyContent: "center",
+    alignSelf: "stretch",
+    backgroundColor: "white",
     padding: 10
   },
   row: {
@@ -174,6 +176,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
+    justifyContent: "flex-end",
     backgroundColor: "#eee"
   },
   input: {

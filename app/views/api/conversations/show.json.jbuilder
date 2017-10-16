@@ -1,1 +1,1 @@
-json.array! @conversation, :personal_messages, :users
+json.extract! @conversation, :id, :created_at, :updated_at, :identifier, :personal_messages, :users

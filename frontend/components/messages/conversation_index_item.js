@@ -19,10 +19,9 @@ class ConversationIndexItem extends Component {
 
   render() {
     const messages = this.props.conversation.personal_messages;
-    const other_use = this.props.conversation.subscriptions;
     return (
       <View style={styles.row}>
-        <Text style={styles.sender}>{this.props.username}</Text>
+        <Text style={styles.sender}>{this.props.conversation.id}</Text>
       </View>
     );
   }
@@ -39,9 +38,9 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   sender: {
-    fontWeight: "bold",
-    color: "#0F1B07",
-    paddingRight: 10
+    paddingRight: 10,
+    fontSize: 18,
+    color: "white"
   }
 });
 

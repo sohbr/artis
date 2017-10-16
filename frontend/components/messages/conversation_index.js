@@ -43,6 +43,10 @@ class ConversationIndex extends Component {
     this.props.getConversations(this.props.currentUser.id);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.props.getConversations(newProps);
+  }
+
   render() {
     let display = null;
     if (Object.keys(this.props.conversations).length > 0) {
@@ -84,15 +88,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 1,
-    backgroundColor: "white",
-<<<<<<< HEAD
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 10,
-    borderRadius: 0,
-    marginTop: 25
-=======
->>>>>>> af21818ca8ae5fbefa6efbe21f7cce6bdb98d02d
+    backgroundColor: "white"
   },
   button: {
     marginTop: 10,
@@ -108,10 +104,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 15,
     alignSelf: "center",
-<<<<<<< HEAD
-    fontWeight: "bold",
-=======
->>>>>>> af21818ca8ae5fbefa6efbe21f7cce6bdb98d02d
     color: "#C6D166"
   },
   buttonText: {
