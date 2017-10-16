@@ -11,10 +11,18 @@ export const configureStore = () => {
     session: { currentUser: -1 },
     errors: {}
   };
+
+  const middlewares = [thunk];
+
+  if (process.env.NODE_ENV !== 'production') {
+    // must use 'require' (import only allowed at top of file)
+    middlewares.push(logger);
+  }
+
   const store = createStore(
     rootReducer,
     initialState,
-    compose(applyMiddleware(thunk, logger), autoRehydrate())
+    compose(applyMiddleware(...middlewares), autoRehydrate())
   );
   persistStore(store, { storage: AsyncStorage });
   return store;
