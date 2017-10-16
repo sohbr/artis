@@ -30,7 +30,7 @@ class UserShow extends Component {
   }
 
   componentWillMount() {
-    this.props.getAllReviews(this.props.currentUser.id);
+    this.props.getAllReviews(1);
   }
 
   handleLogout() {
@@ -40,7 +40,6 @@ class UserShow extends Component {
   }
 
   render() {
-    // console.log(this.props);
     const { currentUser, reviews } = this.props;
     const reviewsAvg = reviews.pop();
     const userImg =
@@ -48,12 +47,11 @@ class UserShow extends Component {
     const rating = reviewsAvg;
     const reviewsCount = reviews.length;
     return (
-      <ScrollView style={{ paddingTop: 30 }}>
+      <ScrollView style={styles.container}>
         <Button onPress={this.handleLogout()} title={"Logout"} />
         <UserInfo
           currentUser={currentUser}
           rating={rating}
-          reviews={reviews}
           reviewsCount={reviewsCount}
           prevStateKey={this.props.screenProps.prevStateKey}
           navigation={this.props.navigation}
@@ -67,6 +65,11 @@ class UserShow extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    minHeight: Dimensions.get("window").height,
+    backgroundColor: "white"
+  },
   userInfoContainer: {
     flex: 1
   },
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
   hr: {
     width: Dimensions.get("window").width * 1,
     justifyContent: "center",
-    borderBottomColor: "black",
+    borderBottomColor: "#C6D166",
     borderBottomWidth: 1
   }
 });

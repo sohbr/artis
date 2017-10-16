@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar } from 'react-native';
+import {View, ScrollView, Image, Text, StyleSheet, StatusBar, TouchableWithoutFeedback, Alert  } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
@@ -22,6 +22,13 @@ class ReviewIndexItem extends Component {
     return arr;
   }
 
+  _onPressDelete(type) {
+    return () => {
+      this.props.deleteReviewById(this.props.review.id);
+      
+    };
+  }
+
   render() {
     const {review, currentUser} = this.props;
     return(
@@ -36,9 +43,15 @@ class ReviewIndexItem extends Component {
             <View style={styles.starRating}>
               {this.floatToArray(review.rating).map((score, i) => <StarRating key={i} score={score}/>)}
             </View>
-            <Text>{review.body}</Text>
+            <View style={styles.bodyAndDelete}>
+              <Text>{review.body}</Text>
+              {review.author_id === currentUser.id ?
+                <TouchableWithoutFeedback onPress={this._onPressDelete("DeleteReview")}>
+                  <FontAwesome name={'trash-o'} size={30} />
+                </TouchableWithoutFeedback> :
+                  <View />}
+            </View>
           </View>
-          {review.author_id === currentUser.id ? <Text>you wrote this</Text> : <View />}
         </View>
         <View style={styles.hr}/>
       </View>
@@ -68,6 +81,10 @@ const styles = StyleSheet.create({
  },
  starRating: {
    flexDirection: 'row',
+ },
+ bodyAndDelete: {
+   flexDirection: 'row',
+   justifyContent: 'space-between'
  },
  hr: {
    width: Dimensions.get('window').width*1,

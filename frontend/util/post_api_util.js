@@ -48,3 +48,10 @@ export const filterPosts = (searchTerm) => (
     url: `${url}/api/posts?searchTerm=${searchTerm}`,
   })
 );
+
+export const bookmarkedPosts = (userToken) => (
+  axios({
+    method: 'GET',
+    url: `${url}/api/posts?bookmarks=true&session_token=${userToken}`,
+  })
+);

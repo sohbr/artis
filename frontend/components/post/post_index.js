@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 import PostIndexItem from "./post_index_item";
 import { getAllPosts, RECEIVE_POSTS } from "../../actions/post_actions";
+import { selectPostsByCategory } from "../../reducers/selectors";
 
 import {
   StyleSheet,
@@ -18,18 +19,12 @@ import {
 class PostIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: false
-    };
   }
 
-  componentWillMount() {
-    this.setState({ loading: true });
-    this.props.getAllPosts().then(res => {
-      if (res && res.type === RECEIVE_POSTS) {
-        this.setState({ loading: false });
-      }
-    });
+  componentDidUpdate() {
+    if (this.scrollView) {
+      this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
+    }
   }
 
   render() {
@@ -47,10 +42,14 @@ class PostIndex extends React.Component {
           );
         });
     } else {
-      display = <Text>Loading</Text>;
+      display = (
+        <Text style={styles.sub}>
+          {"Sorry!\nWe couldn't find what you were looking for."}
+        </Text>
+      );
     }
 
-    if (this.state.loading) {
+    if (this.props.loading) {
       return <ActivityIndicator color={"#C6D166"} size={"large"} />;
     } else {
       return (
@@ -58,6 +57,9 @@ class PostIndex extends React.Component {
           style={styles.container}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
+          ref={scrollView => {
+            this.scrollView = scrollView;
+          }}
         >
           {display}
         </ScrollView>
@@ -71,6 +73,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: "stretch",
     backgroundColor: "white"
+  },
+  sub: {
+    alignSelf: "center",
+    textAlign: "center",
+    fontSize: 16,
+    color: "#5C821A",
+    padding: 20
   }
 });
 

@@ -1,5 +1,6 @@
 class Api::PostsController < ApplicationController
   def create
+    debugger
     @post = Post.new(post_params)
     if @post.save
       render :show
@@ -10,7 +11,9 @@ class Api::PostsController < ApplicationController
 
   def index
     if params[:searchTerm]
-      @posts = Post.where("LOWER(title) LIKE ?", "%#{params[:searchTerm].downcase}%")
+      @posts = Post.where("LOWER(title) LIKE ? OR LOWER(category) LIKE ?", "%#{params[:searchTerm].downcase}%", "%#{params[:searchTerm].downcase}%")
+    elsif params[:bookmarks]
+      @posts = User.find_by(session_token: params[:session_token]).bookmarked_posts
     else
       @posts = Post.all
     end

@@ -17,12 +17,15 @@
 
 class Post < ApplicationRecord
   validates :title, :body, :category, presence: true
-  validates :category, inclusion: { in: [
+  validates :category, inclusion: {
+    in: [
     "Cosmetology", "Culinary", "Art/Design", "Automotive", "Massage Therapy", "Animal Care",
     "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
   ]}
 
   belongs_to :user
+  has_many :bookmarks
+  has_many :bookmarked_users, through: :bookmarks, source: :user
 
   has_attached_file :image, default_url: "https://res.cloudinary.com/jun/image/upload/v1506659435/Doge_sggjpf.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

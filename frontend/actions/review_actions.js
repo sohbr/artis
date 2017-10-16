@@ -37,9 +37,9 @@ export const createReview = (review) => dispatch => (
   })
 );
 
-export const deleteReviewById = (reviewId) => dispatch => (
-  deleteReview(reviewId).then((res) => {
-    dispatch(destroyReview(reviewId));
+export const deleteReviewById = (reviewId) => dispatch => {
+  return deleteReview(reviewId).then((res) => {
+    dispatch(destroyReview(res.data.id));
   }).catch((errors) => {
-  })
-);
+  });
+};

@@ -16,12 +16,17 @@ class User < ApplicationRecord
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 6 }, allow_nil: true
 
+  has_attached_file :image, default_url: "https://res.cloudinary.com/jun/image/upload/v1508137916/default_profile_bcpw9y.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   after_initialize :ensure_session_token
   has_secure_password
 
   attr_reader :password
 
   has_many :posts
+  has_many :bookmarks
+  has_many :bookmarked_posts, through: :bookmarks, source: :post
   has_many :personal_messages
   has_many :subscriptions
   has_many :conversations, through: :subscriptions

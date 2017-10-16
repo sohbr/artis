@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {View, ScrollView, Image, Text, StyleSheet, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import values from 'lodash/values';
 import Dimensions from 'Dimensions';
 import StarRating from '../star_rating/star_rating';
 import ReviewIndexItem from './review_index_item';
+import { deleteReviewById, getAllReviews } from '../../actions/review_actions'
 
 
 class ReviewIndex extends Component {
@@ -20,6 +22,10 @@ class ReviewIndex extends Component {
     this.checkIfCurrentUserProfile = this.checkIfCurrentUserProfile.bind(this)
   }
 
+  componentWillMount() {
+    this.props.getAllReviews(1);
+  }
+
   checkIfCurrentUserProfile() {
     if (this.props.navigation.state.params.prevStateKey === "Profile") {
       return (
@@ -27,10 +33,12 @@ class ReviewIndex extends Component {
       )
     } else {
       return (
-        <View flexDirection={"row"} justifyContent={"flex-end"} >
-        <Text size={20} >Write a review</Text>
-        <FontAwesome name="pencil-square-o"  size={20} />
-      </View>
+        <TouchableWithoutFeedback onPress={this._onPress("ReviewForm")}>
+          <View flexDirection={"row"} justifyContent={"flex-end"} >
+            <Text size={20} >Write a review</Text>
+            <FontAwesome name="pencil-square-o"  size={20} />
+          </View>
+        </TouchableWithoutFeedback>
       )
     }
   }
@@ -46,13 +54,19 @@ class ReviewIndex extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const reviews = this.props.navigation.state.params.reviews;
+    const reviews = this.props.reviews;
+    reviews.pop()
+    console.log(reviews);
     return(
       <View>
         {this.checkIfCurrentUserProfile()}
         {reviews.map(
-          (review, i) => <ReviewIndexItem key={i} currentUser={this.props.currentUser} review={review}/>
+          (review, i) => <ReviewIndexItem
+            key={i}
+            currentUser={this.props.currentUser}
+            review={review}
+            deleteReviewById={this.props.deleteReviewById}
+          />
         )}
       </View>
     );
@@ -64,11 +78,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
+  reviews: values(state.entities.reviews),
   currentUser: state.session.currentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  deleteReviewById: (id) => dispatch(deleteReviewById(id)),
+  getAllReviews: (id) => dispatch(getAllReviews(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewIndex);

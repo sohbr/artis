@@ -60,9 +60,6 @@ class LoginForm extends React.Component {
           style={styles.input}
           underlineColorAndroid={'transparent'}
         />
-        <Text style={styles.label}>
-          {this.state.username}
-        </Text>
         <TextInput
           onChangeText={(password) => this.setState({password})}
           secureTextEntry={true}
@@ -70,9 +67,6 @@ class LoginForm extends React.Component {
           style={styles.input}
           underlineColorAndroid={'transparent'}
         />
-        <Text style={styles.label}>
-          {this.state.password}
-        </Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.onLogin()}
@@ -110,6 +104,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
+    marginTop: 15,
     backgroundColor: "#C6D166",
     justifyContent: "center",
     alignItems: "center",
@@ -122,7 +117,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 100,
     alignSelf: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#5C821A"
   }
 });
 
