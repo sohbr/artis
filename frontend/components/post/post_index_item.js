@@ -21,7 +21,7 @@ export default class PostIndexItem extends React.Component {
   onItemPress() {
     const { navigate } = this.props.navigation;
     return () => {
-      navigate("PostShow", {post: this.props.post});
+      navigate("PostShow", {post: this.props.post, hidesave: this.props.hidesave});
     };
   }
 
