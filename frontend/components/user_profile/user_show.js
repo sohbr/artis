@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import values from 'lodash/values';
-import Dimensions from 'Dimensions';
+import values from "lodash/values";
+import Dimensions from "Dimensions";
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
-import { logout, RECEIVE_CURRENT_USER } from '../../actions/session_actions';
-import { getAllReviews } from '../../actions/review_actions';
+import { logout, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
+import { getAllReviews } from "../../actions/review_actions";
 
 import {
   View,
@@ -21,11 +21,11 @@ import {
 } from 'react-native';
 
 class UserShow extends Component {
-  static navigationOptions = ({navigation, screenProps}) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       header: null
     };
-  }
+  };
   constructor(props) {
     super(props);
   }
@@ -41,12 +41,13 @@ class UserShow extends Component {
   }
 
   render() {
-    const {currentUser, reviews} = this.props;
+    const { currentUser, reviews } = this.props;
     const reviewsAvg = reviews.pop();
-    const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
+    const userImg =
+      "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
     const rating = reviewsAvg;
     const reviewsCount = reviews.length;
-    return(
+    return (
       <ScrollView style={styles.container}>
         <TouchableHighlight
           style={styles.button}
@@ -78,10 +79,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   userInfoContainer: {
-    flex: 1,
+    flex: 1
   },
   userInfo: {
-    justifyContent: "center",
+    justifyContent: "center"
   },
   hr: {
     width: Dimensions.get('window').width*1,
@@ -101,15 +102,14 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   reviews: values(state.entities.reviews)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  logout: (user) => dispatch(logout(user)),
-  getAllReviews: (id) => dispatch(getAllReviews(id))
+const mapDispatchToProps = dispatch => ({
+  logout: user => dispatch(logout(user)),
+  getAllReviews: id => dispatch(getAllReviews(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);

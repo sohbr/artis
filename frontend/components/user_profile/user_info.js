@@ -17,7 +17,7 @@ class UserInfo extends Component {
     }
   }
 
-  floatToArray () {
+  floatToArray() {
     let rating = this.props.rating;
     let arr = [];
     for (var i = 0; i < 5; i++) {
@@ -85,7 +85,14 @@ class UserInfo extends Component {
             </View>
               <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
           </View>
+          <Text
+            style={styles.reviewCount}
+            onPress={this._onPress("ReviewIndex")}
+          >
+            {reviewsCount} Reviews
+          </Text>
         </View>
+      </View>
     );
   }
 }

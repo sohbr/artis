@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import React from 'react';
-import PostIndexItem from './post_index_item';
-import { getAllPosts, RECEIVE_POSTS } from '../../actions/post_actions';
-import {selectPostsByCategory} from '../../reducers/selectors';
+import { connect } from "react-redux";
+import React from "react";
+import PostIndexItem from "./post_index_item";
+import { getAllPosts, RECEIVE_POSTS } from "../../actions/post_actions";
+import { selectPostsByCategory } from "../../reducers/selectors";
 
 import {
   StyleSheet,
@@ -23,30 +23,44 @@ class PostIndex extends React.Component {
 
   componentDidUpdate() {
     if (this.scrollView) {
-      this.scrollView.scrollTo({x: 0, y: 0, animated: false});
+      this.scrollView.scrollTo({ x: 0, y: 0, animated: false });
     }
   }
 
   render() {
     let display = null;
     if (Object.keys(this.props.posts).length > 0) {
-      display = Object.values(this.props.posts).reverse().map((post,i) => {
-        return <PostIndexItem key={`post-item-${i}`} post={post} navigation={this.props.navigation}/>;
-      });
+      display = Object.values(this.props.posts)
+        .reverse()
+        .map((post, i) => {
+          return (
+            <PostIndexItem
+              key={`post-item-${i}`}
+              post={post}
+              navigation={this.props.navigation}
+            />
+          );
+        });
     } else {
-      display = <Text style={styles.sub}>{"Sorry!\nWe couldn't find what you were looking for."}</Text>;
+      display = (
+        <Text style={styles.sub}>
+          {"Sorry!\nWe couldn't find what you were looking for."}
+        </Text>
+      );
     }
 
     if (this.props.loading) {
-      return <ActivityIndicator color={"#C6D166"} size={"large"}/>;
+      return <ActivityIndicator color={"#C6D166"} size={"large"} />;
     } else {
       return (
         <ScrollView
           style={styles.container}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          ref={(scrollView) => { this.scrollView = scrollView; }}
-          >
+          ref={scrollView => {
+            this.scrollView = scrollView;
+          }}
+        >
           {display}
         </ScrollView>
       );
