@@ -73,16 +73,25 @@ const styles = StyleSheet.create({
   category: {
     paddingTop: 5,
     paddingBottom: 5,
+    color: "#5C821A",
+    fontWeight: "bold",
   },
   title: {
     paddingBottom: 10,
     fontSize: 20,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#0F1B07"
   },
   description: {
     paddingBottom: 5,
     fontWeight: "bold",
-    alignSelf: "center"
+    fontSize: 14,
+    alignSelf: "center",
+    color: "#C6D166"
+  },
+  body: {
+    fontSize: 16,
+    color: "#0F1B07"
   }
 });
 

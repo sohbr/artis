@@ -45,11 +45,11 @@ class Artis extends React.Component {
   }
 
   render() {
-    // if (this.props.currentUser < 0) {
-    //   return <View style={styles.container} />;
-    // }
-    return <Tabs />;
-    // return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
+    if (this.props.currentUser < 0) {
+      return <View style={styles.container} />;
+    }
+    // return <Tabs />;
+    return this.props.currentUser === null ? <ArtisApp /> : <Tabs />;
   }
 }
 

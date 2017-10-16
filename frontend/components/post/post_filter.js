@@ -32,13 +32,13 @@ class PostFilter extends React.Component {
   }
 
   render() {
-    const filterItems = categories.map((category) => {
+    const filterItems = categories.map((category, i) => {
       return (
         <TouchableHighlight
           style={styles.button}
-          underlayColor={"#5C821A"}
+          underlayColor={"#C6D166"}
           onPress={this.handleFilterSelect(`${category}`)}
-          key={`${category}`}
+          key={`category-${i}`}
         >
           <Text style={styles.buttonText}>{category}</Text>
         </TouchableHighlight>)
@@ -50,6 +50,8 @@ class PostFilter extends React.Component {
         style={styles.container}
         horizontal={true}
         bounces={false}
+        bouncesZoom={false}
+        showsHorizontalScrollIndicator={false}
         >
           {filterItems}
         </ScrollView>
@@ -66,6 +68,7 @@ const categories = [
 const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 1,
+    borderTopWidth: 1,
     borderColor: "#C6D166",
     backgroundColor: "white"
   }, button: {
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
   }, buttonText: {
     justifyContent: "center",
     alignSelf: "center",
-    color: "#C6D166"
+    color: "#5C821A"
   }
 });
 

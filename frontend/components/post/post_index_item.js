@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 18,
     fontWeight: "bold",
-    color: "#0F1B07"
+    color: "#5C821A"
   }
 });

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import PostIndexItem from './post_index_item';
-import { getAllPosts, RECEIVE_POSTS } from '../../actions/post_actions';
-import {selectPostsByCategory} from '../../reducers/selectors';
+import { getBookmarkedPosts, RECEIVE_BOOKMARKED_POSTS } from '../../actions/post_actions';
+import { selectPostsById } from '../../reducers/selectors';
 
 import {
   StyleSheet,
@@ -16,27 +16,43 @@ import {
   ActivityIndicator
 } from "react-native";
 
-class PostIndex extends React.Component {
+class BookmarkedPostsIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false
+    };
   }
 
-  componentDidUpdate() {
-    if (this.scrollView) {
-      this.scrollView.scrollTo({x: 0, y: 0, animated: false});
-    }
+  componentWillMount() {
+    this.setState({loading: true});
+    this.props.getBookmarkedPosts(this.props.currentUser.token).then((res) => {
+      if (res && res.type === RECEIVE_BOOKMARKED_POSTS) {
+        this.setState({loading: false});
+      }
+    });
+  }
+
+  compnentWillUpdate() {
+    console.log("test");
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log("testing");
   }
 
   render() {
     let display = null;
-    if (Object.keys(this.props.posts).length > 0) {
-      display = Object.values(this.props.posts).reverse().map((post,i) => {
+    const { bookmarks } = this.props;
+    console.log(this.props.navigation);
+    if ( bookmarks && Object.keys(bookmarks).length > 0) {
+      display = Object.values(bookmarks).map((post,i) => {
         return <PostIndexItem key={`post-item-${i}`} post={post} navigation={this.props.navigation}/>;
       });
     } else {
-      display = <Text style={styles.sub}>{"Sorry!\nWe couldn't find what you were looking for."}</Text>;
+      display = <Text style={styles.sub}>You have no saved posts.</Text>;
     }
-    if (this.props.loading) {
+    if (this.state.loading) {
       return <ActivityIndicator color={"#C6D166"} size={"large"}/>;
     } else {
       return (
@@ -61,7 +77,6 @@ const styles = StyleSheet.create({
   },
   sub: {
     alignSelf: "center",
-    textAlign: "center",
     fontSize: 16,
     color: "#5C821A",
     padding: 20
@@ -70,12 +85,13 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    posts: state.entities.posts
+    currentUser: state.session.currentUser,
+    bookmarks: state.entities.bookmarks
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPosts())
+  getBookmarkedPosts: (token) => dispatch(getBookmarkedPosts(token))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(BookmarkedPostsIndex);

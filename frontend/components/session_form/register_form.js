@@ -60,14 +60,12 @@ class RegisterForm extends React.Component {
           style={styles.input}
           underlineColorAndroid={"transparent"}
         />
-        <Text style={styles.label}>{this.state.email}</Text>
         <TextInput
           onChangeText={username => this.setState({ username })}
           placeholder="Username"
           style={styles.input}
           underlineColorAndroid={"transparent"}
         />
-        <Text style={styles.label}>{this.state.username}</Text>
         <TextInput
           onChangeText={password => this.setState({ password })}
           secureTextEntry={true}

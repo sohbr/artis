@@ -65,7 +65,10 @@ class PostForm extends React.Component {
   render() {
     console.log(this.state);
     const pickerItems = categories.map((category, i) => {
-      return <Picker.Item key={`category-${i}`} label={`${category}`} value={`${category}`} />
+      return <Picker.Item
+                key={`category-${i}`}
+                label={`${category}`}
+                value={`${category}`}/>
     })
     return(
       <ScrollView contentContainerStyle={styles.container}>
@@ -78,9 +81,6 @@ class PostForm extends React.Component {
           style={styles.input}
           underlineColorAndroid={'transparent'}
         />
-        <Text style={styles.label}>
-          {this.state.title}
-        </Text>
         <TextInput
           onChangeText={(body) => this.setState({body})}
           placeholder="Post a description."
@@ -89,13 +89,13 @@ class PostForm extends React.Component {
           underlineColorAndroid={'transparent'}
           textAlignVertical={"top"}
         />
-        <Text style={styles.label}>
-          {this.state.body}
-        </Text>
         <Picker
+          itemStyle={styles.picker}
           selectedValue={this.state.category}
           onValueChange={(itemValue, itemIndex) => this.setState({category: itemValue})}>
-          <Picker.Item label={"Select a Category"} enabled={false}/>
+          <Picker.Item
+            label={"Select a Category"}
+            enabled={false}/>
           {pickerItems}
         </Picker>
         <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
@@ -115,6 +115,7 @@ const categories = [
 
 const styles = StyleSheet.create({
   container: {
+    minHeight: Dimensions.get('window').height,
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
@@ -162,6 +163,12 @@ const styles = StyleSheet.create({
     fontSize: 100,
     alignSelf: "center",
     fontWeight: "bold"
+  },
+  picker: {
+    color: "#5C821A",
+    height: 100,
+    marginTop: 15,
+    marginBottom: 15
   }
 });
 
