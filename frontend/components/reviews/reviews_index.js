@@ -56,7 +56,6 @@ class ReviewIndex extends Component {
   render() {
     const reviews = this.props.reviews;
     reviews.pop()
-    console.log(reviews);
     return(
       <View>
         {this.checkIfCurrentUserProfile()}

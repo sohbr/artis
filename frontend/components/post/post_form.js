@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 50,
+    marginTop: 10,
     backgroundColor: "#C6D166",
     justifyContent: "center",
     alignItems: "center"
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     color: "#5C821A",
-    height: 100,
+    height: 90,
     marginTop: 15,
     marginBottom: 15
   }

@@ -39,7 +39,6 @@ class ConversationIndex extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     this.props.getConversations(this.props.currentUser.id);
   }
 
