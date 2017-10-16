@@ -59,38 +59,31 @@ class UserInfo extends Component {
   render() {
     const {currentUser, reviewsCount} = this.props;
     return(
-        <View style={styles.userInfoContainer}>
-          <View style={styles.profileImageContainer}>
-            <Image style={styles.profileImage} source={{uri: currentUser.image_url}} />
-            <TouchableHighlight
-              style={styles.button}
-              onPress={this._pickProfileImage}
-              underlayColor={"#5C821A"}
-            >
-              <Text
-                style={styles.buttonText}
-              >
-                Update Profile Image
-              </Text>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.userDetails}>
-            <Text style={styles.userFullName}>
-              {currentUser.username[0].toUpperCase() + currentUser.username.slice(1)}
-            </Text>
-            <View style={styles.starRating}>
-            {this.floatToArray().map(
-              (score,i) => <StarRating key={i} score={score}/>
-            )}
-            </View>
-              <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
-          </View>
-          <Text
-            style={styles.reviewCount}
-            onPress={this._onPress("ReviewIndex")}
+      <View style={styles.userInfoContainer}>
+        <View style={styles.profileImageContainer}>
+          <Image style={styles.profileImage} source={{uri: currentUser.image_url}} />
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this._pickProfileImage}
+            underlayColor={"#5C821A"}
           >
-            {reviewsCount} Reviews
+            <Text
+              style={styles.buttonText}
+            >
+              Update Profile Image
+            </Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.userDetails}>
+          <Text style={styles.userFullName}>
+            {currentUser.username[0].toUpperCase() + currentUser.username.slice(1)}
           </Text>
+          <View style={styles.starRating}>
+          {this.floatToArray().map(
+            (score,i) => <StarRating key={i} score={score}/>
+          )}
+          </View>
+            <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
         </View>
       </View>
     );
@@ -103,6 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 30,
+    paddingBottom: 20,
     backgroundColor: "white"
   },
   profileImage: {

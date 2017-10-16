@@ -14,7 +14,7 @@ export default class App extends React.Component {
     const store = configureStore();
     return (
       <Provider store={store}>
-        <ActionCableProvider>
+        <ActionCableProvider cable={cable}>
           <Artis />
         </ActionCableProvider>
       </Provider>
