@@ -46,8 +46,9 @@ class PostShow extends React.Component {
     return () => {
       const getBookmarkedPosts = this.props.getBookmarkedPosts;
       const currentUser = this.props.currentUser;
-      this.props.createBookmark(currentUser.id, post.id);
-      Alert.alert("Post saved!");
+      this.props
+        .createBookmark(currentUser.id, post.id)
+        .then(() => Alert.alert("Post saved!"));
     };
   }
 
@@ -65,6 +66,7 @@ class PostShow extends React.Component {
 
   render() {
     const { post } = this.props.navigation.state.params;
+    const { hidesave } = this.props.navigation.state.params;
     return (
       <ScrollView style={styles.container}>
         <Image style={styles.image} source={{ uri: post.image_url }} />
@@ -73,15 +75,18 @@ class PostShow extends React.Component {
           <Text style={styles.title}>{post.title}</Text>
         </View>
         <View style={styles.buttonContainer}>
+          {hidesave ? null : (
+            <TouchableHighlight
+              style={styles.button1}
+              underlayColor={"#5C821A"}
+              onPress={this.handleSave(post)}
+            >
+              <Text style={styles.buttonText}>Save</Text>
+            </TouchableHighlight>
+          )}
+
           <TouchableHighlight
-            style={styles.button1}
-            underlayColor={"#5C821A"}
-            onPress={this.handleSave(post)}
-          >
-            <Text style={styles.buttonText}>Save</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            style={styles.button2}
+            style={hidesave ? styles.button3 : styles.button2}
             underlayColor={"#5C821A"}
             onPress={this.handleConnect()}
           >
@@ -124,6 +129,13 @@ const styles = StyleSheet.create({
     height: 30,
     flex: 1,
     marginLeft: 10,
+    backgroundColor: "#C6D166",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button3: {
+    height: 30,
+    flex: 1,
     backgroundColor: "#C6D166",
     justifyContent: "center",
     alignItems: "center"

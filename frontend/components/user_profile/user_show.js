@@ -16,8 +16,9 @@ import {
   StyleSheet,
   StatusBar,
   StackNavigator,
-  Button
-} from "react-native";
+  Button,
+  TouchableHighlight,
+} from 'react-native';
 
 class UserShow extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -48,17 +49,24 @@ class UserShow extends Component {
     const reviewsCount = reviews.length;
     return (
       <ScrollView style={styles.container}>
-        <Button onPress={this.handleLogout()} title={"Logout"} />
-        <UserInfo
-          currentUser={currentUser}
-          rating={rating}
-          reviewsCount={reviewsCount}
-          prevStateKey={this.props.screenProps.prevStateKey}
-          navigation={this.props.navigation}
-          style={styles.userInfo}
-        />
-        <View style={styles.hr} />
-        <UserPhotosIndex />
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleLogout()}
+          underlayColor={"#5C821A"}
+        >
+          <Text style={styles.buttonText}>
+            Logout
+          </Text>
+        </TouchableHighlight>
+      <UserInfo
+        currentUser={currentUser}
+        rating={rating}
+        reviewsCount={reviewsCount}
+        prevStateKey={this.props.screenProps.prevStateKey}
+        navigation={this.props.navigation}
+        style={styles.userInfo}/>
+        <View style={styles.hr}/>
+        <UserPhotosIndex/>
       </ScrollView>
     );
   }
@@ -68,7 +76,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
     minHeight: Dimensions.get("window").height,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   userInfoContainer: {
     flex: 1
@@ -77,11 +85,21 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   hr: {
-    width: Dimensions.get("window").width * 1,
+    width: Dimensions.get('window').width*1,
+    justifyContent: 'center',
+    borderBottomColor: '#C6D166',
+    borderBottomWidth: 1,
+  },
+  button: {
+    height: 50,
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    borderBottomColor: "#C6D166",
-    borderBottomWidth: 1
-  }
+    alignItems: "center"
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "white"
+  },
 });
 
 const mapStateToProps = state => ({

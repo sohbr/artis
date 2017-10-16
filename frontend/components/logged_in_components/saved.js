@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingBottom: 15,
     alignSelf: "center",
-    fontWeight: "bold",
     color: "#C6D166"
   }
 });

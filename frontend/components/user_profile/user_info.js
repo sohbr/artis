@@ -82,6 +82,7 @@ class UserInfo extends Component {
           <TouchableHighlight
             style={styles.button}
             onPress={this._pickProfileImage}
+            underlayColor={"#5C821A"}
           >
             <Text style={styles.buttonText}>Update Profile Image</Text>
           </TouchableHighlight>
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     padding: 30,
+    paddingBottom: 20,
     backgroundColor: "white"
   },
   profileImage: {
@@ -154,6 +156,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 3,
     padding: 5,
+    marginTop: 10,
     marginRight: 10
   },
   buttonText: {

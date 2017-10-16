@@ -13,7 +13,8 @@ class Hired extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hired Page</Text>
+        <Text style={styles.header}>Hired Posts</Text>
+        <Text style={styles.sub}>You haven't had any hires yet.</Text>
       </View>
     );
   }
@@ -21,8 +22,25 @@ class Hired extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: "white",
     paddingTop: 24,
-    flex: 1
+    paddingLeft: 30,
+    paddingRight: 30
+  },
+  header: {
+    fontSize: 24,
+    padding: 10,
+    paddingBottom: 15,
+    alignSelf: "center",
+    color: "#C6D166"
+  },
+  sub: {
+    alignSelf: "center",
+    textAlign: "center",
+    fontSize: 16,
+    color: "#5C821A",
+    padding: 20
   }
 });
 

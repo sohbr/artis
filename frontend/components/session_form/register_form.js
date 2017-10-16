@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { register, clearSessionErrors, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
 import SessionErrors from "./session_errors";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import {
   StyleSheet,
@@ -52,7 +53,11 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableAutoAutomaticScroll={true}
+        extraHeight={200}
+        >
         <Text style={styles.title}>Artis</Text>
         <TextInput
           onChangeText={email => this.setState({ email })}
@@ -84,7 +89,7 @@ class RegisterForm extends React.Component {
         </TouchableHighlight>
 
         <SessionErrors errors={this.props.errors} />
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -104,7 +109,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "gray"
+    borderRadius: 3,
+    borderColor: "#5C821A",
+    color: "#0F1B07"
   },
   label: {
     color: "black"

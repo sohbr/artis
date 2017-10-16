@@ -14,7 +14,7 @@ class Api::PostsController < ApplicationController
     elsif params[:bookmarks]
       @posts = User.find_by(session_token: params[:session_token]).bookmarked_posts
     else
-      @posts = Post.all
+      @posts = Post.all.limit(80)
     end
     render :index
   end

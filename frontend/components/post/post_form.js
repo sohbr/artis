@@ -7,6 +7,7 @@ import {
 } from "../../actions/post_actions";
 import { RECEIVE_POST } from "../../actions/post_actions";
 import ImageUpload from "../image_upload/image_upload";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import {
   StyleSheet,
@@ -78,7 +79,10 @@ class PostForm extends React.Component {
       );
     });
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableAutoAutomaticScroll={true}
+        extraHeight={200}>
         <View style={styles.image}>
           <ImageUpload updatePostWithImage={this.updatePostWithImage()} />
         </View>
@@ -104,10 +108,15 @@ class PostForm extends React.Component {
         >
           {pickerItems}
         </Picker>
-        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
-          <Text style={styles.buttonText}>Submit</Text>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onSubmit()}
+          underlayColor={"#5C821A"}>
+          <Text style={styles.buttonText}>
+            Submit
+          </Text>
         </TouchableHighlight>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }

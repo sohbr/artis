@@ -25,6 +25,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :posts
+  has_many :photos
   has_many :bookmarks
   has_many :bookmarked_posts, through: :bookmarks, source: :post
   has_many :personal_messages
