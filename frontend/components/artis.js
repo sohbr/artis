@@ -45,6 +45,7 @@ class Artis extends React.Component {
   }
 
   render() {
+
     if (this.props.currentUser < 0) {
       return <View style={styles.container} />;
     }
