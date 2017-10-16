@@ -4,9 +4,9 @@ import ActionCable from "react-native-actioncable";
 import { getMessages, postMessage } from "../../actions/message_actions";
 import { send, subscribe } from "react-native-training-chat-server";
 import MessageIndexItem from "./message_index_item";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const conversationId = 1;
-const CHANNEL = "tangoll";
 
 import {
   StyleSheet,
@@ -41,9 +41,14 @@ class MessageIndex extends Component {
   }
 
   componentDidMount() {
-    subscribe(CHANNEL, messages => {
-      this.setState({ messages });
-    });
+    subscribe(
+      "artis" +
+        this.props.currentUser.username +
+        this.props.navigation.state.params,
+      messages => {
+        this.setState({ messages });
+      }
+    );
     //   this.subscription = this.context.cable.subscriptions.create(
     //     {
     //       channel: "MessagesChannel",
@@ -69,7 +74,10 @@ class MessageIndex extends Component {
     //   this.props.currentUser.id
     // );
     send({
-      channel: CHANNEL,
+      channel:
+        "artis" +
+        this.props.currentUser.username +
+        this.props.navigation.state.params,
       sender: this.props.currentUser.username,
       message: this.state.typing
     });
@@ -92,7 +100,7 @@ class MessageIndex extends Component {
     return (
       <View style={styles.container}>
         <FlatList data={this.state.messages} renderItem={this.renderItem} />
-        <KeyboardAvoidingView behavior="padding">
+        <KeyboardAwareScrollView behavior="padding">
           <View style={styles.footer}>
             <TextInput
               value={this.state.typing}
@@ -104,7 +112,7 @@ class MessageIndex extends Component {
               <Text style={styles.send}>Send</Text>
             </TouchableOpacity>
           </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </View>
     );
   }
@@ -155,6 +163,7 @@ const styles = StyleSheet.create({
   },
   message: {
     paddingLeft: 20,
+    marginTop: 5,
     fontSize: 18,
     color: "#0F1B07"
   },

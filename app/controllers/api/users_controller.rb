@@ -1,8 +1,6 @@
 class Api::UsersController < ApplicationController
 
   def index
-    #may not need index of users if the conversation is going to start from
-    #the post page
     @users = User.all
   end
 
@@ -22,7 +20,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    debugger
     @user = User.find(params[:id])
     if @user.update_attribute(:image, params[:image])
       render :show

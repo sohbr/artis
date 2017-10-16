@@ -29,11 +29,11 @@ class ConversationIndex extends Component {
     super(props);
   }
 
-  buttonPress(type) {
+  buttonPress(type, id) {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "MessageIndex") {
-        navigate("MessageIndex");
+        navigate("MessageIndex", id);
       }
     };
   }
@@ -52,19 +52,17 @@ class ConversationIndex extends Component {
         return (
           <TouchableHighlight
             style={styles.button}
-            onPress={this.buttonPress("MessageIndex")}
+            key={`convokey-${idx}`}
+            onPress={this.buttonPress("MessageIndex", conversation.id)}
           >
             <View>
-              <ConversationIndexItem
-                key={`convokey-${idx}`}
-                conversation={conversation}
-              />
+              <ConversationIndexItem conversation={conversation} />
             </View>
           </TouchableHighlight>
         );
       });
     } else {
-      display = <Text>Loading</Text>;
+      display = <Text>No messages! Contact an Artis!</Text>;
     }
 
     return (
@@ -92,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
     borderRadius: 0,
-    marginTop: 20
+    marginTop: 25
   },
   button: {
     marginTop: 10,
@@ -104,8 +102,12 @@ const styles = StyleSheet.create({
     borderRadius: 3
   },
   headerText: {
-    fontSize: 26,
-    color: "#C6d166"
+    fontSize: 24,
+    padding: 10,
+    paddingBottom: 15,
+    alignSelf: "center",
+    fontWeight: "bold",
+    color: "#C6D166"
   },
   buttonText: {
     fontSize: 18,

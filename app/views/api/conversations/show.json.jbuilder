@@ -1,1 +1,1 @@
-json.array! @conversation.personal_messages
+json.array! @conversation, :personal_messages, :users

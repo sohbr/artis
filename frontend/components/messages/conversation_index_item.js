@@ -22,8 +22,7 @@ class ConversationIndexItem extends Component {
     const other_use = this.props.conversation.subscriptions;
     return (
       <View style={styles.row}>
-        <Text style={styles.sender}>{this.props.conversation.id}</Text>
-        <Text style={styles.message}>{messages[messages.length - 1].body}</Text>
+        <Text style={styles.sender}>{this.props.username}</Text>
       </View>
     );
   }
