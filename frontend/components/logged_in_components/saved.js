@@ -21,7 +21,7 @@ class Saved extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Saved Posts</Text>
-        <BookmarkedPostsIndex navigation={this.props.navigation}/>
+        <BookmarkedPostsIndex navigation={this.props.navigation} fromSaved={true}/>
       </View>
     );
   }
