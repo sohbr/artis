@@ -30,6 +30,7 @@
     "react-native-actioncable": "0.0.3",
     "react-native-elements": "^0.17.0",
     "react-native-fontawesome": "^5.7.0",
+    "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-reversed-flat-list": "^1.0.2",
     "react-native-search-box": "0.0.12",
     "react-native-tab-navigator": "^0.3.4",

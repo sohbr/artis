@@ -43,10 +43,9 @@ class BookmarkedPostsIndex extends React.Component {
   render() {
     let display = null;
     const { bookmarks } = this.props;
-    console.log(this.props.navigation);
     if ( bookmarks && Object.keys(bookmarks).length > 0) {
       display = Object.values(bookmarks).map((post,i) => {
-        return <PostIndexItem key={`post-item-${i}`} post={post} navigation={this.props.navigation}/>;
+        return <PostIndexItem key={`post-item-${i}`} post={post} navigation={this.props.navigation} hidesave={true}/>;
       });
     } else {
       display = <Text style={styles.sub}>You have no saved posts.</Text>;

@@ -25,11 +25,11 @@ export default class ImageUpload extends React.Component {
   render() {
     let { image } = this.state;
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingBottom: 20 }}>
         <View>
           {this._renderImage()}
         </View>
-        <View>
+        <View style={{padding: 10}}>
           <Button
             onPress={this._pickImage}
             title="Pick an image from camera roll"
