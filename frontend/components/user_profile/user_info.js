@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar, Alert, TouchableWithoutFeedback } from 'react-native';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  View,
+  ScrollView,
+  Image,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Alert,
+  TouchableWithoutFeedback
+} from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import Dimensions from 'Dimensions';
-import StarRating from '../star_rating/star_rating';
+import Dimensions from "Dimensions";
+import StarRating from "../star_rating/star_rating";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -12,7 +21,7 @@ class UserInfo extends Component {
     this.floatToArray = this.floatToArray.bind(this);
   }
 
-  floatToArray () {
+  floatToArray() {
     let rating = this.props.rating;
     let arr = [];
     for (var i = 0; i < 5; i++) {
@@ -26,28 +35,38 @@ class UserInfo extends Component {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewIndex") {
-        navigate("ReviewIndex", {reviews: this.props.reviews, prevStateKey: this.props.prevStateKey});
+        navigate("ReviewIndex", {
+          reviews: this.props.reviews,
+          prevStateKey: this.props.prevStateKey
+        });
       }
     };
-}
-
+  }
 
   render() {
     // console.log(this.props);
-    const {currentUser, reviewsCount} = this.props;
-    return(
-        <View style={styles.userInfoContainer}>
-          <Image style={styles.profileImage} source={{uri: this.props.userImg}} />
-          <View style={styles.userDetails}>
-            <Text style={styles.userFullName}>{currentUser.username}</Text>
-            <View style={styles.starRating}>
-            {this.floatToArray().map(
-              (score,i) => <StarRating key={i} score={score}/>
-            )}
-            </View>
-              <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
+    const { currentUser, reviewsCount } = this.props;
+    return (
+      <View style={styles.userInfoContainer}>
+        <Image
+          style={styles.profileImage}
+          source={{ uri: this.props.userImg }}
+        />
+        <View style={styles.userDetails}>
+          <Text style={styles.userFullName}>{currentUser.username}</Text>
+          <View style={styles.starRating}>
+            {this.floatToArray().map((score, i) => (
+              <StarRating key={i} score={score} />
+            ))}
           </View>
+          <Text
+            style={styles.reviewCount}
+            onPress={this._onPress("ReviewIndex")}
+          >
+            {reviewsCount} Reviews
+          </Text>
         </View>
+      </View>
     );
   }
 }
@@ -55,32 +74,32 @@ class UserInfo extends Component {
 const styles = StyleSheet.create({
   userInfoContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: '#C6D166',
+    flexDirection: "row",
+    justifyContent: "center",
+    backgroundColor: "#C6D166",
     padding: 20
   },
   profileImage: {
-   width: Dimensions.get('window').width*.5,
-   height: Dimensions.get('window').width*.5,
-   borderRadius: Dimensions.get('window').width*.25,
-   borderColor: 'gray',
-   borderWidth: .5,
-   marginRight: 15
- },
- userDetails: {
-   justifyContent: 'center',
- },
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.5,
+    borderRadius: Dimensions.get("window").width * 0.25,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    marginRight: 15
+  },
+  userDetails: {
+    justifyContent: "center"
+  },
   userFullName: {
-    fontSize: 20,
+    fontSize: 20
   },
   starRating: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
   reviewCount: {
-    textDecorationLine: 'underline',
-  },
+    textDecorationLine: "underline"
+  }
 });
 
 export default UserInfo;

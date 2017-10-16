@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   TouchableHighlight,
   TextInput,
   FlatList,
@@ -38,6 +39,7 @@ class ConversationIndex extends Component {
   }
 
   componentWillMount() {
+    console.log(this.props);
     this.props.getConversations(this.props.currentUser.id);
   }
 
@@ -67,6 +69,9 @@ class ConversationIndex extends Component {
 
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Inbox</Text>
+        </View>
         <ScrollView style={styles.container}>{display}</ScrollView>
       </View>
     );
@@ -80,12 +85,27 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     padding: 10
   },
+  header: {
+    height: 30,
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+    borderRadius: 0,
+    marginTop: 20
+  },
   button: {
     marginTop: 10,
     height: 50,
-    backgroundColor: "#00BCF3",
+    backgroundColor: "#C6D166",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 10,
+    borderRadius: 3
+  },
+  headerText: {
+    fontSize: 26,
+    color: "#C6d166"
   },
   buttonText: {
     fontSize: 18,

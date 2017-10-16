@@ -1,12 +1,5 @@
 class Api::ConversationsController < ApplicationController
 
-  # <script>
-  #   createMessageChannel();
-  #   // app/assets/javascripts/channels/messages.js
-  #   messageForm();
-  #   // app/assets/javascripts/messages_form.js
-  # </script>
-  ##Put in frontend components
 
   def index
     current_user = User.find_by(id: params[:user_id])

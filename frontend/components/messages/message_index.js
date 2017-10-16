@@ -4,8 +4,9 @@ import ActionCable from "react-native-actioncable";
 import { getMessages, postMessage } from "../../actions/message_actions";
 import { send, subscribe } from "react-native-training-chat-server";
 import MessageIndexItem from "./message_index_item";
-// const NAME = "BRIAN";
-// const CHANNEL = "supsup";
+
+const conversationId = 1;
+const CHANNEL = "tangoll";
 
 import {
   StyleSheet,
@@ -28,64 +29,69 @@ class MessageIndex extends Component {
     super(props);
     this.state = {
       typing: "",
-      body: []
+      messages: []
     };
 
-    this.sendMessage = this.sendMessage.bind(this);
+    // this.sendMessage = this.sendMessage.bind(this);
+    // this.updateMessages = this.updateMessages.bind(this);
   }
 
   componentWillMount() {
-    let conversationId = 1;
     this.props.getMessages(conversationId);
-    // window.scrollTo(0, 0);
   }
 
-  // componentDidMount() {
-  //   this.subscription = this.context.cable.subscriptions.create(
-  //     "MessagesChannel",
-  //     {
-  //       received(data) {
-  //         console.log(data);
-  //       }
-  //     }
-  //   );
-  // }
-  //
-  // componentWillUnmount() {
-  //   this.subscription &&
-  //     this.context.cable.subscriptions.remove(this.subscription);
-  // }
+  componentDidMount() {
+    subscribe(CHANNEL, messages => {
+      this.setState({ messages });
+    });
+    //   this.subscription = this.context.cable.subscriptions.create(
+    //     {
+    //       channel: "MessagesChannel",
+    //       conversation_id: conversationId
+    //     },
+    //     {
+    //       received: function(data) {
+    //         console.log(data);
+    //       }
+    //     }
+    //   );
+    // }
+    //
+    // componentWillUnmount() {
+    //   this.subscription &&
+    //     this.context.cable.subscriptions.remove(this.subscription);
+  }
 
   sendMessage() {
-    const body = this.state.typing;
-    let conversationId = 1;
-    this.props.postMessage(body, conversationId, this.props.currentUser.id);
+    // this.props.postMessage(
+    //   this.state.typing,
+    //   conversationId,
+    //   this.props.currentUser.id
+    // );
+    send({
+      channel: CHANNEL,
+      sender: this.props.currentUser.username,
+      message: this.state.typing
+    });
     this.setState({
       typing: ""
     });
   }
 
-  // renderItem({ item }) {
-  //   return (
-  //     <View style={styles.row}>
-  //       <Text style={styles.sender}>{item.user}</Text>
-  //       <Text style={styles.message}>{item.body}</Text>
-  //     </View>
-  //   );
-  // }
-
+  renderItem({ item }) {
+    return (
+      <View style={styles.row}>
+        <Text style={styles.sender} color={"#0F1B07"}>
+          {item.sender}
+        </Text>
+        <Text style={styles.message}>{item.message}</Text>
+      </View>
+    );
+  }
   render() {
-    let display = null;
-    if (Object.keys(this.props.messages).length > 0) {
-      display = Object.values(this.props.messages).map((message, idx) => {
-        return <MessageIndexItem key={`key-${idx}`} message={message} />;
-      });
-    } else {
-      display = <Text>Loading</Text>;
-    }
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container}>{display}</ScrollView>
+        <FlatList data={this.state.messages} renderItem={this.renderItem} />
         <KeyboardAvoidingView behavior="padding">
           <View style={styles.footer}>
             <TextInput
@@ -93,9 +99,8 @@ class MessageIndex extends Component {
               onChangeText={text => this.setState({ typing: text })}
               style={styles.input}
               underlineColorAndroid="transparent"
-              placeholder="Type something nice"
             />
-            <TouchableOpacity onPress={this.sendMessage}>
+            <TouchableOpacity onPress={this.sendMessage.bind(this)}>
               <Text style={styles.send}>Send</Text>
             </TouchableOpacity>
           </View>
@@ -103,33 +108,38 @@ class MessageIndex extends Component {
       </View>
     );
   }
-
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  // <FlatList
-  //   scrollToEnd={true}
-  //   data={this.props.messages}
-  //   renderItem={this.renderItem}
-  // />
-  // <KeyboardAvoidingView behavior="padding">
-  //   <View style={styles.footer}>
-  //     <TextInput
-  //       value={this.state.typing}
-  //       onChangeText={text => this.setState({ typing: text })}
-  //       style={styles.input}
-  //       underlineColorAndroid="transparent"
-  //       placeholder="Type something nice"
-  //     />
-  //     <TouchableOpacity onPress={this.sendMessage}>
-  //       <Text style={styles.send}>Send</Text>
-  //     </TouchableOpacity>
-  //   </View>
-  // </KeyboardAvoidingView>
-  //     </View>
-  //   );
-  // }
 }
+
+//   render() {
+//     let display = null;
+//     if (Object.keys(this.props.messages).length > 0) {
+//       display = Object.values(this.props.messages).map((message, idx) => {
+//         return <MessageIndexItem key={`key-${idx}`} message={message} />;
+//       });
+//     } else {
+//       display = <Text>Loading</Text>;
+//     }
+//     return (
+//       <View style={styles.container}>
+//         <ScrollView style={styles.container}>{display}</ScrollView>
+//         <KeyboardAvoidingView behavior="padding">
+//           <View style={styles.footer}>
+//             <TextInput
+//               value={this.state.typing}
+//               onChangeText={text => this.setState({ typing: text })}
+//               style={styles.input}
+//               underlineColorAndroid="transparent"
+//               placeholder="Type something nice"
+//             />
+//             <TouchableOpacity onPress={this.sendMessage}>
+//               <Text style={styles.send}>Send</Text>
+//             </TouchableOpacity>
+//           </View>
+//         </KeyboardAvoidingView>
+//       </View>
+//     );
+//   }
+// }
 
 const styles = StyleSheet.create({
   container: {
@@ -144,11 +154,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "#eee"
   },
   message: {
-    fontSize: 18
+    paddingLeft: 20,
+    fontSize: 18,
+    color: "#0F1B07"
   },
   sender: {
     fontWeight: "bold",
-    paddingRight: 10
+    paddingRight: 10,
+    color: "#0F1B07"
   },
   footer: {
     flexDirection: "row",
@@ -162,13 +175,10 @@ const styles = StyleSheet.create({
   },
   send: {
     alignSelf: "center",
-    color: "lightseagreen",
+    color: "#0F1B07",
     fontSize: 16,
     fontWeight: "bold",
     padding: 20
-  },
-  flip: {
-    transform: [{ scaleY: -1 }, { scaleX: -1 }]
   }
 });
 
