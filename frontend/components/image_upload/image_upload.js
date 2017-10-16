@@ -30,7 +30,11 @@ export default class ImageUpload extends React.Component {
           {this._renderImage()}
         </View>
         <View>
-          <Button onPress={this._pickImage} title="Pick an image from camera roll"/>
+          <Button
+            onPress={this._pickImage}
+            title="Pick an image from camera roll"
+            color="#C6D166"
+            />
         </View>
       </View>
     );

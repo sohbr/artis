@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :personal_messages, only: [:create]
     resources :reviews, only: [:create, :index, :update, :destroy]
     resources :message, only: [:create]
+    resources :bookmarks, only: [:index, :create, :destroy]
   end
 
   mount ActionCable.server => '/cable'

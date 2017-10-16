@@ -11,12 +11,11 @@ import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
 import UserShow from "./../user_profile/user_show";
+import BookmarkedPostsIndex from "../post/bookmarked_posts_index";
+import PostShow from "../post/post_show";
 
 import MessageIndex from "./../messages/message_index";
 import ConversationIndex from "./../messages/conversation_index";
-
-// import Conversation from "./../messages/conversation";
-import PostShow from "../post/post_show";
 
 export const ExploreStack = StackNavigator(
   {
@@ -38,11 +37,27 @@ export const ExploreStack = StackNavigator(
         title: "PostShow"
       }
     }
-  },
-  {
+  },{
     mode: "modal"
   }
 );
+
+export const SavedStack = StackNavigator({
+  Saved: {
+    screen: Saved,
+    navigationOptions: {
+      title: "Saved Posts"
+    }
+  },
+  PostShow: {
+    screen: PostShow,
+    navigationOption: {
+      title: "Post Show"
+    }
+  }
+},{
+  mode: "modal"
+});
 
 export const InboxStack = StackNavigator({
   Inbox: {
@@ -57,6 +72,8 @@ export const InboxStack = StackNavigator({
       title: "MessageIndex"
     }
   }
+},{
+  mode: "modal"
 });
 
 export const Tabs = TabNavigator(
@@ -71,7 +88,7 @@ export const Tabs = TabNavigator(
       }
     },
     Saved: {
-      screen: Saved,
+      screen: SavedStack,
       navigationOptions: {
         tabBarLabel: "Saved",
         tabBarIcon: ({ tintColor }) => (
@@ -129,7 +146,7 @@ export const Tabs = TabNavigator(
         borderTopWidth: 1,
         borderTopColor: "#C6D166",
         backgroundColor: "#F7F7F7",
-        borderBottomWidth: 0
+        borderBottomWidth: 0,
       },
       indicatorStyle: {
         height: 0,
@@ -137,6 +154,5 @@ export const Tabs = TabNavigator(
         margin: 0
       }
     },
-    swipeEnabled: true
   }
 );
