@@ -19,6 +19,7 @@ class ConversationIndexItem extends Component {
 
   render() {
     let conversationName = "";
+
     if (
       this.props.conversation.users[0].username !==
       this.props.currentUser.username
