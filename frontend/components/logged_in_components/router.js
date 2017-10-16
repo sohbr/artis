@@ -138,7 +138,7 @@ export const Tabs = TabNavigator(
       inactiveTintColor: "#C6D166",
       labelStyle: {
         fontWeight: "bold",
-        fontSize: 11
+        fontSize: Platform.OS === "ios" ? 11 : 9
       },
       iconStyle:
         Platform.OS === "ios"

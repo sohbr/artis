@@ -78,6 +78,7 @@ class UserInfo extends Component {
           <Image
             style={styles.profileImage}
             source={{ uri: currentUser.image_url }}
+            borderRadius={Dimensions.get("window").width * 0.25}
           />
           <TouchableHighlight
             style={styles.button}
@@ -121,7 +122,6 @@ const styles = StyleSheet.create({
   profileImage: {
     width: Dimensions.get("window").width * 0.5,
     height: Dimensions.get("window").width * 0.5,
-    borderRadius: Dimensions.get("window").width * 0.25,
     backgroundColor: "#C6D166",
     marginRight: 15
   },
