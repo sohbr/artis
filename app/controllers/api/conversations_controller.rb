@@ -8,13 +8,14 @@ class Api::ConversationsController < ApplicationController
   end
 
   def create
-    @other_user = User.find(params[:other_user])
-    @conversation = find_conversation(@other_user) ||
-                    Conversation.new(identifier: SecureRandom.hex)
-    if !@conversation.persisted?
-      @conversation.save
-      @conversation.subscriptions.create(user_id: current_user.id)
-      @conversation.subscriptions.create(user_id: @other_user.id)
+
+    # @other_user = User.find(params[:other_user])
+    # @conversation = find_conversation(@other_user) ||
+    @conversation = Conversation.new(identifier: SecureRandom.hex)
+    # if !@conversation.persisted?
+      if @conversation.save
+      @conversation.subscriptions.create(user_id: params[:user_id])
+      @conversation.subscriptions.create(user_id: params[:other_user])
     end
 
     render :show

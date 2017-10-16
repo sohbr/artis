@@ -16,11 +16,11 @@ export const getConversation = (userId, conversationId) => {
   });
 };
 
-export const postConversation = (userId, otherUserId) => {
+export const postConversation = (userId, other_user) => {
   return axios({
     method: "POST",
     url: `${url}/api/users/${userId}/conversations`,
-    data: { otherUserId }
+    data: { other_user }
   });
 };
 
