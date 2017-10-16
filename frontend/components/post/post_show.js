@@ -37,8 +37,9 @@ class PostShow extends React.Component {
     return () => {
       const getBookmarkedPosts = this.props.getBookmarkedPosts;
       const currentUser = this.props.currentUser;
-      this.props.createBookmark(currentUser.id, post.id);
-      Alert.alert("Post saved!");
+      this.props.createBookmark(currentUser.id, post.id)
+        .then(() => Alert.alert("Post saved!"));
+
     };
   }
 

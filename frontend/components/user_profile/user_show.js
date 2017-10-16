@@ -17,6 +17,7 @@ import {
   StatusBar,
   StackNavigator,
   Button,
+  TouchableHighlight,
 } from 'react-native';
 
 class UserShow extends Component {
@@ -47,10 +48,15 @@ class UserShow extends Component {
     const reviewsCount = reviews.length;
     return(
       <ScrollView style={styles.container}>
-        <Button
+        <TouchableHighlight
+          style={styles.button}
           onPress={this.handleLogout()}
-          title={"Logout"}
-        />
+          underlayColor={"#5C821A"}
+        >
+          <Text style={styles.buttonText}>
+            Logout
+          </Text>
+        </TouchableHighlight>
       <UserInfo
         currentUser={currentUser}
         rating={rating}
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
     minHeight: Dimensions.get("window").height,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   userInfoContainer: {
     flex: 1,
@@ -82,6 +88,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomColor: '#C6D166',
     borderBottomWidth: 1,
+  },
+  button: {
+    height: 50,
+    backgroundColor: "#C6D166",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "white"
   },
 });
 

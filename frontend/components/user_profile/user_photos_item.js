@@ -18,10 +18,10 @@ class UserPhotosItem extends Component {
 
 const styles = StyleSheet.create({
   photo: {
-    width: Dimensions.get('window').width*.47,
-    height: Dimensions.get('window').width*.47,
+    width: Dimensions.get('window').width*.45,
+    height: Dimensions.get('window').width*.45,
     borderRadius: 10,
-    margin: 5
+    margin: Dimensions.get('window').width*0.015
   }
 });
 

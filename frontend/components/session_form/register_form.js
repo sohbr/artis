@@ -104,7 +104,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: "gray"
+    borderRadius: 3,
+    borderColor: "#5C821A",
+    color: "#0F1B07"
   },
   label: {
     color: "black"

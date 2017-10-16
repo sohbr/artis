@@ -22,7 +22,6 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    debugger
     @user = User.find(params[:id])
     if @user.update_attribute(:image, params[:image])
       render :show

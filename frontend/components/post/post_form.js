@@ -94,7 +94,10 @@ class PostForm extends React.Component {
           onValueChange={(itemValue, itemIndex) => this.setState({category: itemValue})}>
           {pickerItems}
         </Picker>
-        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onSubmit()}          
+          underlayColor={"#5C821A"}>
           <Text style={styles.buttonText}>
             Submit
           </Text>
