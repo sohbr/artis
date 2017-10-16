@@ -104,8 +104,13 @@ class PostForm extends React.Component {
         >
           {pickerItems}
         </Picker>
-        <TouchableHighlight style={styles.button} onPress={this.onSubmit()}>
-          <Text style={styles.buttonText}>Submit</Text>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onSubmit()}
+          underlayColor={"#5C821A"}>
+          <Text style={styles.buttonText}>
+            Submit
+          </Text>
         </TouchableHighlight>
       </ScrollView>
     );

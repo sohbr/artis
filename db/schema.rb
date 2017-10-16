@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016064055) do
+ActiveRecord::Schema.define(version: 20171016090653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20171016064055) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id"
     t.index ["user_id"], name: "index_personal_messages_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "image_url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|

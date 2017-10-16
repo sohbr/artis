@@ -36,7 +36,6 @@ export const login = (user) => dispatch => {
 
 export const editUser = (userId, image) => dispatch => {
   return updateUser(userId, image).then((res) => {
-    debugger;
     return dispatch(receiveCurrentUser(res.data));
   }).catch((errors) => {
     dispatch(receiveSessionErrors(errors.response.data));
