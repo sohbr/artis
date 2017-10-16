@@ -64,15 +64,13 @@ class ConversationIndex extends Component {
         );
       });
     } else {
-      display = <Text>Loading</Text>;
+      display = <Text style={styles.sub}>You have no messages.</Text>;
     }
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Inbox</Text>
-        </View>
-        <ScrollView style={styles.container}>{display}</ScrollView>
+        <Text style={styles.headerText}>Inbox</Text>
+        <ScrollView style={styles.scrollContainer}>{display}</ScrollView>
       </View>
     );
   }
@@ -81,18 +79,14 @@ class ConversationIndex extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // justifyContent: "center",
-    padding: 10
-  },
-  header: {
-    height: 30,
     backgroundColor: "white",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 10,
-    borderRadius: 0,
-    marginTop: 20
+    paddingTop: 24,
+    paddingLeft: 30,
+    paddingRight: 30
+  },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: "white",
   },
   button: {
     marginTop: 10,
@@ -104,12 +98,22 @@ const styles = StyleSheet.create({
     borderRadius: 3
   },
   headerText: {
-    fontSize: 26,
-    color: "#C6d166"
+    fontSize: 24,
+    padding: 10,
+    paddingBottom: 15,
+    alignSelf: "center",
+    color: "#C6D166"
   },
   buttonText: {
     fontSize: 18,
     color: "white"
+  },
+  sub: {
+    alignSelf: "center",
+    textAlign: "center",
+    fontSize: 16,
+    color: "#5C821A",
+    padding: 20
   }
 });
 

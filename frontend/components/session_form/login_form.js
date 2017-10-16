@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { login, clearSessionErrors, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
 import SessionErrors from "./session_errors";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import {
   StyleSheet,
@@ -52,7 +53,11 @@ class LoginForm extends React.Component {
 
   render() {
     return(
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableAutoAutomaticScroll={true}
+        extraHeight={200}
+        >
         <Text style={styles.title}>Artis</Text>
         <TextInput
           onChangeText={(username) => this.setState({username})}
@@ -77,7 +82,7 @@ class LoginForm extends React.Component {
           </Text>
         </TouchableHighlight>
         <SessionErrors errors={this.props.errors}/>
-      </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

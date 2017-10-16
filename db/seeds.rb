@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 default_users = [
-  "nixon", "jimmy", "brian", "betty", "rebekah", "tommy", "jerry", "david", "adrian",
+  "demo", "nixon", "jimmy", "brian", "betty", "rebekah", "tommy", "jerry", "david", "adrian",
   "chris", "katrina", "carmen", "andres"
 ]
 
@@ -117,12 +117,12 @@ categories = [
   "Fitness/Nutrition", "Travel/Tourism", "Film/Photography"
 ]
 
-100.times do
-  category = categories.sample
-  image = category_pictures[category].sample
-  default_text = "Looking for a professional in #{category}? Look no further, I'm offering my service for #{category} for the low price of $15/hr. If you're interested, shoot me a message!"
-  Post.create(user_id: user_ids.sample, title: "#{category} Job Title",
-    body: default_text, category: category, image: image)
+categories.shuffle.each do |category|
+  category_pictures[category].shuffle.each do |image|
+    default_text = "Looking for a professional in #{category}? Look no further, I'm offering my service for #{category} for the low price of $15/hr. If you're interested, shoot me a message!"
+    Post.create(user_id: user_ids.sample, title: "#{category} Job Title",
+      body: default_text, category: category, image: image)
+  end
 end
 
 post_ids = (Post.first.id..Post.last.id).to_a
