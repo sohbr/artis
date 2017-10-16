@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 30,
+    paddingBottom: 20,
     backgroundColor: "white"
   },
   profileImage: {
