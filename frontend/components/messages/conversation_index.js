@@ -29,17 +29,21 @@ class ConversationIndex extends Component {
     super(props);
   }
 
-  buttonPress(type) {
+  buttonPress(type, id) {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "MessageIndex") {
-        navigate("MessageIndex");
+        navigate("MessageIndex", id);
       }
     };
   }
 
   componentWillMount() {
     this.props.getConversations(this.props.currentUser.id);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.props.getConversations(newProps);
   }
 
   render() {
@@ -51,13 +55,11 @@ class ConversationIndex extends Component {
         return (
           <TouchableHighlight
             style={styles.button}
-            onPress={this.buttonPress("MessageIndex")}
+            key={`convokey-${idx}`}
+            onPress={this.buttonPress("MessageIndex", conversation.id)}
           >
             <View>
-              <ConversationIndexItem
-                key={`convokey-${idx}`}
-                conversation={conversation}
-              />
+              <ConversationIndexItem conversation={conversation} />
             </View>
           </TouchableHighlight>
         );
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   button: {
     marginTop: 10,

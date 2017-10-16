@@ -1,11 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {View, ScrollView, Image, Text, StyleSheet, StatusBar, Alert, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import {
+  View,
+  ScrollView,
+  Image,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Alert,
+  TouchableWithoutFeedback,
+  TouchableHighlight
+} from "react-native";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import Dimensions from 'Dimensions';
-import StarRating from '../star_rating/star_rating';
-import {ImagePicker} from 'expo';
-import {editUser} from '../../actions/session_actions';
+import Dimensions from "Dimensions";
+import StarRating from "../star_rating/star_rating";
+import { ImagePicker } from "expo";
+import { editUser } from "../../actions/session_actions";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -14,7 +24,7 @@ class UserInfo extends Component {
     this.floatToArray = this.floatToArray.bind(this);
     this.state = {
       image: null
-    }
+    };
   }
 
   floatToArray() {
@@ -31,7 +41,11 @@ class UserInfo extends Component {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewIndex") {
-        navigate("ReviewIndex", {reviews: this.props.reviews, prevStateKey: this.props.prevStateKey, navigation: this.props.navigation});
+        navigate("ReviewIndex", {
+          reviews: this.props.reviews,
+          prevStateKey: this.props.prevStateKey,
+          navigation: this.props.navigation
+        });
       }
     };
   }
@@ -39,13 +53,13 @@ class UserInfo extends Component {
   _pickProfileImage = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [4, 3]
     });
     if (pickerResult.cancelled) {
       return;
     }
 
-    const uriParts = pickerResult.uri.split('.');
+    const uriParts = pickerResult.uri.split(".");
     const fileType = uriParts[uriParts.length - 1];
     const formData = new FormData();
     formData.append("image", {
@@ -54,36 +68,41 @@ class UserInfo extends Component {
       type: `image/${fileType}`
     });
     this.props.editUser(this.props.currentUser.id, formData);
-  }
+  };
 
   render() {
-    const {currentUser, reviewsCount} = this.props;
-    return(
+    const { currentUser, reviewsCount } = this.props;
+    return (
       <View style={styles.userInfoContainer}>
         <View style={styles.profileImageContainer}>
-          <Image style={styles.profileImage} source={{uri: currentUser.image_url}} />
+          <Image
+            style={styles.profileImage}
+            source={{ uri: currentUser.image_url }}
+          />
           <TouchableHighlight
             style={styles.button}
             onPress={this._pickProfileImage}
             underlayColor={"#5C821A"}
           >
-            <Text
-              style={styles.buttonText}
-            >
-              Update Profile Image
-            </Text>
+            <Text style={styles.buttonText}>Update Profile Image</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.userDetails}>
           <Text style={styles.userFullName}>
-            {currentUser.username[0].toUpperCase() + currentUser.username.slice(1)}
+            {currentUser.username[0].toUpperCase() +
+              currentUser.username.slice(1)}
           </Text>
           <View style={styles.starRating}>
-          {this.floatToArray().map(
-            (score,i) => <StarRating key={i} score={score}/>
-          )}
+            {this.floatToArray().map((score, i) => (
+              <StarRating key={i} score={score} />
+            ))}
           </View>
-            <Text style={styles.reviewCount} onPress={this._onPress("ReviewIndex")}>{reviewsCount} Reviews</Text>
+          <Text
+            style={styles.reviewCount}
+            onPress={this._onPress("ReviewIndex")}
+          >
+            {reviewsCount} Reviews
+          </Text>
         </View>
       </View>
     );
@@ -93,22 +112,22 @@ class UserInfo extends Component {
 const styles = StyleSheet.create({
   userInfoContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     padding: 30,
     paddingBottom: 20,
     backgroundColor: "white"
   },
   profileImage: {
-   width: Dimensions.get('window').width*.5,
-   height: Dimensions.get('window').width*.5,
-   borderRadius: Dimensions.get('window').width*.25,
-   backgroundColor: '#C6D166',
-   marginRight: 15
- },
- userDetails: {
-   justifyContent: 'center',
- },
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.5,
+    borderRadius: Dimensions.get("window").width * 0.25,
+    backgroundColor: "#C6D166",
+    marginRight: 15
+  },
+  userDetails: {
+    justifyContent: "center"
+  },
   userFullName: {
     fontSize: 24,
     fontWeight: "bold",
@@ -117,12 +136,12 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   starRating: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     paddingBottom: 5
   },
   reviewCount: {
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
     color: "#5C821A",
     alignSelf: "center"
   },
@@ -143,15 +162,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     color: "white"
-  },
+  }
 });
 
-const mapStateToProps = (state) => {
-  return {
-  };
+const mapStateToProps = state => {
+  return {};
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   editUser: (userId, image) => dispatch(editUser(userId, image))
 });
 

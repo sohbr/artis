@@ -4,9 +4,9 @@ import ActionCable from "react-native-actioncable";
 import { getMessages, postMessage } from "../../actions/message_actions";
 import { send, subscribe } from "react-native-training-chat-server";
 import MessageIndexItem from "./message_index_item";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const conversationId = 1;
-const CHANNEL = "tangoll";
 
 import {
   StyleSheet,
@@ -41,9 +41,14 @@ class MessageIndex extends Component {
   }
 
   componentDidMount() {
-    subscribe(CHANNEL, messages => {
-      this.setState({ messages });
-    });
+    subscribe(
+      "artis" +
+        this.props.currentUser.username +
+        this.props.navigation.state.params,
+      messages => {
+        this.setState({ messages });
+      }
+    );
     //   this.subscription = this.context.cable.subscriptions.create(
     //     {
     //       channel: "MessagesChannel",
@@ -69,7 +74,10 @@ class MessageIndex extends Component {
     //   this.props.currentUser.id
     // );
     send({
-      channel: CHANNEL,
+      channel:
+        "artis" +
+        this.props.currentUser.username +
+        this.props.navigation.state.params,
       sender: this.props.currentUser.username,
       message: this.state.typing
     });
@@ -90,22 +98,23 @@ class MessageIndex extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableAutoAutomaticScroll={true}
+      >
         <FlatList data={this.state.messages} renderItem={this.renderItem} />
-        <KeyboardAvoidingView behavior="padding">
-          <View style={styles.footer}>
-            <TextInput
-              value={this.state.typing}
-              onChangeText={text => this.setState({ typing: text })}
-              style={styles.input}
-              underlineColorAndroid="transparent"
-            />
-            <TouchableOpacity onPress={this.sendMessage.bind(this)}>
-              <Text style={styles.send}>Send</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      </View>
+        <View style={styles.footer}>
+          <TextInput
+            value={this.state.typing}
+            onChangeText={text => this.setState({ typing: text })}
+            style={styles.input}
+            underlineColorAndroid="transparent"
+          />
+          <TouchableOpacity onPress={this.sendMessage.bind(this)}>
+            <Text style={styles.send}>Send</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }
@@ -144,8 +153,9 @@ class MessageIndex extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // justifyContent: "center",
+    justifyContent: "center",
+    alignSelf: "stretch",
+    backgroundColor: "white",
     padding: 10
   },
   row: {
@@ -155,6 +165,7 @@ const styles = StyleSheet.create({
   },
   message: {
     paddingLeft: 20,
+    marginTop: 5,
     fontSize: 18,
     color: "#0F1B07"
   },
@@ -165,6 +176,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: "row",
+    justifyContent: "flex-end",
     backgroundColor: "#eee"
   },
   input: {
