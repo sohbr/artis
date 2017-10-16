@@ -1,23 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 
-const NAMES = [
-  "David",
-  "Jimmy",
-  "Nixon",
-  "Brian",
-  "Rebekah",
-  "Tommy",
-  "Betty",
-  "Jerry",
-  "Adrian",
-  "Tyler",
-  "Mike",
-  "Cindy",
-  "Christina",
-  "Sean"
-];
-
 import {
   StyleSheet,
   Text,
@@ -35,11 +18,22 @@ class ConversationIndexItem extends Component {
   }
 
   render() {
+    let conversationName = "";
+
+    if (
+      this.props.conversation.users[0].username !==
+      this.props.currentUser.username
+    ) {
+      conversationName = this.props.conversation.users[0].username;
+    } else {
+      conversationName = this.props.conversation.users[1].username;
+    }
+
     const messages = this.props.conversation.personal_messages;
     return (
       <View style={styles.row}>
         <Text style={styles.sender}>
-          {NAMES[Math.floor(Math.random() * 14)]}
+          {conversationName[0].toUpperCase() + conversationName.slice(1)}
         </Text>
       </View>
     );
@@ -63,7 +57,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  currentUser: state.session.currentUser
+});
 
 const mapDispatchToProps = dispatch => ({});
 
