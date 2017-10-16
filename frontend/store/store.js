@@ -8,7 +8,7 @@ import logger from "redux-logger";
 export const configureStore = () => {
   const initialState = {
     entities: {},
-    session: { currentUser: -1 },
+    session: { currentUser: null },
     errors: {}
   };
 
