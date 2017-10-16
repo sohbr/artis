@@ -37,44 +37,51 @@ export const ExploreStack = StackNavigator(
         title: "PostShow"
       }
     }
-  },{
+  },
+  {
     mode: "modal"
   }
 );
 
-export const SavedStack = StackNavigator({
-  Saved: {
-    screen: Saved,
-    navigationOptions: {
-      title: "Saved Posts"
+export const SavedStack = StackNavigator(
+  {
+    Saved: {
+      screen: Saved,
+      navigationOptions: {
+        title: "Saved Posts"
+      }
+    },
+    PostShow: {
+      screen: PostShow,
+      navigationOption: {
+        title: "Post Show"
+      }
     }
   },
-  PostShow: {
-    screen: PostShow,
-    navigationOption: {
-      title: "Post Show"
-    }
+  {
+    mode: "modal"
   }
-},{
-  mode: "modal"
-});
+);
 
-export const InboxStack = StackNavigator({
-  Inbox: {
-    screen: ConversationIndex,
-    navigationOptions: {
-      title: "Inbox"
+export const InboxStack = StackNavigator(
+  {
+    Inbox: {
+      screen: ConversationIndex,
+      navigationOptions: {
+        title: "Inbox"
+      }
+    },
+    MessageIndex: {
+      screen: MessageIndex,
+      navigationOptions: {
+        title: "Direct Message"
+      }
     }
   },
-  MessageIndex: {
-    screen: MessageIndex,
-    navigationOptions: {
-      title: "MessageIndex"
-    }
+  {
+    mode: "modal"
   }
-},{
-  mode: "modal"
-});
+);
 
 export const Tabs = TabNavigator(
   {
@@ -146,13 +153,13 @@ export const Tabs = TabNavigator(
         borderTopWidth: 1,
         borderTopColor: "#C6D166",
         backgroundColor: "#F7F7F7",
-        borderBottomWidth: 0,
+        borderBottomWidth: 0
       },
       indicatorStyle: {
         height: 0,
         padding: 0,
         margin: 0
       }
-    },
+    }
   }
 );
