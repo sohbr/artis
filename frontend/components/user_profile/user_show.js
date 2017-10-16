@@ -30,7 +30,7 @@ class UserShow extends Component {
   }
 
   componentWillMount() {
-    this.props.getAllReviews(this.props.currentUser.id);
+    this.props.getAllReviews(1);
   }
 
   handleLogout() {
@@ -40,7 +40,6 @@ class UserShow extends Component {
   }
 
   render() {
-    // console.log(this.props);
     const {currentUser, reviews} = this.props;
     const reviewsAvg = reviews.pop();
     const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
@@ -55,7 +54,6 @@ class UserShow extends Component {
       <UserInfo
         currentUser={currentUser}
         rating={rating}
-        reviews={reviews}
         reviewsCount={reviewsCount}
         prevStateKey={this.props.screenProps.prevStateKey}
         navigation={this.props.navigation}
