@@ -36,7 +36,11 @@ class PostIndex extends React.Component {
     } else {
       display = <Text style={styles.sub}>{"Sorry!\nWe couldn't find what you were looking for."}</Text>;
     }
+<<<<<<< HEAD
     if (this.props.loading) {
+=======
+    if (this.state.loading) {
+>>>>>>> 0d5a374b120199803d60069220740e9d577e88ea
       return <ActivityIndicator color={"#C6D166"} size={"large"}/>;
     } else {
       return (

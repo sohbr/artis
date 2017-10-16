@@ -30,7 +30,7 @@ class UserShow extends Component {
   }
 
   componentWillMount() {
-    this.props.getAllReviews(this.props.currentUser.id);
+    this.props.getAllReviews(1);
   }
 
   handleLogout() {
@@ -51,7 +51,13 @@ class UserShow extends Component {
           onPress={this.handleLogout()}
           title={"Logout"}
         />
-      <UserInfo currentUser={currentUser} rating={rating} reviews={reviews} reviewsCount={reviewsCount} navigation={this.props.navigation} style={styles.userInfo}/>
+      <UserInfo
+        currentUser={currentUser}
+        rating={rating}
+        reviewsCount={reviewsCount}
+        prevStateKey={this.props.screenProps.prevStateKey}
+        navigation={this.props.navigation}
+        style={styles.userInfo}/>
         <View style={styles.hr}/>
         <UserPhotosIndex/>
       </ScrollView>

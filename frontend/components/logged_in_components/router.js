@@ -17,7 +17,6 @@ import PostShow from "../post/post_show";
 import MessageIndex from "./../messages/message_index";
 import ConversationIndex from "./../messages/conversation_index";
 
-
 export const ExploreStack = StackNavigator(
   {
     Explore: {

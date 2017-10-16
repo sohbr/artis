@@ -19,7 +19,7 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <UserProfileStack />
+      <UserProfileStack screenProps={{prevStateKey: this.props.navigation.state.key}} />
     );
   }
 }

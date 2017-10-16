@@ -117,7 +117,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 100,
     alignSelf: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#5C821A"
   }
 });
 
