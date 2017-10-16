@@ -25,9 +25,11 @@ class Api::ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Post.find(params[:id])
-    if current_user && current_user.reviews.include?(review)
-      review.destroy
+    @review = Review.find(params[:id])
+    if current_user && current_user.written_reviews.include?(@review)
+      @review.destroy
+
+      render :show
     else
       render json: ["You are not allowed to delete this review."], status: 401
     end

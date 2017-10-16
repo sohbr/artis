@@ -26,14 +26,13 @@ class UserInfo extends Component {
     const { navigate } = this.props.navigation;
     return () => {
       if (type === "ReviewIndex") {
-        navigate("ReviewIndex", {reviews: this.props.reviews, prevStateKey: this.props.prevStateKey});
+        navigate("ReviewIndex", {reviews: this.props.reviews, prevStateKey: this.props.prevStateKey, navigation: this.props.navigation});
       }
     };
-}
+  }
 
 
   render() {
-    // console.log(this.props);
     const {currentUser, reviewsCount} = this.props;
     return(
         <View style={styles.userInfoContainer}>

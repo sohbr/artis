@@ -63,7 +63,6 @@ class PostForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const pickerItems = categories.map((category, i) => {
       return <Picker.Item key={`category-${i}`} label={`${category}`} value={`${category}`} />
     })

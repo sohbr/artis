@@ -15,7 +15,7 @@ import UserShow from "./../user_profile/user_show";
 import MessageIndex from "./../messages/message_index";
 import ConversationIndex from "./../messages/conversation_index";
 
-import Conversation from "./../messages/conversation";
+// import Conversation from "./../messages/conversation";
 import PostShow from "../post/post_show";
 
 export const ExploreStack = StackNavigator(
