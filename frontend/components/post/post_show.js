@@ -69,10 +69,27 @@ class PostShow extends React.Component {
     const { hidesave } = this.props.navigation.state.params;
     return (
       <ScrollView style={styles.container}>
-        <Image style={styles.image} source={{ uri: post.image_url }} />
-        <View>
-          <Text style={styles.category}>{post.category}</Text>
-          <Text style={styles.title}>{post.title}</Text>
+        <Image style={styles.image} source={{uri: post.image_url}}/>
+        <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <View>
+            <Text style={styles.category}>{post.category}</Text>
+            <Text style={styles.title}>{post.title}</Text>
+          </View>
+          <View style={{
+              alignItems:"center",
+              alignSelf: "center",
+              paddingTop: 5,
+              paddingBottom: 10}}>
+            <Text>
+              {
+                post.user.username[0].toUpperCase() + post.user.username.slice(1)
+              }
+            </Text>
+            <Image
+              source={{uri: post.user.image_url}}
+              style={styles.userImage}
+            />
+          </View>
         </View>
         <View style={styles.buttonContainer}>
           {hidesave ? null : (
@@ -84,7 +101,6 @@ class PostShow extends React.Component {
               <Text style={styles.buttonText}>Save</Text>
             </TouchableHighlight>
           )}
-
           <TouchableHighlight
             style={hidesave ? styles.button3 : styles.button2}
             underlayColor={"#5C821A"}
@@ -116,6 +132,11 @@ const styles = StyleSheet.create({
   image: {
     height: Dimensions.get("window").height * 0.3,
     borderRadius: 3
+  },
+  userImage: {
+    height:50,
+    width: 50,
+    borderRadius: 25
   },
   button1: {
     height: 30,
