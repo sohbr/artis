@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import values from 'lodash/values';
-import Dimensions from 'Dimensions';
+import values from "lodash/values";
+import Dimensions from "Dimensions";
 import UserInfo from "./user_info";
 import UserPhotosIndex from "./user_photos_index";
-import { logout, RECEIVE_CURRENT_USER } from '../../actions/session_actions';
-import { getAllReviews } from '../../actions/review_actions';
+import { logout, RECEIVE_CURRENT_USER } from "../../actions/session_actions";
+import { getAllReviews } from "../../actions/review_actions";
 
 import {
   View,
@@ -16,15 +16,16 @@ import {
   StyleSheet,
   StatusBar,
   StackNavigator,
-  Button
+  Button,
+  TouchableHighlight,
 } from 'react-native';
 
 class UserShow extends Component {
-  static navigationOptions = ({navigation, screenProps}) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       header: null
     };
-  }
+  };
   constructor(props) {
     super(props);
   }
@@ -40,17 +41,23 @@ class UserShow extends Component {
   }
 
   render() {
-    const {currentUser, reviews} = this.props;
+    const { currentUser, reviews } = this.props;
     const reviewsAvg = reviews.pop();
-    const userImg = "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
+    const userImg =
+      "http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg";
     const rating = reviewsAvg;
     const reviewsCount = reviews.length;
-    return(
-      <ScrollView style={{ paddingTop: 30}}>
-        <Button
+    return (
+      <ScrollView style={styles.container}>
+        <TouchableHighlight
+          style={styles.button}
           onPress={this.handleLogout()}
-          title={"Logout"}
-        />
+          underlayColor={"#5C821A"}
+        >
+          <Text style={styles.buttonText}>
+            Logout
+          </Text>
+        </TouchableHighlight>
       <UserInfo
         currentUser={currentUser}
         rating={rating}
@@ -66,29 +73,43 @@ class UserShow extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    minHeight: Dimensions.get("window").height,
+    backgroundColor: "white",
+  },
   userInfoContainer: {
-    flex: 1,
+    flex: 1
   },
   userInfo: {
-    justifyContent: "center",
+    justifyContent: "center"
   },
   hr: {
     width: Dimensions.get('window').width*1,
     justifyContent: 'center',
-    borderBottomColor: 'black',
+    borderBottomColor: '#C6D166',
     borderBottomWidth: 1,
+  },
+  button: {
+    height: 50,
+    backgroundColor: "#C6D166",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "white"
   },
 });
 
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   reviews: values(state.entities.reviews)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  logout: (user) => dispatch(logout(user)),
-  getAllReviews: (id) => dispatch(getAllReviews(id))
+const mapDispatchToProps = dispatch => ({
+  logout: user => dispatch(logout(user)),
+  getAllReviews: id => dispatch(getAllReviews(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);

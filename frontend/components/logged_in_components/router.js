@@ -11,12 +11,11 @@ import Hired from "./hired";
 import Inbox from "./inbox";
 import Profile from "./profile";
 import UserShow from "./../user_profile/user_show";
+import BookmarkedPostsIndex from "../post/bookmarked_posts_index";
+import PostShow from "../post/post_show";
 
 import MessageIndex from "./../messages/message_index";
 import ConversationIndex from "./../messages/conversation_index";
-
-// import Conversation from "./../messages/conversation";
-import PostShow from "../post/post_show";
 
 export const ExploreStack = StackNavigator(
   {
@@ -44,20 +43,45 @@ export const ExploreStack = StackNavigator(
   }
 );
 
-export const InboxStack = StackNavigator({
-  Inbox: {
-    screen: ConversationIndex,
-    navigationOptions: {
-      title: "Inbox"
+export const SavedStack = StackNavigator(
+  {
+    Saved: {
+      screen: Saved,
+      navigationOptions: {
+        title: "Saved Posts"
+      }
+    },
+    PostShow: {
+      screen: PostShow,
+      navigationOption: {
+        title: "Post Show"
+      }
     }
   },
-  MessageIndex: {
-    screen: MessageIndex,
-    navigationOptions: {
-      title: "MessageIndex"
-    }
+  {
+    mode: "modal"
   }
-});
+);
+
+export const InboxStack = StackNavigator(
+  {
+    Inbox: {
+      screen: ConversationIndex,
+      navigationOptions: {
+        title: "Inbox"
+      }
+    },
+    MessageIndex: {
+      screen: MessageIndex,
+      navigationOptions: {
+        title: "Direct Message"
+      }
+    }
+  },
+  {
+    mode: "modal"
+  }
+);
 
 export const Tabs = TabNavigator(
   {
@@ -71,7 +95,7 @@ export const Tabs = TabNavigator(
       }
     },
     Saved: {
-      screen: Saved,
+      screen: SavedStack,
       navigationOptions: {
         tabBarLabel: "Saved",
         tabBarIcon: ({ tintColor }) => (
@@ -136,7 +160,6 @@ export const Tabs = TabNavigator(
         padding: 0,
         margin: 0
       }
-    },
-    swipeEnabled: true
+    }
   }
 );

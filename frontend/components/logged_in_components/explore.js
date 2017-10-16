@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PostIndex from "../post/post_index";
 import Search from "react-native-search-box";
 import PostFilter from "../post/post_filter";
-import { searchPosts } from "../../actions/post_actions";
+import { searchPosts, getAllPosts } from "../../actions/post_actions";
 
 import {
   View,
@@ -27,8 +27,16 @@ class Explore extends React.Component {
     super(props);
     this.state = {
       searchTerm: null,
-      loadingSearch: false
+      loadingSearch: false,
+      loading: false
     };
+  }
+
+  componentWillMount() {
+    this.setState({loading: true});
+    this.props.getAllPosts().then(() => {
+      this.setState({loading: false});
+    });
   }
 
   buttonPress(type) {
@@ -61,7 +69,10 @@ class Explore extends React.Component {
       <View style={styles.superContainer}>
         <Search
           backgroundColor={"#C6D166"}
-          placeholderTextColor={"#0F1B07"}
+          inputStyle={{
+            backgroundColor: "white",
+            color: "#5C821A",
+          }}
           tintColorSearch={"#5C821A"}
           tintColorDelete={"#5C821A"}
           inputBorderRadius={3}
@@ -82,10 +93,10 @@ class Explore extends React.Component {
           >
             <Text style={styles.buttonText}>Create a Post</Text>
           </TouchableHighlight>
-          {this.state.loading ? (
+          {this.state.loadingSearch ? (
             <ActivityIndicator color={"#C6D166"} size={"large"} />
           ) : (
-            <PostIndex navigation={this.props.navigation} />
+            <PostIndex navigation={this.props.navigation} loading={this.state.loading}/>
           )}
         </View>
       </View>
@@ -126,7 +137,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  searchPosts: searchTerm => dispatch(searchPosts(searchTerm))
+  searchPosts: searchTerm => dispatch(searchPosts(searchTerm)),
+  getAllPosts: () => dispatch(getAllPosts())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Explore);

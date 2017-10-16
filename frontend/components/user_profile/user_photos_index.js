@@ -5,27 +5,18 @@ import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import Dimensions from 'Dimensions';
 import UserPhotosItem from './user_photos_item';
 
-const imageURLs = ["http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-"http://www.behindthevoiceactors.com/_img/chars/minoru-mineta--46.4.jpg",
-];
-
 class UserPhotosIndex extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    const photos = this.props.photos.map((photo, i) => {
+      return <UserPhotosItem key={`photo-${i}`} url={photo.image_url}/>;
+    });
     return(
       <View style={styles.userPhotosContainer}>
-        {imageURLs.map(
-          (url,i) => <UserPhotosItem key={i} url={url}/>
-        )}
+        {photos}
       </View>
     );
   }
@@ -36,7 +27,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: "center",
+    marginTop: 10
   },
 });
 
-export default UserPhotosIndex;
+const mapStateToProps = state => {
+  return {
+    photos: state.session.currentUser.photos
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPhotosIndex);

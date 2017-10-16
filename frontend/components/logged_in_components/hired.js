@@ -1,5 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet
+} from "react-native";
 
 class Hired extends React.Component {
   constructor(props) {
@@ -7,8 +11,19 @@ class Hired extends React.Component {
   }
 
   render() {
-    return <Text>Hired Page</Text>;
+    return (
+      <View style={styles.container}>
+        <Text>Hired Page</Text>
+      </View>
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    flex: 1
+  }
+});
 
 export default Hired;

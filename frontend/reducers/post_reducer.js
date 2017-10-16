@@ -1,4 +1,10 @@
-import {RECEIVE_POST, RECEIVE_POSTS, DELETE_POST} from '../actions/post_actions';
+import {
+  RECEIVE_POST,
+  RECEIVE_POSTS,
+  DELETE_POST,
+  RECEIVE_BOOKMARKED_POSTS
+} from '../actions/post_actions';
+
 import merge from 'lodash/merge';
 
 const postReducer = (state = {}, action) => {
@@ -7,6 +13,8 @@ const postReducer = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_POSTS:
       return action.posts;
+    case RECEIVE_BOOKMARKED_POSTS:
+      return merge(newState, action.posts);
     case RECEIVE_POST:
       return merge(newState, {[action.post.id]: action.post});
     case DELETE_POST:
