@@ -1,6 +1,23 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 
+const NAMES = [
+  "David",
+  "Jimmy",
+  "Nixon",
+  "Brian",
+  "Rebekah",
+  "Tommy",
+  "Betty",
+  "Jerry",
+  "Adrian",
+  "Tyler",
+  "Mike",
+  "Cindy",
+  "Christina",
+  "Sean"
+];
+
 import {
   StyleSheet,
   Text,
@@ -21,7 +38,9 @@ class ConversationIndexItem extends Component {
     const messages = this.props.conversation.personal_messages;
     return (
       <View style={styles.row}>
-        <Text style={styles.sender}>{this.props.conversation.id}</Text>
+        <Text style={styles.sender}>
+          {NAMES[Math.floor(Math.random() * 14)]}
+        </Text>
       </View>
     );
   }
