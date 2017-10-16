@@ -16,7 +16,7 @@ import {
   StyleSheet,
   StatusBar,
   StackNavigator,
-  Button
+  Button,
 } from 'react-native';
 
 class UserShow extends Component {
@@ -46,7 +46,7 @@ class UserShow extends Component {
     const rating = reviewsAvg;
     const reviewsCount = reviews.length;
     return(
-      <ScrollView style={{ paddingTop: 30}}>
+      <ScrollView style={styles.container}>
         <Button
           onPress={this.handleLogout()}
           title={"Logout"}
@@ -66,6 +66,11 @@ class UserShow extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    minHeight: Dimensions.get("window").height,
+    backgroundColor: "white"
+  },
   userInfoContainer: {
     flex: 1,
   },
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
   hr: {
     width: Dimensions.get('window').width*1,
     justifyContent: 'center',
-    borderBottomColor: 'black',
+    borderBottomColor: '#C6D166',
     borderBottomWidth: 1,
   },
 });
