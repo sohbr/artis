@@ -32,6 +32,6 @@ end
 
 post_ids = (Post.first.id..Post.last.id).to_a
 
-50.times do
-  Bookmark.create(user_id: user_ids.sample, post_id: post_ids.sample)
+10.times do |i|
+  Bookmark.create(user_id: user_ids[i], post_id: post_ids.first)
 end

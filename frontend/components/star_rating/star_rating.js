@@ -54,6 +54,7 @@ class StarRating extends Component {
 const styles = StyleSheet.create({
   star: {
     fontSize: 30,
+    color: "#C6D166"
   }
 });
 

@@ -25,3 +25,14 @@ export const postUser = (user) => (
     data: { user }
   })
 );
+
+export const updateUser = (userId, image) => (
+  axios({
+    method: 'PATCH',
+    url: `${url}/api/users/${userId}`,
+    dataType: "JSON",
+    contentType: false,
+    processData: false,
+    data: image
+  })
+);
