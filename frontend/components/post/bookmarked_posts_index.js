@@ -27,19 +27,10 @@ class BookmarkedPostsIndex extends React.Component {
   componentWillMount() {
     this.setState({loading: true});
     this.props.getBookmarkedPosts(this.props.currentUser.token).then(() => {
-      console.log("wtf");
       this.setState({loading: false});
     });
   }
-
-  compnentWillUpdate() {
-    console.log("test");
-  }
-
-  componentWillReceiveProps(newProps) {
-    console.log("testing");
-  }
-
+  
   render() {
     let display = null;
     const { bookmarks } = this.props;

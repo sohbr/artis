@@ -1,13 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-import { createPost, updatePost, deletePostById } from '../../actions/post_actions';
-import { RECEIVE_POST } from '../../actions/post_actions';
-import ImageUpload from '../image_upload/image_upload';
-import { createBookmark, getBookmarkedPosts } from '../../actions/bookmark_actions';
+import {
+  createPost,
+  updatePost,
+  deletePostById
+} from "../../actions/post_actions";
+import { RECEIVE_POST } from "../../actions/post_actions";
+import ImageUpload from "../image_upload/image_upload";
+import {
+  createBookmark,
+  getBookmarkedPosts
+} from "../../actions/bookmark_actions";
+import { postConversation } from "../../actions/message_actions";
 
 import {
   StyleSheet,
-  Text, View,
+  Text,
+  View,
   TouchableHighlight,
   TextInput,
   Image,
@@ -17,7 +26,7 @@ import {
 } from "react-native";
 
 class PostShow extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerTintColor: "#C6D166"
     };
@@ -28,52 +37,75 @@ class PostShow extends React.Component {
   }
 
   updatePostWithImage() {
-    return (imageUri) => {
-      this.setState({image: imageUri});
-    }
+    return imageUri => {
+      this.setState({ image: imageUri });
+    };
   }
 
   handleSave(post) {
     return () => {
       const getBookmarkedPosts = this.props.getBookmarkedPosts;
       const currentUser = this.props.currentUser;
-      this.props.createBookmark(currentUser.id, post.id)
+      this.props
+        .createBookmark(currentUser.id, post.id)
         .then(() => Alert.alert("Post saved!"));
-
     };
   }
 
   handleConnect() {
-    return() => {
-
+    const { navigate } = this.props.navigation;
+    const { post } = this.props.navigation.state.params;
+    return () => {
+      this.props
+        .postConversation(this.props.currentUser.id, post.user_id)
+        .then(() =>
+          this.props.navigation.navigate("Inbox", post.user.username)
+        );
     };
   }
 
   render() {
-    const {post} = this.props.navigation.state.params;
-    const {hidesave} = this.props.navigation.state.params;
-    return(
+    const { post } = this.props.navigation.state.params;
+    const { hidesave } = this.props.navigation.state.params;
+    return (
       <ScrollView style={styles.container}>
         <Image style={styles.image} source={{uri: post.image_url}}/>
-        <View>
-          <Text style={styles.category}>{post.category}</Text>
-          <Text style={styles.title}>{post.title}</Text>
+        <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <View>
+            <Text style={styles.category}>{post.category}</Text>
+            <Text style={styles.title}>{post.title}</Text>
+          </View>
+          <View style={{
+              alignItems:"center",
+              alignSelf: "center",
+              paddingTop: 5,
+              paddingBottom: 10}}>
+            <Text>
+              {
+                post.user.username[0].toUpperCase() + post.user.username.slice(1)
+              }
+            </Text>
+            <Image
+              source={{uri: post.user.image_url}}
+              style={styles.userImage}
+            />
+          </View>
         </View>
         <View style={styles.buttonContainer}>
-          {
-            hidesave ? null :
+          {hidesave ? null : (
             <TouchableHighlight
               style={styles.button1}
               underlayColor={"#5C821A"}
-              onPress={this.handleSave(post)}>
+              onPress={this.handleSave(post)}
+            >
               <Text style={styles.buttonText}>Save</Text>
             </TouchableHighlight>
-          }
-
+          )}
           <TouchableHighlight
             style={hidesave ? styles.button3 : styles.button2}
             underlayColor={"#5C821A"}
-            onPress={this.handleConnect()}>
+            onPress={this.handleConnect()}
+          >
             <Text style={styles.buttonText}>Connect</Text>
           </TouchableHighlight>
         </View>
@@ -98,8 +130,13 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   image: {
-    height: Dimensions.get('window').height*0.3,
+    height: Dimensions.get("window").height * 0.3,
     borderRadius: 3
+  },
+  userImage: {
+    height:50,
+    width: 50,
+    borderRadius: 25
   },
   button1: {
     height: 30,
@@ -136,7 +173,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     color: "#5C821A",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   title: {
     paddingBottom: 15,
@@ -158,15 +195,17 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     currentUser: state.session.currentUser
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
+  postConversation: (userId, otherUserId) =>
+    dispatch(postConversation(userId, otherUserId)),
   createBookmark: (userId, postId) => dispatch(createBookmark(userId, postId)),
-  getBookmarkedPosts: (token) => dispatch(getBookmarkedPosts(token))
+  getBookmarkedPosts: token => dispatch(getBookmarkedPosts(token))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostShow);

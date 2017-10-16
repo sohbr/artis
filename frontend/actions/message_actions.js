@@ -44,12 +44,19 @@ export const getMessages = conversationId => dispatch => {
 export const postMessage = (body, conversationId, userId) => dispatch => {
   MessageAPIUtil.postMessage(body, conversationId, userId)
     .then(res => {
-      console.log("success post");
       dispatch(receiveMessage(res.data, conversationId));
     })
     .catch(errors => {
       console.log("post fail");
     });
+};
+
+export const postConversation = (userId, otherUserId) => dispatch => {
+  return MessageAPIUtil.postConversation(userId, otherUserId)
+    .then(res => {
+      dispatch(receiveConversation(res.data));
+    })
+    .catch(errors => {});
 };
 
 export const getConversations = userId => dispatch => {

@@ -8,7 +8,7 @@
 
 default_users = [
   "demo", "nixon", "jimmy", "brian", "betty", "rebekah", "tommy", "jerry", "david", "adrian",
-  "chris", "katrina", "carmen", "andres"
+  "chrissy", "katrina", "carmen", "andrea"
 ]
 
 category_pictures = {
@@ -104,10 +104,27 @@ category_pictures = {
   ]
 }
 
-default_users.each do |username|
+portraits = [
+  "https://i.pinimg.com/236x/83/5b/40/835b40b2a47452e93de1055426b933c6--headshot-poses-actor-headshots.jpg",
+  "http://media.npr.org/assets/img/2017/09/30/jason-kim-headshot-1_custom-1d05bb3e9064366d662f2d90774994f6ab368b68-s300-c85.jpg",
+  "https://i.pinimg.com/236x/a6/b8/58/a6b858c6dc28b13f0d1f88c001df631e--drama-school-actor-studio.jpg",
+  "https://i2.wp.com/digital-photography-school.com/wp-content/uploads/2016/02/What-to-wear-2.jpeg?resize=750%2C500&ssl=1",
+  "https://i.pinimg.com/736x/f1/3e/57/f13e57e1e26e1ba8553cca156f28b23a--headshot-poses-headshot-photography.jpg",
+  "https://i.pinimg.com/originals/66/8d/81/668d8136f87954bfd314ab422dc1184b.jpg",
+  "https://cdn.theatlantic.com/assets/media/img/nj/2016/1/26/asian-americans-feel-held/jason-shen-headshot.jpg",
+  "https://i.pinimg.com/236x/cd/db/1f/cddb1f8402021dd933e0eca2ff988f73--actor-headshots-headshot-ideas.jpg",
+  "http://trade-boston.com/wp-content/uploads/2011/10/Head-shots-Trade-8632-682x1024.jpg",
+  "https://i.pinimg.com/originals/29/80/94/298094c2d1dbf6267d5e61d741b902c2.jpg",
+  "https://i.pinimg.com/originals/1c/ca/5b/1cca5b30e12413605568675b8b8d475d.jpg",
+  "https://capeusa.org/wp-content/uploads/2013/09/Joy-Regullano-Headshot.jpg",
+  "https://i.pinimg.com/736x/13/c9/93/13c993cc944f0dddff232e303f3c37fa--senior-portrait-photography-photography-collage.jpg",
+  "http://www.davidnoles.com/wp/wp-content/uploads/2014/02/madison-261-new-york-city-headshots-nyc.jpg"
+]
+
+default_users.each_with_index do |username, i|
   pw = "#{username}123"
   email = "#{username}@demo.com"
-  User.create(username: username, password: pw, email: email)
+  User.create(username: username, password: pw, email: email, image: portraits[i])
 end
 
 user_ids = (User.first.id..User.last.id).to_a
