@@ -4,5 +4,5 @@ json.set! "post" do
   json.image_url asset_path(@bookmark.post.image.url)
 end
 json.set! "user" do
-  json.username :username
+  json.extract! post.user, :username
 end
