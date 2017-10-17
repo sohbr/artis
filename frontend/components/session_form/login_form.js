@@ -16,7 +16,7 @@ import {
 class LoginForm extends React.Component {
   static navigationOptions = ({navigation, screenProps}) => {
     return {
-      title: "Login",
+      title: null,
       headerTintColor: "#C6D166"
     }
   };

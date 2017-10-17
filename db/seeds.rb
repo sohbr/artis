@@ -144,10 +144,6 @@ end
 
 post_ids = (Post.first.id..Post.last.id).to_a
 
-10.times do |i|
-  Bookmark.create(user_id: user_ids[i], post_id: post_ids.first)
-end
-
 user_ids.each do |user_id|
   10.times do
     image = category_pictures[categories.sample].sample
