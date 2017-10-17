@@ -59,7 +59,7 @@ class PostShow extends React.Component {
       this.props
         .postConversation(this.props.currentUser.id, post.user_id)
         .then(() =>
-          this.props.navigation.navigate("Inbox", post.user.username)
+          this.props.navigation.navigate("Inbox")
         );
     };
   }

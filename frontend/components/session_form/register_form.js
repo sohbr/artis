@@ -14,7 +14,7 @@ import {
 
 class RegisterForm extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => ({
-    title: "Register",
+    title: null,
     headerTintColor: "#C6D166"
   });
 
