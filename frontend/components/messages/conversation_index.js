@@ -42,10 +42,6 @@ class ConversationIndex extends Component {
     this.props.getConversations(this.props.currentUser.id);
   }
 
-  componentWillReceiveProps(newProps) {
-    this.props.getConversations(newProps);
-  }
-
   render() {
     let display = null;
     if (Object.keys(this.props.conversations).length > 0) {
