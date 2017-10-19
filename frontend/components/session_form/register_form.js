@@ -78,8 +78,6 @@ class RegisterForm extends React.Component {
           style={styles.input}
           underlineColorAndroid={"transparent"}
         />
-        <Text style={styles.label}>{this.state.password}</Text>
-
         <TouchableHighlight
           style={styles.button}
           onPress={this.onRegister()}
