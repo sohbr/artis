@@ -53,6 +53,7 @@ class ConversationIndex extends Component {
             style={styles.button}
             key={`convokey-${idx}`}
             onPress={this.buttonPress("MessageIndex", conversation.id)}
+            underlayColor={"#5C821A"}
           >
             <View>
               <ConversationIndexItem conversation={conversation} />
