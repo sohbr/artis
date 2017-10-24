@@ -74,7 +74,8 @@ class UserInfo extends Component {
     const { currentUser, reviewsCount } = this.props;
     return (
       <View style={styles.userInfoContainer}>
-        <View style={styles.profileImageContainer}>
+        <View
+          style={styles.profileImageContainer}>
           <Image
             style={styles.profileImage}
             source={{ uri: currentUser.image_url }}
@@ -122,7 +123,6 @@ const styles = StyleSheet.create({
   profileImage: {
     width: Dimensions.get("window").width * 0.5,
     height: Dimensions.get("window").width * 0.5,
-    backgroundColor: "#C6D166",
     marginRight: 15
   },
   userDetails: {
