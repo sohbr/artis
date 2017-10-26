@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   TextInput,
   AsyncStorage,
+  KeyboardAvoidingView
 } from "react-native";
 
 class LoginForm extends React.Component {
@@ -53,10 +54,9 @@ class LoginForm extends React.Component {
 
   render() {
     return(
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.container}
-        enableAutoAutomaticScroll={true}
-        extraHeight={200}
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={"padding"}
         >
         <Text style={styles.title}>Artis</Text>
         <TextInput
@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
           </Text>
         </TouchableHighlight>
         <SessionErrors errors={this.props.errors}/>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 20
   },
   input: {
     height: 50,

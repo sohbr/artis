@@ -10,6 +10,7 @@ import {
   View,
   TouchableHighlight,
   TextInput,
+  KeyboardAvoidingView
 } from "react-native";
 
 class RegisterForm extends React.Component {
@@ -53,10 +54,9 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.container}
-        enableAutoAutomaticScroll={true}
-        extraHeight={200}
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={"padding"}
         >
         <Text style={styles.title}>Artis</Text>
         <TextInput
@@ -87,7 +87,7 @@ class RegisterForm extends React.Component {
         </TouchableHighlight>
 
         <SessionErrors errors={this.props.errors} />
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 20
   },
   input: {
     height: 50,
@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#C6D166",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 3
+    borderRadius: 3,
+    marginTop: 15,
   },
   buttonText: {
     fontSize: 18,

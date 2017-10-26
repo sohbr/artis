@@ -1,8 +1,21 @@
 {
   "expo": {
     "sdkVersion": "21.0.0",
+    "name": "Artis",
+    "version": "1.0.0",
+    "icon": "./app/assets/images/bubble.png",
+    "slug": "",
+    "ios": {
+      "bundleIdentifier": "com.anonym.artis"
+    },
+    "android": {
+      "package": "com.anonym.artis"
+    },
     "packagerOpts": {
       "assetExts": ["ttf"]
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#000000"
     }
   }
 }
