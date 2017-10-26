@@ -18,7 +18,9 @@ import {
   Image,
   Dimensions,
   Picker,
-  ScrollView
+  ScrollView,
+  Platform,
+  KeyboardAvoidingView
 } from "react-native";
 
 class PostForm extends React.Component {
@@ -79,10 +81,10 @@ class PostForm extends React.Component {
       );
     });
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.container}
-        enableAutoAutomaticScroll={true}
-        extraHeight={200}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={"position"}
+        >
         <View style={styles.image}>
           <ImageUpload updatePostWithImage={this.updatePostWithImage()} />
         </View>
@@ -116,7 +118,7 @@ class PostForm extends React.Component {
             Submit
           </Text>
         </TouchableHighlight>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -135,11 +137,12 @@ const categories = [
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: Dimensions.get("window").height,
+    flex: 1,
     justifyContent: "center",
     alignSelf: "stretch",
     backgroundColor: "white",
-    padding: 10
+    padding: 10,
+    paddingTop: 20
   },
   input: {
     height: 45,
