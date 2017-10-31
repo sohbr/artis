@@ -1,42 +1,33 @@
-# Doomi Proud
+# Artis
 
 ## Background and Overview
 
-Do you feel unmotivated? Do you want someone to nudge you on? Well, Doomi Proud is a React Native mobile application that promotes forming new habits with the help of friends. Users can share their progress by posting to the feed or directly to friends. If one of your buddies seems like they're not making any progress on their Doomi's, send them a nudge!
+Artis is a platform that allows trade school students to market themselves and connect with other users that are looking for discounted services.
 
 ## Functionality and MVP
-* User Login / Signup and authentication
-* Feed
-* Post/Response Streak
-* Upload Photos and Progress updates
-* Direct messages and group chat
+* User Login / Sign Up and Authentication
+* Search by keyword or filter by category
+* Index of available services
+* Bookmarks
+* Direct messages
 * Personal Profile
 * Demo Website
 * Production readme
 
-### Bonus
-* Like and comments
-* Nudge to remind friends to do something
-
 ## Technologies
 * React Native
-* Facebook OAuth
-* Socket.io
+* Web Sockets with Action Cables
 * Ruby on Rails
-* AWS for image hosting
+* Image hosting on Cloudinary
 
 ## Technical Challenges
 * Learning a new front end framework
-* Learning AWS
-* Implementing Socket.io for live messaging
+* Learning and implementing Web Sockets for live messaging
 * Setting up React Native with Rails
-* Implementing Facebook OAuth
 
 ## Wireframes
+![wireframes](https://github.com/sohbr/artis/blob/master/docs/Artis.png)
 
-![Wireframes][wireframes]
-
-Users are able to view the most recent Doomi posts that were made by their friends through the main feed. They can also view their own list of Doomi's as well as their posting and comment streaks on their personal profile page. If a friend has yet to complete their Doomi, the user is able to send a nudge as a friendly reminder. Users are also able to upload pictures and add descriptions as well as tag their relevant Doomi's to the post they make.
 
 ## Things Accomplished Over the Weekend
 * Research Technologies
@@ -49,35 +40,34 @@ Group of 3: Brian Sohn, Nixon Yiu, Jimmy Li
 ### Day 1 - 2
 * User Authentication (All)
     * Setup Login/Logout/Signup with Rails and React Native to persist through sessions
-* AWS
+* Cloudinary setup
    * For storing user media
 
-### Day 3 - 4
-* Setup user profile ( Jimmy )
+### Day 3 - 5
+* Setup user profile & service posting ( Jimmy )
     * Upload avatar
-    * List of user’s Doomi’s
-    * Add a new Doomi to the list 
+    * Description of current experience, schooling
+    * Portfolio - Upload pictures of previous job
     * Show information about the user’s personal streak
-* Setup feed ( Brian )
-    * Display updates and posts from friends
-    * Ability to like and comment posts on the feed
-    * Infinite scroll
-    * Posts and associated comments delete after 24 hours
-* Setup friends list ( Nixon )
-    * Nudge feature that sends a reminder to the friend that hasn’t completed their Doomi
-    * Heart feature for more positive reinforcement if Doomi's are completed
+* Setup service feed ( Brian )
+    * Display all available services posted by users
+    * Can be searched by keyword or filtered by category
+    * Clicking on a service will go into profile show page
+    * Profile show page includes service title, description, and any pictures to support the post
+* Ratings and messaging ( Nixon )
+    * Users can rate and review service
+    * Any received ratings will be averaged and displayed on the profile
+    * Implement web sockets for direct messaging between users
 
-### Day 5 - 7
-* Setup Socket.io for push notifications ( TBD )
-* Setup AWS for media upload (Cloudinary as backup) ( TBD )
+### Day 6 - 7
+* Styling of the application
+* Demo Website
+* Production README.md
 
-## If time allows
-* Setup up live chat between users
-    * Setup chat interface
 
 ## Plan for getting users and reviews
 
 * Everyone on the team is going to share the app with friends, family and classmates.
-* Post on reddit and facebook. 
+* Post on reddit and facebook.
 
-[wireframes]: https://github.com/sohbr/flex/blob/master/docs/Doomi%20Proud.png
+
