@@ -20,8 +20,8 @@
     "preset": "jest-expo"
   },
   "engines": {
-  "node": "6.10.1",
-  "npm": "3.10.10"
+    "node": "6.10.1",
+    "npm": "3.10.10"
   },
   "dependencies": {
     "@expo/vector-icons": "^5.2.0",
