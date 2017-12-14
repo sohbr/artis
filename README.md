@@ -54,5 +54,5 @@ This will allow certain categories to be automatically filtered by location so u
 ### Booking System
 Users and service provider can agree on a time and location and add the event to either google calendar. This will also allow users to keep track of previously hired professionals.
 
-### IOS and Google Play App Store
+### IOS and Google Play App Store 
 We plan to publish Artis to the App stores. To gain publicity we will advertise the app on trade school social sites, such as reddit sub groups and facebook groups.
